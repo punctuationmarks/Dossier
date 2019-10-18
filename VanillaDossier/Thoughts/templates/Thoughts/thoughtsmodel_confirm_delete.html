@@ -1,0 +1,18 @@
+{% extends "Main_Templates/base.html" %}
+{% block body_block %}
+
+ <div class="confirm_delete_div">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="confirm_delete_legend">Delete Post?</legend>
+        <h2>Are you sure you want to delete "{{ object.title }}"?</h2>
+      </fieldset>
+      <div class="form-group">
+        <button class="confirm_delete_button" type="submit">Yes, delete</button>
+        <a class="confirm_delete_a" href="#">Nope, get me outta here</a>
+      </div>
+    </form>
+  </div>
+
+{% endblock body_block %}

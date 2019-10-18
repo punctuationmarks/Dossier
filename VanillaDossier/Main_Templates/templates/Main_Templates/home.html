@@ -1,0 +1,52 @@
+{% extends "Main_Templates/base.html"%}
+
+{% block time_clock %}
+<section class="current_time_section">
+    <p>
+    {{ current_time }} UTC
+    </p>
+    <small>
+      [-5hr EST| -4hr EDT]
+    </small>
+  </section>
+{% endblock time_clock %}
+
+
+{% block page_header %}
+<section class="block_page_header_section">
+    <h1 class="home_page_header_h1">
+      Home Page:
+    </h1>
+  </section>
+{% endblock page_header %}
+
+
+{% block body_block %}
+  <h2>
+
+  </h2>
+  <p class="body_block_p">
+    Just quick buttons? Have one each for posting?
+    Could have something like an api with the date, or a historical thing that
+    happened on this date. idk, something simple, won't break.
+  </p>
+  <br />
+  <p class="body_block_p">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+  <br />
+  <p class="body_block_p">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+
+{% endblock body_block %}

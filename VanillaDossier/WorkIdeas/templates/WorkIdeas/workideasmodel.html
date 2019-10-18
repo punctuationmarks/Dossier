@@ -1,0 +1,72 @@
+{% extends "Main_Templates/base.html"%}
+
+{% block page_header %}
+    <h1 class="work_ideas_header_h1">
+      Work Ideas:
+    </h1>
+{% endblock page_header %}
+
+
+
+{% block body_block %}
+
+<!-- looping over the database for posts -->
+{%for post in posts%}
+<article class = "body_block_article">
+  <h2 class="body_block_h2">
+    <a class="body_block_link" href="{% url 'workIdeas-post-detail' post.pk %}">
+    <!-- href="{% url 'workIdeas-post-detail' post.id %}" -->
+      {{ post.title }}
+    </a>
+  </h2>
+
+  <p class="post_main_body">
+    {{post.body|safe|linebreaks|truncatechars:450}}
+    <a class="stylized_href" href="{% url 'workIdeas-post-detail' post.id %}">[read more]</a>
+  </p>
+</article>
+{% endfor %}
+
+{% endblock body_block %}
+
+
+
+{% block pagination_buttons %} {% endblock pagination_buttons %}
+
+
+<!--
+here's how you did it in the original version
+{% block buttons %}
+<div class="col">
+  <button onclick="window.location.href = `{% url 'blog-post-create' %}`" class="footer_href">
+    New Writing
+  </button>
+</div>
+<div class="col">
+  <button onclick="window.location.href = `{% url 'dossier-post-create' %}`" class="footer_href">
+    New Dossier
+  </button>
+</div>
+<div class="col">
+  <button onclick="window.location.href = `{% url 'workIdeas-post-create' %}`" class="footer_href">
+    New Code
+  </button>
+</div>
+{% endblock buttons %}
+ -->
+
+
+ {% block search_bar %}
+
+ <form class="searchbar_form">
+   <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
+   <!-- <span class= "searchbar_arrow"> -->
+     <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
+
+   <!-- </span> -->
+   <button class="searchbar_button" type="submit">
+     Search
+   </button>
+ </form>
+
+ {% endblock search_bar %}

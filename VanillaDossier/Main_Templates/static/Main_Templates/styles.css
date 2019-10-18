@@ -1,0 +1,329 @@
+/* BASE.HTML CSS  */
+
+/* this is a common way to remove the padding and margin across
+the entire site, so while working you're thinking of the entire screen,
+having a border-box sizing might make it 'easier' for resizing elements across
+the board as well */
+
+:root {
+  --base-blue: rgba(0, 114, 178, 0.86);
+  --base-green: rgba(0, 158, 115, 0.86);
+  --base-yellow: rgba(240, 228, 66, 0.86);
+  --base-black: rgba(0, 0, 0, 0.75);
+  --base-gray: rgba(143, 143, 143, 0.85);
+  --base-white: rgba(255, 255, 255, 0.8);
+  --base-black: rgba(10, 10, 10, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--base-black);
+}
+
+p,
+small {
+  font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  background-color: var(--base-gray); /* Green */
+  border: none;
+  color: var(--base-white);
+  padding: 1em 1.5em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+}
+
+main {
+  margin: 1em 0 1em 0;
+  padding-bottom: 20%;
+}
+
+h1{
+  font-size: xx-large;
+}
+
+h2{
+  font-size: x-large;
+}
+
+/* the navbar  will be hidden by default, given active class upon click */
+#nav_bar_main {
+  border: 0.1em solid var(--base-gray);
+  padding: 1em 1em 2.5em 1em;
+  margin: 1em 1em 3.5em 1em;
+}
+
+.nav_ul {
+  margin: 0.2em 0.2em 0.2em;
+  padding: 0.2em;
+  display: none;
+
+}
+.nav_bar_logo,
+.nav_bar_links {
+  text-decoration: none;
+  color: var(--base-black);
+}
+
+.nav_bar_li {
+  text-align: left;
+  margin: 1.5em;
+  padding: 0.25em;
+}
+
+.nav_bar_logo {
+  display: inline-block;
+  margin-top: 1em;
+  margin-left: 1.75em;
+}
+
+/* Time bar under hamburger */
+
+.current_time_section {
+  top: 4.5em;
+  right: 2.75em;
+  margin: 1em;
+}
+
+
+/* Navbar, button for assessibility, transparent background and border for style
+this looks amazing while using the tab key to toggle the navigation
+*/
+.navbar_toggle {
+  position: absolute;
+  top: 2.6em;
+  right: 2.75em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  border: Transparent;
+  background-color: Transparent;
+  font-size: 1.3em;
+}
+
+.activeNavbar {
+  display: block;
+}
+
+.hamburger_bar_1,
+.hamburger_bar_2,
+.hamburger_bar_3 {
+  width: 2em;
+  height: 0.28em;
+  background-color: #333;
+  margin: 0.35em 0.2em;
+  padding-top: 0.28em;
+  transition: 0.45s;
+}
+
+/*
+So this is working (in the sense that JS adds the class), buuuutt issue is
+that it's not actually animating anything  */
+.change_hamburger .hamburger_bar_1 {
+  -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
+  transform: rotate(-70deg) translate(-0.35em, 0.2em);
+}
+
+.change_hamburger .hamburger_bar_2 {
+  opacity: 0.71;
+  background-color: var(--base-blue);
+}
+
+.change_hamburger .hamburger_bar_3 {
+  -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
+  transform: rotate(65deg) translate(-0.35em, -0.2em);
+}
+
+.navigation_footer {
+  position: fixed;
+  display: block;
+  background-color: var(--base-white);
+  margin: 0.5em 0 0 0;
+  padding: 1em;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.navigation_footer_div_row_2 {
+  /* background: var(--base-gray); */
+  display: inline-flex;
+  text-align: center;
+}
+
+@media screen and (min-width: 767px) {
+  .quick_buttons_ul {
+    display: none;
+  }
+
+  .quick_buttons_li {
+    display: none;
+  }
+
+  .quick_buttons_a {
+    display: none;
+  }
+}
+/** Mobile **/
+@media only screen and (max-width: 767px),
+  only screen and (max-device-width: 767px) {
+  .quick_buttons_ul {
+    list-style: none;
+  }
+
+  /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
+  .quick_buttons_li {
+    margin: 0.75em 0.35em 0.35em 0.35em;
+    padding: 0.75em 0.35em 0.35em 0.35em;
+    display: inline;
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 0.05em dotted solid var(--base-black);
+  }
+
+/* play around with this here, it has issues on super small screens (not sure if needed) */
+  .quick_buttons_link {
+    text-decoration: none;
+    color: var(--base-black);
+    font-size: 1.5em;
+  }
+}
+
+/*
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none; */
+
+/* HOME.HTML CSS */
+
+.home_page_header_h1 {
+  color: var(--base-blue);
+}
+
+/* Search Bar for all apps */
+.searchbar_form {
+  display: inline;
+  width: 2em;
+  margin: 0.5em;
+}
+
+.searchbar_input {
+  padding: 1em 1em;
+  margin: 0.5em;
+  color: var(--base-black);
+  background-color: var(--base-white);
+  opacity: 0.9;
+}
+
+.searchbar_button {
+  background-color: var(--base-gray);
+  color: var(--base-white);
+  border: none;
+  margin: 0.5em;
+  padding: 1em 2em;
+  text-decoration: none;
+}
+
+
+/* Editing the post for all apps */
+.edit_href_div{
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+}
+
+.edit_href{
+  font-size: 1.5em;
+  margin: 1em 0.25em 1em;
+  padding: 0.25em;
+  outline: 0.05em solid var(--base-gray);
+  background: var(--base-gray);
+}
+
+/* the "arrow" doesn't work and isn't built
+was trying to impliment something like this
+https://blog.udemy.com/search-box-css/ */
+
+/* .searchbar_arrow{
+  position:relative;
+  left: -1em;
+  background: var(--base-white);
+  padding: 8px 15px;
+}
+
+.searchbar_arrow:after{
+  right: 100%;
+  top:50%;
+  border: solid transparent;
+  position: absolute;
+  margin: -1em;
+  border-width: 1em;
+} */
+
+/* Repeating for the header/body/article of the apps */
+.block_page_header_section {
+  margin: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.body_block_container {
+  margin: 1em;
+  padding: 1em 0 1em 0;
+}
+
+.body_block_article {
+  margin: 0.25em;
+  padding: 0.25em;
+  outline: 0.1em;
+  outline-style: solid;
+  outline-color: var(--base-gray);
+
+}
+
+.body_block_h2 {
+  text-align: left;
+  padding: 0.25em 0 0.5em 0.75em;
+}
+
+.body_block_p {
+  text-indent: 0.75em;
+  text-align: justify;
+}
+
+
+/* Dossier.html  */
+.dossier_header_h1 {
+  color: var(--base-blue);
+}
+
+/* Workideas.html */
+.work_ideas_header_h1 {
+  color: var(--base-green);
+}
+
+
+.post_title{
+  color: var(--base-black);
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+.post_main_body{
+  color: var(--base-black);
+  margin: 0.25em;
+  padding: 0.25em;
+}

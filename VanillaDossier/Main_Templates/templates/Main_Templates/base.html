@@ -1,0 +1,94 @@
+{% load static %} {% comment %} loading any static files first {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'Main_Templates/styles.css' %}"
+    />
+    <link rel="icon" href="{% static 'images/smaller_dossier_cropped.png'%}" />
+    <title>Dossiers</title>
+  </head>
+  <body>
+    <nav id="nav_bar_main">
+      <a href="/" class="nav_bar_logo">
+        <img src="{% static 'images/small_dossier_cropped.png'%}" />
+      </a>
+      <!-- custom hamburger, for responsive navbar -->
+
+          <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
+            <div class="hamburger_bar_1"></div>
+            <div class="hamburger_bar_2"></div>
+            <div class="hamburger_bar_3"></div>
+          </button>
+
+                {% block time_clock %}
+                {% endblock time_clock %}
+
+        <ul class="nav_ul" id = "js_menu">
+{% if user.is_authenticated%}
+          <li class="nav_bar_li"><a href="/dossiers" class="nav_bar_links">Dossiers</a></li>
+          <li class="nav_bar_li"><a href="/thoughts" class="nav_bar_links">Thoughts</a></li>
+          <li class="nav_bar_li"><a href="/workIdeas" class="nav_bar_links">Work Ideas</a></li>
+          <li class="nav_bar_li"><a href="#about" class="nav_bar_links">About</a></li>
+{% else %}
+          <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
+          <li class="nav_bar_li"><a href="#about" class="nav_bar_links">About</a></li>
+{% endif %}
+
+        </ul>
+        <!-- search bar for searching, only shown on the main pages of the different apps -->
+
+    </nav>
+<main>
+    <section class="block_page_header_section">
+        {% block page_header %}
+        {% endblock page_header %}
+    </section>
+
+    <section class="body_block_container">
+      {% block edit_href %}
+      {% endblock edit_href %}
+      {% block body_block %}
+      {% endblock body_block %}
+    </section>
+
+
+  <!-- this still needs to be built -->
+  <section class="pagination_section">
+      {% block pagination_buttons %}
+      {% endblock pagination_buttons %}
+  </section>
+</main>
+{% if user.is_authenticated%}
+<footer class="navigation_footer">
+  <div class="navigation_footer_div">
+      <ul class="quick_buttons_ul">
+        <li class="quick_buttons_li">
+          <a href="/dossiers" class="quick_buttons_link">Dossiers</a>
+        </li>
+        <li class="quick_buttons_li">
+          <a href="/thoughts" class="quick_buttons_link">Thots</a>
+        </li>
+        <li class="quick_buttons_li">
+          <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
+        </li>
+      </ul>
+    </div>
+
+  <div class="searchbar_div">
+    {% block search_bar %}
+    {% endblock search_bar %}
+  </div>
+</footer>
+    {% endif %}
+
+  </body>
+  <script src="{% static 'Main_Templates/main.js' %}"></script>
+
+</html>

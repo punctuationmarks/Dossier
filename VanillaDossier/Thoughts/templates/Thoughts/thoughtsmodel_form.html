@@ -1,0 +1,18 @@
+{% extends "Main_Templates/base.html" %}
+{% block content %}
+  <div class="content-section box-content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom text-center mb-4">Jot your thoughts</legend>
+
+        form here:
+      </fieldset>
+      <div class="form-group pt-2">
+        <button class="btn btn-outline submit_button btn-block" type="submit">
+        </button>
+      </div>
+    </form>
+    <hr>
+  </div>
+{% endblock content %}
