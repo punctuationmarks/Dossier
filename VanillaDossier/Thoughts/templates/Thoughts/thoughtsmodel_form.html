@@ -1,18 +1,21 @@
 {% extends "Main_Templates/base.html" %}
-{% block content %}
-  <div class="content-section box-content-section">
-    <form method="POST">
+{% block body_block %}
+    <form method="POST" class="post_form">
       {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom text-center mb-4">Jot your thoughts</legend>
-
-        form here:
+      <fieldset class="post_form_fieldset">
+        <legend class="post_form_legend">Jot your thoughts</legend>
+        <label for="title" class="form_label">thot's title</label>
+        {{ form.title }}<br />
+        <br />
+        <label for="body" class="form_label">thot's body</label>
+        {{ form.body }}
       </fieldset>
-      <div class="form-group pt-2">
-        <button class="btn btn-outline submit_button btn-block" type="submit">
-        </button>
-      </div>
+        <button class="submit_button" type="submit">Submit</button>
     </form>
     <hr>
-  </div>
-{% endblock content %}
+  {% endblock body_block %}
+
+
+{% comment %}
+<input type="text" name="title" maxlength="100" required="" id="id_title">
+{% endcomment %}

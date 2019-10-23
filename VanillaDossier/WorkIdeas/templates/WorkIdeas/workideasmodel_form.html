@@ -1,23 +1,20 @@
 {% extends "Main_Templates/base.html" %}
-
-
-{% block page_header %}
-  <h2>Add a new entry:</h2>
-{% endblock page_header %}
-
 {% block body_block %}
-    <form method="POST" class="entry_form">
+    <form method="POST" class="post_form">
       {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom text-center mb-4">Jot your thoughts</legend>
-
-        form here:
+      <fieldset class="post_form_fieldset">
+        <legend class="post_form_legend">Jot your thoughts</legend>
+        
+        {{ form.title }}<br />
+        <br />
+        {{ form.body }}
       </fieldset>
-      <!-- <div class="form-group pt-2"> -->
-        <button class="submit_changes_button" type="submit">
-          Submit
-        </button>
-      <!-- </div> -->
+        <button class="submit_button" type="submit">Submit</button>
     </form>
     <hr>
-{% endblock body_block %}
+  {% endblock body_block %}
+
+
+{% comment %} 
+<input type="text" name="title" maxlength="100" required="" id="id_title"> 
+{% endcomment %}

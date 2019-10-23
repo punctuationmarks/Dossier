@@ -4,21 +4,19 @@
 // need to have this function on the actual html/css properties since
 // it needs to be an onClick() function
 
-function hamburgerAnimation(mainNav) {
-  mainNav.classList.toggle("change_hamburger");
-}
-
 let mainNav = document.getElementById('js_menu');
 let navBarToggle = document.getElementById('js_navbar_toggle');
 
+
+function hamburgerAnimation(mainNav) {
+    mainNav.classList.toggle("change_hamburger");
+}
+
+
 // this needs to be done separately, by the ID while the hamburgerAnimation is done by onClick
-navBarToggle.addEventListener('click', function () {
-
-
+navBarToggle.addEventListener('click', function() {
     // mainNav.classList.toggle('change_hamburger');
-    mainNav.classList.toggle('activeNavbar');
-
-
+    mainNav.classList.toggle('active_navbar');
 });
 
 

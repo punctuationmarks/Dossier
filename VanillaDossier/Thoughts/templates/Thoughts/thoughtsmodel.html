@@ -1,5 +1,13 @@
 {% extends "Main_Templates/base.html"%}
 
+{% block skip_links %}
+        <a href="/dossiers" class="skip_links">Skip to Dossiers</a>
+        <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
+        <a href="#main" class="skip_links">Skip to Main</a>
+        <a href="#sidebar_section" class="skip_links">Sidebar</a>
+        <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
+{% endblock skip_links %}
+
 {% block page_header %}
     <h1 class="thoughts_header_h1">
       Thoughts:
@@ -18,16 +26,37 @@
     </a>
   </h2>
 
-  <p class="mb-4">
-    {{ post.body|safe|linebreaks|truncatechars:450 }}
-    <a class="stylized_href" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
+  <p class="">
+    {{ post.body|safe|linebreaks|truncatechars:600 }}
+    {% if post.body|length > 600 %}
+    <a class="" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
+    {% endif %}
   </p>
 </article>
 {% endfor %}
 
 {% endblock body_block %}
 
+      {% block post_headers %}
 
+          <section id="sidebar_section">
+
+        <h3 id="sidebar_h3">
+          Thought Titles
+        </h3>
+          {% for post in posts %}
+              <p>
+                <a class="body_block_link sidebar_link" href="{% url 'thoughts-post-detail' post.pk %}">
+                <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+                  {{ post.title }}
+                </a>
+                    </p>
+
+          {% endfor %}
+
+        </section>
+
+      {% endblock post_headers %}
 
 {% block pagination_buttons%} {% endblock pagination_buttons%}
 

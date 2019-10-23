@@ -5,15 +5,69 @@ the entire site, so while working you're thinking of the entire screen,
 having a border-box sizing might make it 'easier' for resizing elements across
 the board as well */
 
-:root {
-  --base-blue: rgba(0, 114, 178, 0.86);
-  --base-green: rgba(0, 158, 115, 0.86);
-  --base-yellow: rgba(240, 228, 66, 0.86);
-  --base-black: rgba(0, 0, 0, 0.75);
-  --base-gray: rgba(143, 143, 143, 0.85);
-  --base-white: rgba(255, 255, 255, 0.8);
-  --base-black: rgba(10, 10, 10, 0.9);
+/*
+html {
+  --text-color-normal: #0a244d;
+  --text-color-light: #8cabd9;
 }
+
+html[data-theme='dark'] {
+  --text-color-normal: hsl(210, 10%, 62%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+*/
+
+/* #A6761D"  */
+
+/* using the dark2 from RColorBrewer, colorblind friendly */
+html {
+  background: var(--background);
+  --background: #b3b3b3;
+  --triad-primary-1: #66c2a5;
+  --triad-primary-2: #fc8d62;
+  --triad-primary-3: #8da0cb;
+  --triad-secondary-1: #e78ac3;
+  --triad-secondary-2: #a6d854;
+  --triad-secondary-3: #ffd92f;
+  --base-gray: #a88a8a;
+  --base-light: rgba(255, 255, 255, 0.8);
+  --base-dark: rgba(10, 10, 10, 0.9);
+  --base-text: rgba(249, 213, 213, 1);
+  --button-text: rgba(255, 255, 255, 1);
+  display: grid;
+ /* background-image: url("../images/astronomy_constellation_dark.jpg");
+ background-repeat: repeat-x; */
+}
+
+/* fROM sET2 IN RColorBrewer */
+/* "#E5C494" */
+/* :root {
+  --triad-primary-1: #66c2a5;
+  --triad-primary-2: #fc8d62;
+  --triad-primary-3: #8da0cb;
+  --triad-secondary-1: #e78ac3;
+  --triad-secondary-2: #a6d854;
+  --triad-secondary-3: #ffd92f;
+  --base-gray: #b3b3b3;
+  --base-light: rgba(255, 255, 255, 0.8);
+  --base-dark: rgba(10, 10, 10, 0.9);
+  --base-text: rgba(246, 229, 229, 0.9);
+  --button-text: rgba(255, 255, 255, 1);
+} */
+
+/* :root {
+  --triad-primary-1: ;
+  --triad-primary-2: ;
+  --triad-primary-3: ;
+  --triad-secondary-1: ;
+  --triad-secondary-2: ;
+  --triad-secondary-3: ;
+  --base-gray: rgba(143, 143, 143, 0.85);
+  --base-light: rgba(255, 255, 255, 0.8);
+  --base-dark: rgba(10, 10, 10, 0.9);
+} */
 
 * {
   box-sizing: border-box;
@@ -23,22 +77,34 @@ the board as well */
 
 a {
   text-decoration: none;
-  color: var(--base-black);
+  color: var(--base-text);
 }
 
 p,
+a,
+h1,
+h2,
+h3,
+ul,
+li,
 small {
-  font-family: "Roboto", sans-serif;
+  font-family: Georgia, serif;
+  color: var(--base-text);
 }
 
 ul {
   list-style-type: none;
 }
 
+nav {
+  display: grid;
+}
+
 button {
-  background-color: var(--base-gray); /* Green */
+  background-color: var(--base-gray);
+  /* Green */
   border: none;
-  color: var(--base-white);
+  color: var(--base-text);
   padding: 1em 1.5em;
   text-align: center;
   text-decoration: none;
@@ -48,34 +114,104 @@ button {
 
 main {
   margin: 1em 0 1em 0;
-  padding-bottom: 20%;
+  padding-bottom: 30%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header ."
+    "body body body sidebar";
 }
 
-h1{
+h1 {
   font-size: xx-large;
 }
 
-h2{
+h2 {
   font-size: x-large;
 }
 
+form {
+  display: grid;
+  grid-template-columns: auto;
+  background: var(--base-light);
+  padding: 1em;
+  margin: 1em;
+  outline: var(--base-dark);
+  outline-color: var(--base-light);
+}
+
+input {
+  background-color: var(--base-gray);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em 1em 0 1em;
+}
+
+textarea {
+  background-color: var(--base-gray);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em;
+}
+
+/* Skip links */
+
+/*
+.skip_links_wrapper{
+
+} */
+/* :focus */
+#skip_links_wrapper {
+  display: block;
+  grid-template-rows: (1, 12fr);
+  grid-gap: 1em;
+}
+/* hiding them until tabbed over on them */
+.skip_links {
+  /* position: absolute; */
+  left: -10em;
+  color: var(--background);
+  text-align: center;
+}
+
+.skip_links:focus {
+  color: var(--base-text);
+  background-color: var(--base-gray);
+  border: 1px solid var(--base-dark);
+}
+
 /* the navbar  will be hidden by default, given active class upon click */
-#nav_bar_main {
+#nav_bar {
   border: 0.1em solid var(--base-gray);
   padding: 1em 1em 2.5em 1em;
   margin: 1em 1em 3.5em 1em;
+  background-image: url("../images/astronomy_constellation_dark.jpg");
 }
 
 .nav_ul {
-  margin: 0.2em 0.2em 0.2em;
-  padding: 0.2em;
+  margin: 0.75em;
+  /* padding: 0.em; */
   display: none;
-
 }
-.nav_bar_logo,
+
 .nav_bar_links {
-  text-decoration: none;
-  color: var(--base-black);
+  text-decoration:overline;
+  color: var(--base-text);
+}
+
+#nav_bar_text {
+  display: inline;
+  font-family: monospace;
+  font-size: 3em;
+}
+
+#nav_bar_image {
+  filter: blur(0.1em);
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em);
+  margin: -0.1em -10px -10px -0.1em;
 }
 
 .nav_bar_li {
@@ -83,7 +219,6 @@ h2{
   margin: 1.5em;
   padding: 0.25em;
 }
-
 .nav_bar_logo {
   display: inline-block;
   margin-top: 1em;
@@ -91,13 +226,11 @@ h2{
 }
 
 /* Time bar under hamburger */
-
 .current_time_section {
   top: 4.5em;
   right: 2.75em;
   margin: 1em;
 }
-
 
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
@@ -114,8 +247,11 @@ this looks amazing while using the tab key to toggle the navigation
   font-size: 1.3em;
 }
 
-.activeNavbar {
-  display: block;
+.active_navbar {
+  display: grid;
+  /* using fractions here for grid */
+  grid-template-columns: repeat(4, 2fr);
+  grid-gap: 1em;
 }
 
 .hamburger_bar_1,
@@ -136,21 +272,18 @@ that it's not actually animating anything  */
   -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
   transform: rotate(-70deg) translate(-0.35em, 0.2em);
 }
-
 .change_hamburger .hamburger_bar_2 {
   opacity: 0.71;
-  background-color: var(--base-blue);
+  background-color: var(--triad-primary-2);
 }
-
 .change_hamburger .hamburger_bar_3 {
   -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
   transform: rotate(65deg) translate(-0.35em, -0.2em);
 }
-
 .navigation_footer {
   position: fixed;
   display: block;
-  background-color: var(--base-white);
+  background-color: var(--base-light);
   margin: 0.5em 0 0 0;
   padding: 1em;
   left: 0;
@@ -158,13 +291,14 @@ that it's not actually animating anything  */
   width: 100%;
   text-align: center;
 }
-
 .navigation_footer_div_row_2 {
   /* background: var(--base-gray); */
+
   display: inline-flex;
   text-align: center;
 }
 
+/* Hiding the quick button at the bottom for anything larger than phone */
 @media screen and (min-width: 767px) {
   .quick_buttons_ul {
     display: none;
@@ -178,74 +312,127 @@ that it's not actually animating anything  */
     display: none;
   }
 }
+
 /** Mobile **/
 @media only screen and (max-width: 767px),
   only screen and (max-device-width: 767px) {
+  /* Increasing the padding on the bottom due to the addition of the
+    the hot buttons for naviagation */
+  main {
+    padding-bottom: 35%;
+    margin-bottom: 10%;
+  }
+
   .quick_buttons_ul {
     list-style: none;
   }
 
   /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
+
   .quick_buttons_li {
     margin: 0.75em 0.35em 0.35em 0.35em;
     padding: 0.75em 0.35em 0.35em 0.35em;
     display: inline;
     background-color: rgba(0, 0, 0, 0.35);
-    border: 0.05em dotted solid var(--base-black);
+    border: 0.05em dotted solid var(--base-dark);
   }
+  /* play around with this here, it has issues on super small screens (not sure if needed) */
 
-/* play around with this here, it has issues on super small screens (not sure if needed) */
   .quick_buttons_link {
     text-decoration: none;
-    color: var(--base-black);
+    color: var(--base-dark);
     font-size: 1.5em;
   }
+
+  #sidebar_section {
+    display: none;
+  }
+
+  #main {
+    grid-template-areas:
+      "header header header ."
+      "body body body body";
+  }
+}
+
+/** Mobile (extra small) **/
+@media only screen and (max-width: 600px),
+  only screen and (max-device-width: 600px) {
+  /* Increasing the padding on the bottom due to the addition of the
+    the hot buttons for naviagation */
+  main {
+    padding-bottom: 35%;
+    margin-bottom: 25%;
+  }
+  .quick_buttons_ul {
+    list-style: none;
+  }
+
+  /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
+
+  .quick_buttons_li {
+    margin: 0.35em 0.35em 0.35em 0.35em;
+    padding: 0.35em 0.35em 0.35em 0.35em;
+    display: inline;
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 0.05em dotted solid var(--base-dark);
+  }
+  /* play around with this here, it has issues on super small screens (not sure if needed) */
+
+  .quick_buttons_link {
+    text-decoration: none;
+    color: var(--base-dark);
+    font-size: 1.5em;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+
+  #main {
+    grid-column: auto;
+    grid-template-areas:
+      "header ."
+      "body";
+  }
+}
+
+/* HOME.HTML CSS */
+.home_page_header_h1 {
+  color: var(--triad-primary-2);
 }
 
 /*
-    display: block;
-    height: 100%;
-    width: 100%;
-    text-decoration: none; */
-
-/* HOME.HTML CSS */
-
-.home_page_header_h1 {
-  color: var(--base-blue);
-}
+FUCKED UP THE PADDING ON SMALLER SCREENS WITH THE SEARCHBAR */
 
 /* Search Bar for all apps */
-.searchbar_form {
+input.searchbar_form {
   display: inline;
   width: 2em;
   margin: 0.5em;
 }
-
 .searchbar_input {
   padding: 1em 1em;
   margin: 0.5em;
-  color: var(--base-black);
-  background-color: var(--base-white);
+  color: var(--base-dark);
+  background-color: var(--base-light);
   opacity: 0.9;
 }
-
 .searchbar_button {
   background-color: var(--base-gray);
-  color: var(--base-white);
+  color: var(--base-light);
   border: none;
   margin: 0.5em;
   padding: 1em 2em;
   text-decoration: none;
 }
 
-
 /* Editing the post for all apps */
-.edit_href_div{
+.edit_href_div {
   margin: 0 0 1em;
   padding: 0 0 1em;
 }
-
-.edit_href{
+.edit_href {
   font-size: 1.5em;
   margin: 1em 0.25em 1em;
   padding: 0.25em;
@@ -260,7 +447,7 @@ https://blog.udemy.com/search-box-css/ */
 /* .searchbar_arrow{
   position:relative;
   left: -1em;
-  background: var(--base-white);
+  background: var(--base-light);
   padding: 8px 15px;
 }
 
@@ -274,15 +461,37 @@ https://blog.udemy.com/search-box-css/ */
 } */
 
 /* Repeating for the header/body/article of the apps */
-.block_page_header_section {
+#block_page_header_section {
   margin: 0.5em;
   padding: 0.5em;
   text-align: center;
+  grid-area: header;
 }
 
-.body_block_container {
-  margin: 1em;
-  padding: 1em 0 1em 0;
+#body_block_container {
+  display: grid;
+  grid-auto-rows: minmax(2.5em; auto);
+  grid-gap: 1em;
+  margin: 0 1em 0 1em;
+  grid-area: body;
+  /* margin: 1em; */
+  /* padding: 1em 0 1em 0; */
+  /* width: 95%; */
+  height: 90%;
+}
+
+#sidebar_section {
+  grid-area: sidebar;
+  outline: 0.1em var(--base-gray) solid;
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+  line-height: 1.25em;
+  text-align: center;
+}
+
+.sidebar_link {
+  padding: 0.75em;
+  margin: 0.75em;
 }
 
 .body_block_article {
@@ -291,39 +500,47 @@ https://blog.udemy.com/search-box-css/ */
   outline: 0.1em;
   outline-style: solid;
   outline-color: var(--base-gray);
-
 }
-
 .body_block_h2 {
   text-align: left;
   padding: 0.25em 0 0.5em 0.75em;
 }
-
 .body_block_p {
   text-indent: 0.75em;
   text-align: justify;
 }
 
+/* all forms for new and edits of all posts by class */
+.post_form_fieldset {
+}
+
+.post_form_legend {
+  text-align: center;
+  color: var(--base-text);
+}
+
+label.form_label {
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+}
 
 /* Dossier.html  */
 .dossier_header_h1 {
-  color: var(--base-blue);
+  color: var(--triad-primary-2);
 }
 
 /* Workideas.html */
 .work_ideas_header_h1 {
-  color: var(--base-green);
+  color: var(--triad-primary-1);
 }
-
-
-.post_title{
-  color: var(--base-black);
+.post_title {
+  color: var(--base-dark);
   margin: 0.25em;
   padding: 0.25em;
 }
-
-.post_main_body{
-  color: var(--base-black);
+.post_main_body {
+  color: var(--base-dark);
   margin: 0.25em;
   padding: 0.25em;
 }

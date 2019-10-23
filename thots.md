@@ -6,6 +6,14 @@ means you'll be doing too much repetitive code, or it'll look less
 uniform
 
 
+layout is looking better but the UI is still ugly, as fuck
+
+- next, finish all the sever side stuff with the basics for the app
+so you can beta test it on your pone before you get too deep into the
+css
+
+
+
 ideas: make it vanilla EVERYTHING, so no bootstrap and just vanilla JS (you need to get better at it anyway)
 thought: make it on heroku and allow people to sign up (with a secret key?)
 could make it super easy to change and make into a cyclist forum too

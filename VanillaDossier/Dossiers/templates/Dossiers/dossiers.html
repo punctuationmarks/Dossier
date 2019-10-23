@@ -1,4 +1,17 @@
 {% extends "Main_Templates/base.html"%}
+
+
+
+{% block skip_links %}
+        <a href="/thoughts" class="skip_links">Skip to Thoghts</a>
+        <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
+        <a href="#main" class="skip_links">Skip to Main</a>
+        <a href="#sidebar_section" class="skip_links">Sidebar</a>
+        <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
+{% endblock skip_links %}
+
+
+
 {% block search_bar %}
 
 <form class="searchbar_form">
@@ -29,16 +42,66 @@
       {{ post.name }}
     </a>
   </h1>
+  <h3 class="post_h3_header">
+    Hobbies:
+  </h3>
+  <p class="body_block_p">
+      {{ post.hobbies}}
+      </p>
+  <h3 class="post_h3_header">
+    Work:
+  </h3>
+  <p class="body_block_p">
+      {{ post.work }}
+      </p>
+  <h3 class="post_h3_header">
+    Appearance:
+  </h3>
+  <p class="body_block_p">
+  {{post.appearance}}
+      </p>
+  <h3 class="post_h3_header">
+    Things to remember:
+  </h3>
+  <p class="body_block_p">
+   {{post.toRemember}}
+      </p>
 
+  <h3 class="post_h3_header">
+    Discussions:
+  </h3>
   <p class="body_block_p">
     {{post.discussions|safe|linebreaks|truncatechars:450}}
     <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">[read more]</a>
   </p>
 </article>
+
 {% endfor %}
 
 {% endblock body_block %}
 
+
+
+      {% block post_headers %}
+
+          <section id="sidebar_section">
+
+        <h3 id="sidebar_h3">
+          Quick Reference
+        </h3>
+          {% for post in posts %}
+              <p>
+                <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">
+                <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+                  {{ post.name }}
+                </a>
+                    </p>
+
+          {% endfor %}
+
+        </section>
+
+      {% endblock post_headers %}
 
 
 {% block pagination_buttons%} {% endblock pagination_buttons%}

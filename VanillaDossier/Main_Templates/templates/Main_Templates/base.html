@@ -1,6 +1,6 @@
-{% load static %} {% comment %} loading any static files first {% endcomment %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html_id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,16 +9,22 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'Main_Templates/styles.css' %}"
-    />
-    <link rel="icon" href="{% static 'images/smaller_dossier_cropped.png'%}" />
+      href="{% static 'Main_Templates/styles.css' %}"/>
+    <link rel="icon" href="{% static 'images/smaller_dossier_cropped.png'%}" />-
     <title>Dossiers</title>
   </head>
   <body>
-    <nav id="nav_bar_main">
+    <section id="skip_links_wrapper">
+      {% block skip_links %}
+      {% endblock skip_links %}
+    </section>
+    <nav id="nav_bar">
+<a href="/" class="nav_bar_logo">
+      <h1 id="nav_bar_text">The Dossier</h1>
+    </a>
       <a href="/" class="nav_bar_logo">
-        <img src="{% static 'images/small_dossier_cropped.png'%}" />
-      </a>
+        <img id="nav_bar_image" src="{% static 'images/blurbusstop.jpg'%}" />
+    </a>
       <!-- custom hamburger, for responsive navbar -->
 
           <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
@@ -45,18 +51,23 @@
         <!-- search bar for searching, only shown on the main pages of the different apps -->
 
     </nav>
-<main>
-    <section class="block_page_header_section">
+<main id="main">
+    <section id="block_page_header_section">
         {% block page_header %}
         {% endblock page_header %}
     </section>
 
-    <section class="body_block_container">
+    <section id="body_block_container">
       {% block edit_href %}
       {% endblock edit_href %}
       {% block body_block %}
       {% endblock body_block %}
     </section>
+
+      {% block post_headers %}
+      {% endblock post_headers %}
+
+
 
 
   <!-- this still needs to be built -->
@@ -64,7 +75,11 @@
       {% block pagination_buttons %}
       {% endblock pagination_buttons %}
   </section>
+  <section id="bottom_of_page"></section>
 </main>
+
+
+
 {% if user.is_authenticated%}
 <footer class="navigation_footer">
   <div class="navigation_footer_div">
@@ -85,6 +100,10 @@
     {% block search_bar %}
     {% endblock search_bar %}
   </div>
+  <div>
+
+  </div>
+
 </footer>
     {% endif %}
 

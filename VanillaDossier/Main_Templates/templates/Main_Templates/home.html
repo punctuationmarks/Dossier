@@ -1,5 +1,9 @@
 {% extends "Main_Templates/base.html"%}
-
+{% block skip_links %}
+    <a href="/dossiers" class="skip_links">Skip to Dossiers</a>
+    <a href="/thoughts" class="skip_links">Skip to Thoughts</a>
+    <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
+{% endblock skip_links %}
 {% block time_clock %}
 <section class="current_time_section">
     <p>
@@ -26,21 +30,18 @@
 
   </h2>
   <p class="body_block_p">
-    Just quick buttons? Have one each for posting?
-    Could have something like an api with the date, or a historical thing that
-    happened on this date. idk, something simple, won't break.
+    Remember, humans are individuals. Everyone is unique and different. This is an app
+    for you to remember that, and to express your memories with each individual.
   </p>
   <br />
   <p class="body_block_p">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Also, your thoughts matter. Guard them. Writing down things helps you formulate your
+    overall concepts. But don't rely solely on this app, get out and write with a pen.
+    Handwriting has been shown to help with memory as well as idea exploration.
   </p>
   <br />
   <p class="body_block_p">
+    The really good stuff:
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

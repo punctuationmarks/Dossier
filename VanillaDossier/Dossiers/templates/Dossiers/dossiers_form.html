@@ -1,7 +1,22 @@
-
-{% block page_header %}
-  <h2>Add a new entry:</h2>
-{% endblock page_header %}
-
+{% extends "Main_Templates/base.html" %}
 {% block body_block %}
-{% endblock body_block %}
+    <form method="POST" class="post_form">
+      {% csrf_token %}
+      <fieldset class="post_form_fieldset">
+        <legend class="post_form_legend">Jot your thoughts</legend>
+        {{ form.name }}  
+        {{ form.hobbies }}
+        {{ form.work }}
+        {{ form.appearance }}
+        {{ form.toRemeber }}
+        {{ form.discussions }}
+      </fieldset>
+        <button class="submit_button" type="submit">Submit</button>
+    </form>
+    <hr>
+  {% endblock body_block %}
+
+
+{% comment %} 
+<input type="text" name="title" maxlength="100" required="" id="id_title"> 
+{% endcomment %}
