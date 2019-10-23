@@ -3,25 +3,11 @@
 
 
 {% block skip_links %}
-        <a href="/thoughts" class="skip_links">Skip to Thoghts</a>
-        <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
-        <a href="#main" class="skip_links">Skip to Main</a>
         <a href="#sidebar_section" class="skip_links">Sidebar</a>
         <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
+        <a href="#search_bar" class="skip_links">Search Bar</a>
 {% endblock skip_links %}
 
-
-
-{% block search_bar %}
-
-<form class="searchbar_form">
-  <input class="searchbar_input" type="search" placeholder="Search Dossiers..." aria-label="Search" name='search' value="">
-  <button class="searchbar_button" type="submit">
-    Search
-  </button>
-</form>
-
-{% endblock search_bar %}
 
 
 {% block page_header %}
@@ -80,11 +66,9 @@
 
 {% endblock body_block %}
 
+      {% block side_bar %}
 
-
-      {% block post_headers %}
-
-          <section id="sidebar_section">
+      <section id="sidebar_section">
 
         <h3 id="sidebar_h3">
           Quick Reference
@@ -101,11 +85,22 @@
 
         </section>
 
-      {% endblock post_headers %}
+      {% endblock side_bar %}
 
 
 {% block pagination_buttons%} {% endblock pagination_buttons%}
 
+
+{% block search_and_post %}
+
+    <form id="search_bar" class="searchbar_form">
+      <input class="searchbar_input" type="search" placeholder="Search Dossiers..." aria-label="Search" name='search' value="">
+      <button class="searchbar_button" type="submit">
+        Search
+      </button>
+    </form>
+
+{% endblock search_and_post %}
 
 <!--
 here's how you did it in the original version

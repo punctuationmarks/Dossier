@@ -1,9 +1,14 @@
 https://github.com/CoreyMSchafer/code_snippets/tree/master/Django_Blog
 
 have the css be universal, meaning keep it on the root html tags
-and then cascade when necessary. currently you're drilling too deep, which 
-means you'll be doing too much repetitive code, or it'll look less 
+and then cascade when necessary. currently you're drilling too deep, which
+means you'll be doing too much repetitive code, or it'll look less
 uniform
+
+# ISSUES #
+# SO WE CAN;T HAVE THE TIMEON THE BASE.HTML PAGE, SO IT STILL only
+# RENDERS ON THE HOME PAGE (HOW IT'S CURRENTLY WRITTEN THROUGH CONTEXT)
+# IN THE Main_Templates/views
 
 
 layout is looking better but the UI is still ugly, as fuck

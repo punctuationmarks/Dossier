@@ -1,19 +1,8 @@
 {% extends "Main_Templates/base.html"%}
+
+
 {% block skip_links %}
-    <a href="/dossiers" class="skip_links">Skip to Dossiers</a>
-    <a href="/thoughts" class="skip_links">Skip to Thoughts</a>
-    <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
 {% endblock skip_links %}
-{% block time_clock %}
-<section class="current_time_section">
-    <p>
-    {{ current_time }} UTC
-    </p>
-    <small>
-      [-5hr EST| -4hr EDT]
-    </small>
-  </section>
-{% endblock time_clock %}
 
 
 {% block page_header %}

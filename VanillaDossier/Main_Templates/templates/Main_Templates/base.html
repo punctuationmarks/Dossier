@@ -15,6 +15,9 @@
   </head>
   <body>
     <section id="skip_links_wrapper">
+
+      <a href="#navbar_toggle" class="skip_links">Skip to Navigation</a>
+      <a href="#main" class="skip_links">Skip to Main Content</a>
       {% block skip_links %}
       {% endblock skip_links %}
     </section>
@@ -22,19 +25,16 @@
 <a href="/" class="nav_bar_logo">
       <h1 id="nav_bar_text">The Dossier</h1>
     </a>
-      <a href="/" class="nav_bar_logo">
-        <img id="nav_bar_image" src="{% static 'images/blurbusstop.jpg'%}" />
-    </a>
+        <img id="nav_bar_image" src="{% static 'images/crowded_bw.jpg'%}" />
       <!-- custom hamburger, for responsive navbar -->
-
-          <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
+        <div id="navbar_toggle">
+        <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
             <div class="hamburger_bar_1"></div>
             <div class="hamburger_bar_2"></div>
             <div class="hamburger_bar_3"></div>
           </button>
+        </div>
 
-                {% block time_clock %}
-                {% endblock time_clock %}
 
         <ul class="nav_ul" id = "js_menu">
 {% if user.is_authenticated%}
@@ -46,6 +46,9 @@
           <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
           <li class="nav_bar_li"><a href="#about" class="nav_bar_links">About</a></li>
 {% endif %}
+          <li>
+            {{ current_time }}
+          </li>
 
         </ul>
         <!-- search bar for searching, only shown on the main pages of the different apps -->
@@ -64,11 +67,8 @@
       {% endblock body_block %}
     </section>
 
-      {% block post_headers %}
-      {% endblock post_headers %}
-
-
-
+      {% block side_bar %}
+      {% endblock side_bar %}
 
   <!-- this still needs to be built -->
   <section class="pagination_section">
@@ -96,9 +96,9 @@
       </ul>
     </div>
 
-  <div class="searchbar_div">
-    {% block search_bar %}
-    {% endblock search_bar %}
+  <div id="search_and_post_div">
+    {% block search_and_post %}
+    {% endblock search_and_post %}
   </div>
   <div>
 

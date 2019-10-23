@@ -56,17 +56,17 @@ here's how you did it in the original version
  -->
 
 
- {% block search_bar %}
+ {% block search_and_post %}
 
- <form class="searchbar_form">
-   <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
-   <!-- <span class= "searchbar_arrow"> -->
-     <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
+     <form class="searchbar_form">
+       <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
+       <!-- <span class= "searchbar_arrow"> -->
+         <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
 
-   <!-- </span> -->
-   <button class="searchbar_button" type="submit">
-     Search
-   </button>
- </form>
+       <!-- </span> -->
+       <button class="searchbar_button" type="submit">
+         Search
+       </button>
+     </form>
 
- {% endblock search_bar %}
+ {% endblock search_and_post %}

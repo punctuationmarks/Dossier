@@ -16,24 +16,24 @@
 
 
 {% block body_block %}
-<!-- looping over the database for posts -->
-{% for post in posts %}
-<article class = "body_block_article">
-  <h2 class="body_block_h2">
-    <a class="body_block_link" href="{% url 'thoughts-post-detail' post.pk %}">
-    <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
-      {{ post.title }}
-    </a>
-  </h2>
+    <!-- looping over the database for posts -->
+    {% for post in posts %}
+    <article class = "body_block_article">
+      <h2 class="body_block_h2">
+        <a class="body_block_link" href="{% url 'thoughts-post-detail' post.pk %}">
+        <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+          {{ post.title }}
+        </a>
+      </h2>
 
-  <p class="">
-    {{ post.body|safe|linebreaks|truncatechars:600 }}
-    {% if post.body|length > 600 %}
-    <a class="" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
-    {% endif %}
-  </p>
-</article>
-{% endfor %}
+      <p class="">
+        {{ post.body|safe|linebreaks|truncatechars:600 }}
+        {% if post.body|length > 600 %}
+        <a class="" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
+        {% endif %}
+      </p>
+    </article>
+    {% endfor %}
 
 {% endblock body_block %}
 
@@ -83,8 +83,7 @@ here's how you did it in the original version
  -->
 
 
- {% block search_bar %}
-
+ {% block search_and_post %}
  <form class="searchbar_form">
    <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
    <!-- <span class= "searchbar_arrow"> -->
@@ -96,4 +95,6 @@ here's how you did it in the original version
    </button>
  </form>
 
- {% endblock search_bar %}
+ <a id="post_href" href="/thoughts/new">Post</a>
+
+ {% endblock search_and_post %}

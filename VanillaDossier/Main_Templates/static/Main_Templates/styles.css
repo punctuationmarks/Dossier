@@ -21,53 +21,22 @@ html[data-theme='dark'] {
 
 /* #A6761D"  */
 
-/* using the dark2 from RColorBrewer, colorblind friendly */
+/* using the solarized light palette */
 html {
   background: var(--background);
-  --background: #b3b3b3;
-  --triad-primary-1: #66c2a5;
-  --triad-primary-2: #fc8d62;
-  --triad-primary-3: #8da0cb;
-  --triad-secondary-1: #e78ac3;
-  --triad-secondary-2: #a6d854;
-  --triad-secondary-3: #ffd92f;
-  --base-gray: #a88a8a;
-  --base-light: rgba(255, 255, 255, 0.8);
-  --base-dark: rgba(10, 10, 10, 0.9);
-  --base-text: rgba(249, 213, 213, 1);
-  --button-text: rgba(255, 255, 255, 1);
-  display: grid;
- /* background-image: url("../images/astronomy_constellation_dark.jpg");
- background-repeat: repeat-x; */
+  --background: #eee8d5;
+  --triad-primary-1: #dc322f;
+  --triad-primary-2: #268bd2;
+  --triad-primary-3: #859900;
+  --triad-secondary-1: #d33682;
+  --triad-secondary-2: #6c71c4;
+  --triad-secondary-3: #2aa198;
+  --base-gray: #839496;
+  --base-light: #fdf6e3;
+  --base-dark: #073642;
+  --base-text: #073642;
+  --button-text: #002b36;
 }
-
-/* fROM sET2 IN RColorBrewer */
-/* "#E5C494" */
-/* :root {
-  --triad-primary-1: #66c2a5;
-  --triad-primary-2: #fc8d62;
-  --triad-primary-3: #8da0cb;
-  --triad-secondary-1: #e78ac3;
-  --triad-secondary-2: #a6d854;
-  --triad-secondary-3: #ffd92f;
-  --base-gray: #b3b3b3;
-  --base-light: rgba(255, 255, 255, 0.8);
-  --base-dark: rgba(10, 10, 10, 0.9);
-  --base-text: rgba(246, 229, 229, 0.9);
-  --button-text: rgba(255, 255, 255, 1);
-} */
-
-/* :root {
-  --triad-primary-1: ;
-  --triad-primary-2: ;
-  --triad-primary-3: ;
-  --triad-secondary-1: ;
-  --triad-secondary-2: ;
-  --triad-secondary-3: ;
-  --base-gray: rgba(143, 143, 143, 0.85);
-  --base-light: rgba(255, 255, 255, 0.8);
-  --base-dark: rgba(10, 10, 10, 0.9);
-} */
 
 * {
   box-sizing: border-box;
@@ -131,11 +100,9 @@ h2 {
 }
 
 form {
-  display: grid;
-  grid-template-columns: auto;
   background: var(--base-light);
-  padding: 1em;
-  margin: 1em;
+  padding: 0.25em;
+  margin: 0.25em;
   outline: var(--base-dark);
   outline-color: var(--base-light);
 }
@@ -165,18 +132,19 @@ textarea {
   display: block;
   grid-template-rows: (1, 12fr);
   grid-gap: 1em;
+  height: 1em;
+  margin: 0;
+  background-color: var(--background);
+  /* background-image: url("../images/busy_transit.jpg"); */
 }
 /* hiding them until tabbed over on them */
 .skip_links {
-  /* position: absolute; */
-  left: -10em;
-  color: var(--background);
   text-align: center;
+  color: var(--background);
 }
 
 .skip_links:focus {
   color: var(--base-text);
-  background-color: var(--base-gray);
   border: 1px solid var(--base-dark);
 }
 
@@ -185,7 +153,7 @@ textarea {
   border: 0.1em solid var(--base-gray);
   padding: 1em 1em 2.5em 1em;
   margin: 1em 1em 3.5em 1em;
-  background-image: url("../images/astronomy_constellation_dark.jpg");
+  /* background-image: url("../images/busy_transit.jpg"); */
 }
 
 .nav_ul {
@@ -195,7 +163,7 @@ textarea {
 }
 
 .nav_bar_links {
-  text-decoration:overline;
+  text-decoration: overline;
   color: var(--base-text);
 }
 
@@ -211,7 +179,7 @@ textarea {
   -moz-filter: blur(0.1em);
   -o-filter: blur(0.1em);
   -ms-filter: blur(0.1em);
-  margin: -0.1em -10px -10px -0.1em;
+  margin: -0.2em;
 }
 
 .nav_bar_li {
@@ -235,18 +203,19 @@ textarea {
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
 */
-.navbar_toggle {
+#navbar_toggle {
   position: absolute;
   top: 2.6em;
   right: 2.75em;
-  margin-bottom: 1em;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.8);
-  border: Transparent;
-  background-color: Transparent;
   font-size: 1.3em;
+  background: var(--background);
 }
 
+#js_navbar_toggle {
+  border: none;
+  background-color: Transparent;
+}
 .active_navbar {
   display: grid;
   /* using fractions here for grid */
@@ -259,7 +228,7 @@ this looks amazing while using the tab key to toggle the navigation
 .hamburger_bar_3 {
   width: 2em;
   height: 0.28em;
-  background-color: #333;
+  background-color: var(--base-dark);
   margin: 0.35em 0.2em;
   padding-top: 0.28em;
   transition: 0.45s;
@@ -291,11 +260,152 @@ that it's not actually animating anything  */
   width: 100%;
   text-align: center;
 }
-.navigation_footer_div_row_2 {
-  /* background: var(--base-gray); */
 
-  display: inline-flex;
+
+
+/* HOME.HTML CSS */
+.home_page_header_h1 {
+  color: var(--triad-primary-2);
+}
+
+/*
+FUCKED UP THE PADDING ON SMALLER SCREENS WITH THE SEARCHBAR */
+
+#search_and_post_div {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "search post";
+}
+
+/* Search Bar for all apps */
+form.searchbar_form {
+  grid-area: "search";
+}
+
+.searchbar_input {
+  padding: 1em 1em;
+  margin: 0.5em;
+  color: var(--base-dark);
+  background-color: var(--base-light);
+  opacity: 0.9;
+}
+.searchbar_button {
+  background-color: var(--base-gray);
+  color: var(--base-light);
+  border: none;
+  margin: 0.5em;
+  padding: 1em 2em;
+  text-decoration: none;
+}
+
+/* POST "BUTTON", NEXT TO SEARCHBAR */
+#post_href {
+  margin: 1em;
+  padding: 1em;
+  background-color: var(--triad-primary-3);
+  color: var(--base-light);
+  grid-area: "post";
+
+}
+
+/* Editing the post for all apps */
+.edit_href_div {
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+}
+.edit_href {
+  font-size: 1.5em;
+  margin: 1em 0.25em 1em;
+  padding: 0.25em;
+  outline: 0.05em solid var(--base-gray);
+  background: var(--base-gray);
+}
+
+
+/* Repeating for the header/body/article of the apps */
+#block_page_header_section {
+  margin: 0.5em;
+  padding: 0.5em;
   text-align: center;
+  grid-area: "header";
+}
+
+#body_block_container {
+  grid-area: "body";
+  /* margin: 1em; */
+  /* padding: 1em 0 1em 0; */
+  /* width: 95%; */
+  height: 90%;
+}
+
+#sidebar_section {
+  grid-area: "sidebar";
+  outline: 0.1em var(--base-gray) solid;
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+  line-height: 1.25em;
+  text-align: center;
+}
+
+.sidebar_link {
+  padding: 0.75em;
+  margin: 0.75em;
+}
+
+.body_block_article {
+  margin: 0.25em;
+  padding: 0.25em;
+  outline: 0.1em;
+  outline-style: solid;
+  outline-color: var(--base-gray);
+}
+.body_block_h2 {
+  text-align: left;
+  padding: 0.25em 0 0.5em 0.75em;
+}
+.body_block_p {
+  text-indent: 0.75em;
+  text-align: justify;
+}
+
+/* all forms for new and edits of all posts by class */
+.post_form_fieldset {
+}
+
+.post_form_legend {
+  text-align: center;
+  color: var(--base-text);
+}
+
+label.form_label {
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+}
+
+/* Dossier.html  */
+.dossier_header_h1 {
+  color: var(--triad-primary-2);
+}
+
+/* Workideas.html */
+.work_ideas_header_h1 {
+  color: var(--triad-primary-1);
+}
+
+.thoughts_header_h1 {
+  color: var(--triad-primary-3);
+}
+
+.post_title {
+  color: var(--base-dark);
+  margin: 0.25em;
+  padding: 0.25em;
+}
+.post_main_body {
+  color: var(--base-dark);
+  margin: 0.25em;
+  padding: 0.25em;
 }
 
 /* Hiding the quick button at the bottom for anything larger than phone */
@@ -395,152 +505,4 @@ that it's not actually animating anything  */
       "header ."
       "body";
   }
-}
-
-/* HOME.HTML CSS */
-.home_page_header_h1 {
-  color: var(--triad-primary-2);
-}
-
-/*
-FUCKED UP THE PADDING ON SMALLER SCREENS WITH THE SEARCHBAR */
-
-/* Search Bar for all apps */
-input.searchbar_form {
-  display: inline;
-  width: 2em;
-  margin: 0.5em;
-}
-.searchbar_input {
-  padding: 1em 1em;
-  margin: 0.5em;
-  color: var(--base-dark);
-  background-color: var(--base-light);
-  opacity: 0.9;
-}
-.searchbar_button {
-  background-color: var(--base-gray);
-  color: var(--base-light);
-  border: none;
-  margin: 0.5em;
-  padding: 1em 2em;
-  text-decoration: none;
-}
-
-/* Editing the post for all apps */
-.edit_href_div {
-  margin: 0 0 1em;
-  padding: 0 0 1em;
-}
-.edit_href {
-  font-size: 1.5em;
-  margin: 1em 0.25em 1em;
-  padding: 0.25em;
-  outline: 0.05em solid var(--base-gray);
-  background: var(--base-gray);
-}
-
-/* the "arrow" doesn't work and isn't built
-was trying to impliment something like this
-https://blog.udemy.com/search-box-css/ */
-
-/* .searchbar_arrow{
-  position:relative;
-  left: -1em;
-  background: var(--base-light);
-  padding: 8px 15px;
-}
-
-.searchbar_arrow:after{
-  right: 100%;
-  top:50%;
-  border: solid transparent;
-  position: absolute;
-  margin: -1em;
-  border-width: 1em;
-} */
-
-/* Repeating for the header/body/article of the apps */
-#block_page_header_section {
-  margin: 0.5em;
-  padding: 0.5em;
-  text-align: center;
-  grid-area: header;
-}
-
-#body_block_container {
-  display: grid;
-  grid-auto-rows: minmax(2.5em; auto);
-  grid-gap: 1em;
-  margin: 0 1em 0 1em;
-  grid-area: body;
-  /* margin: 1em; */
-  /* padding: 1em 0 1em 0; */
-  /* width: 95%; */
-  height: 90%;
-}
-
-#sidebar_section {
-  grid-area: sidebar;
-  outline: 0.1em var(--base-gray) solid;
-  margin-right: 0.5em;
-  padding-right: 0.5em;
-  line-height: 1.25em;
-  text-align: center;
-}
-
-.sidebar_link {
-  padding: 0.75em;
-  margin: 0.75em;
-}
-
-.body_block_article {
-  margin: 0.25em;
-  padding: 0.25em;
-  outline: 0.1em;
-  outline-style: solid;
-  outline-color: var(--base-gray);
-}
-.body_block_h2 {
-  text-align: left;
-  padding: 0.25em 0 0.5em 0.75em;
-}
-.body_block_p {
-  text-indent: 0.75em;
-  text-align: justify;
-}
-
-/* all forms for new and edits of all posts by class */
-.post_form_fieldset {
-}
-
-.post_form_legend {
-  text-align: center;
-  color: var(--base-text);
-}
-
-label.form_label {
-  padding: 1em;
-  margin: 1em;
-  position: relative;
-}
-
-/* Dossier.html  */
-.dossier_header_h1 {
-  color: var(--triad-primary-2);
-}
-
-/* Workideas.html */
-.work_ideas_header_h1 {
-  color: var(--triad-primary-1);
-}
-.post_title {
-  color: var(--base-dark);
-  margin: 0.25em;
-  padding: 0.25em;
-}
-.post_main_body {
-  color: var(--base-dark);
-  margin: 0.25em;
-  padding: 0.25em;
 }
