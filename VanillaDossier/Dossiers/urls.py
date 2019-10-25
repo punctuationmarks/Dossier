@@ -9,8 +9,8 @@ from .views import (PostDetailView,
 
 urlpatterns = [
     path('', views.dossiers, name='dossiers'),
-    path('dossiers/<int:pk>/', PostDetailView.as_view(), name='dossiers-post-detail'),
-    path('dossiers/new/', PostCreateView.as_view(), name='dossiers-post-create'),
-    path('dossiers/<int:pk>/update', PostUpdateView.as_view(), name='dossiers-post-update'),
-    path('dossiers/<int:pk>/delete', PostDeleteView.as_view(), name='dossiers-post-delete')
+    path('<int:pk>/', PostDetailView.as_view(), name='dossiers-post-detail'),
+    path('new/', PostCreateView.as_view(), name='dossiers-post-create'),
+    path('<int:pk>/update', PostUpdateView.as_view(), name='dossiers-post-update'),
+    path('<int:pk>/delete', PostDeleteView.as_view(), name='dossiers-post-delete')
 ]

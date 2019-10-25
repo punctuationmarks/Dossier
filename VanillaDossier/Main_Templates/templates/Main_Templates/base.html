@@ -10,12 +10,11 @@
       rel="stylesheet"
       type="text/css"
       href="{% static 'Main_Templates/styles.css' %}"/>
-    <link rel="icon" href="{% static 'images/smaller_dossier_cropped.png'%}" />-
+    <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
   <body>
     <section id="skip_links_wrapper">
-
       <a href="#navbar_toggle" class="skip_links">Skip to Navigation</a>
       <a href="#main" class="skip_links">Skip to Main Content</a>
       {% block skip_links %}
@@ -25,7 +24,7 @@
 <a href="/" class="nav_bar_logo">
       <h1 id="nav_bar_text">The Dossier</h1>
     </a>
-        <img id="nav_bar_image" src="{% static 'images/crowded_bw.jpg'%}" />
+        <img id="nav_bar_image" src="{% static 'images/autumn-leaves-walkway.jpg'%}" />
       <!-- custom hamburger, for responsive navbar -->
         <div id="navbar_toggle">
         <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
@@ -41,10 +40,10 @@
           <li class="nav_bar_li"><a href="/dossiers" class="nav_bar_links">Dossiers</a></li>
           <li class="nav_bar_li"><a href="/thoughts" class="nav_bar_links">Thoughts</a></li>
           <li class="nav_bar_li"><a href="/workIdeas" class="nav_bar_links">Work Ideas</a></li>
-          <li class="nav_bar_li"><a href="#about" class="nav_bar_links">About</a></li>
+          <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% else %}
           <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
-          <li class="nav_bar_li"><a href="#about" class="nav_bar_links">About</a></li>
+          <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% endif %}
           <li>
             {{ current_time }}
@@ -71,7 +70,7 @@
       {% endblock side_bar %}
 
   <!-- this still needs to be built -->
-  <section class="pagination_section">
+  <section id="pagination_section">
       {% block pagination_buttons %}
       {% endblock pagination_buttons %}
   </section>
@@ -80,7 +79,7 @@
 
 
 
-{% if user.is_authenticated%}
+{% if user.is_authenticated %}
 <footer class="navigation_footer">
   <div class="navigation_footer_div">
       <ul class="quick_buttons_ul">

@@ -9,7 +9,7 @@
 {% endblock skip_links %}
 
 {% block page_header %}
-    <h1 class="thoughts_header_h1">
+    <h1 id="thoughts_header_h1">
       Thoughts:
     </h1>
 {% endblock page_header %}
@@ -37,26 +37,27 @@
 
 {% endblock body_block %}
 
-      {% block post_headers %}
+      {% block side_bar %}
 
-          <section id="sidebar_section">
 
+      <section id="sidebar_section">
         <h3 id="sidebar_h3">
-          Thought Titles
+          Quick Reference
         </h3>
+        <ul id="side_bar_ul">
           {% for post in posts %}
-              <p>
-                <a class="body_block_link sidebar_link" href="{% url 'thoughts-post-detail' post.pk %}">
-                <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
-                  {{ post.title }}
-                </a>
-                    </p>
-
+                <li class="side_bar_li">
+                  <a class="body_block_link" href="{% url 'thoughts-post-detail' post.id %}">
+                  <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+                    {{ post.title }}
+                  </a>
+                </li>
           {% endfor %}
-
+        </ul>
         </section>
 
-      {% endblock post_headers %}
+
+      {% endblock side_bar %}
 
 {% block pagination_buttons%} {% endblock pagination_buttons%}
 
@@ -84,17 +85,11 @@ here's how you did it in the original version
 
 
  {% block search_and_post %}
- <form class="searchbar_form">
-   <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
-   <!-- <span class= "searchbar_arrow"> -->
-     <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
-
-   <!-- </span> -->
-   <button class="searchbar_button" type="submit">
-     Search
-   </button>
- </form>
-
- <a id="post_href" href="/thoughts/new">Post</a>
-
+       <form class="searchbar_form">
+           <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
+         <button class="searchbar_button" type="submit">
+           Search
+         </button>
+       </form>
+       <a id="post_href" href="/thoughts/new">Post</a>
  {% endblock search_and_post %}

@@ -48,7 +48,7 @@ def dossiers(request):
         'posts': posts,
         'search_term': search_term
     }
-    return render(request, 'Dossiers/dossiers.html', context)
+    return render(request, 'Dossiers/dossiersmodel.html', context)
 
 
 class PostDetailView(DetailView):

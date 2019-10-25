@@ -19,12 +19,10 @@ html[data-theme='dark'] {
 }
 */
 
-/* #A6761D"  */
-
 /* using the solarized light palette */
 html {
   background: var(--background);
-  --background: #eee8d5;
+  --background: rgba(253, 246, 227, 1);
   --triad-primary-1: #dc322f;
   --triad-primary-2: #268bd2;
   --triad-primary-3: #859900;
@@ -32,10 +30,12 @@ html {
   --triad-secondary-2: #6c71c4;
   --triad-secondary-3: #2aa198;
   --base-gray: #839496;
-  --base-light: #fdf6e3;
-  --base-dark: #073642;
-  --base-text: #073642;
-  --button-text: #002b36;
+  --transluscent-gray: rgba(131, 148, 150, 0.2);
+  --semi-transluscent-gray: rgba(131, 148, 150, 0.4);
+  --base-light: #eee8d5;
+  --base-dark: #002b36;
+  --base-text: #586e75;
+  --button-text: #073642;
 }
 
 * {
@@ -57,7 +57,7 @@ h3,
 ul,
 li,
 small {
-  font-family: Georgia, serif;
+  font-family: "Lucida Console", Monaco, monospace;
   color: var(--base-text);
 }
 
@@ -71,9 +71,8 @@ nav {
 
 button {
   background-color: var(--base-gray);
-  /* Green */
   border: none;
-  color: var(--base-text);
+  color: var(--button-text);
   padding: 1em 1.5em;
   text-align: center;
   text-decoration: none;
@@ -82,13 +81,15 @@ button {
 }
 
 main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "header sidebar "
+    "body sidebar"
+    "pagination ."
+    "bottom_page . ";
   margin: 1em 0 1em 0;
   padding-bottom: 30%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    "header header header ."
-    "body body body sidebar";
 }
 
 h1 {
@@ -121,6 +122,10 @@ textarea {
   margin: 1em;
 }
 
+strong{
+  font-family: monospace;
+
+}
 /* Skip links */
 
 /*
@@ -145,12 +150,12 @@ textarea {
 
 .skip_links:focus {
   color: var(--base-text);
-  border: 1px solid var(--base-dark);
+  border: 1px solid var(--transluscent-gray);
 }
 
 /* the navbar  will be hidden by default, given active class upon click */
 #nav_bar {
-  border: 0.1em solid var(--base-gray);
+  border: 0.1em solid var(--semi-transluscent-gray);
   padding: 1em 1em 2.5em 1em;
   margin: 1em 1em 3.5em 1em;
   /* background-image: url("../images/busy_transit.jpg"); */
@@ -174,12 +179,14 @@ textarea {
 }
 
 #nav_bar_image {
-  filter: blur(0.1em);
-  -webkit-filter: blur(0.1em);
-  -moz-filter: blur(0.1em);
-  -o-filter: blur(0.1em);
-  -ms-filter: blur(0.1em);
-  margin: -0.2em;
+  width: 10em;
+  height: 10em;
+  filter: blur(0.05em);
+  -webkit-filter: blur(0.05em);
+  -moz-filter: blur(0.05em);
+  -o-filter: blur(0.05em);
+  -ms-filter: blur(0.05em);
+  margin: 2em 0 0 1em;
 }
 
 .nav_bar_li {
@@ -228,15 +235,12 @@ this looks amazing while using the tab key to toggle the navigation
 .hamburger_bar_3 {
   width: 2em;
   height: 0.28em;
-  background-color: var(--base-dark);
+  background-color: var(--base-gray);
   margin: 0.35em 0.2em;
   padding-top: 0.28em;
   transition: 0.45s;
 }
 
-/*
-So this is working (in the sense that JS adds the class), buuuutt issue is
-that it's not actually animating anything  */
 .change_hamburger .hamburger_bar_1 {
   -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
   transform: rotate(-70deg) translate(-0.35em, 0.2em);
@@ -261,16 +265,6 @@ that it's not actually animating anything  */
   text-align: center;
 }
 
-
-
-/* HOME.HTML CSS */
-.home_page_header_h1 {
-  color: var(--triad-primary-2);
-}
-
-/*
-FUCKED UP THE PADDING ON SMALLER SCREENS WITH THE SEARCHBAR */
-
 #search_and_post_div {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -279,7 +273,7 @@ FUCKED UP THE PADDING ON SMALLER SCREENS WITH THE SEARCHBAR */
 
 /* Search Bar for all apps */
 form.searchbar_form {
-  grid-area: "search";
+  grid-area: search;
 }
 
 .searchbar_input {
@@ -304,8 +298,7 @@ form.searchbar_form {
   padding: 1em;
   background-color: var(--triad-primary-3);
   color: var(--base-light);
-  grid-area: "post";
-
+  grid-area: post;
 }
 
 /* Editing the post for all apps */
@@ -321,30 +314,34 @@ form.searchbar_form {
   background: var(--base-gray);
 }
 
-
 /* Repeating for the header/body/article of the apps */
 #block_page_header_section {
+  grid-area: header;
   margin: 0.5em;
+  margin-left: 1em;
   padding: 0.5em;
-  text-align: center;
-  grid-area: "header";
+  text-align: left;
 }
 
 #body_block_container {
-  grid-area: "body";
-  /* margin: 1em; */
-  /* padding: 1em 0 1em 0; */
-  /* width: 95%; */
-  height: 90%;
+  grid-area: body;
+  margin: 1em;
 }
 
 #sidebar_section {
-  grid-area: "sidebar";
-  outline: 0.1em var(--base-gray) solid;
-  margin-right: 0.5em;
-  padding-right: 0.5em;
-  line-height: 1.25em;
-  text-align: center;
+  grid-area: sidebar;
+  /* outline: 0.5em var(--base-gray) solid; */
+  margin-right: 1em;
+  line-height: 1.5em;
+  text-align: right;
+}
+
+#pagination_section {
+  grid-area: pagination;
+}
+
+#bottom_of_page {
+  grid-area: bottom_page;
 }
 
 .sidebar_link {
@@ -353,19 +350,22 @@ form.searchbar_form {
 }
 
 .body_block_article {
-  margin: 0.25em;
-  padding: 0.25em;
-  outline: 0.1em;
-  outline-style: solid;
-  outline-color: var(--base-gray);
+  margin: 1em;
+  padding: 0.5em;
+  padding-left: 1em;
+  outline: 0.01em;
+  outline-style: dashed;
+  outline-color: var(--transluscent-gray);
 }
 .body_block_h2 {
   text-align: left;
   padding: 0.25em 0 0.5em 0.75em;
 }
+
 .body_block_p {
   text-indent: 0.75em;
   text-align: justify;
+  white-space: pre;
 }
 
 /* all forms for new and edits of all posts by class */
@@ -383,17 +383,44 @@ label.form_label {
   position: relative;
 }
 
+/* Home.html */
+#home_page_header_h1 {
+  color: var(--triad-primary-2);
+}
+
+#home_sidebar_h3 {
+}
+
+.home_side_bar_li {
+}
+
+/* About.html */
+#about_page_header_h1 {
+  color: var(--triad-primary-3);
+}
+
+#contact_h2{
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#email{
+  text-shadow: 1px;
+  text-decoration-style:double;
+}
+
 /* Dossier.html  */
-.dossier_header_h1 {
+#dossiers_header_h1 {
   color: var(--triad-primary-2);
 }
 
 /* Workideas.html */
-.work_ideas_header_h1 {
-  color: var(--triad-primary-1);
+#work_ideas_header_h1 {
+  color: var(--triad-secondary-1);
 }
 
-.thoughts_header_h1 {
+/* Thoughts.html */
+#thoughts_header_h1 {
   color: var(--triad-primary-3);
 }
 
@@ -407,6 +434,8 @@ label.form_label {
   margin: 0.25em;
   padding: 0.25em;
 }
+
+/* MEDIA SIZING  */
 
 /* Hiding the quick button at the bottom for anything larger than phone */
 @media screen and (min-width: 767px) {
@@ -459,9 +488,10 @@ label.form_label {
   }
 
   #main {
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "header header header ."
-      "body body body body";
+      "header"
+      "body";
   }
 }
 
@@ -500,9 +530,9 @@ label.form_label {
   }
 
   #main {
-    grid-column: auto;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "header ."
+      "header"
       "body";
   }
 }

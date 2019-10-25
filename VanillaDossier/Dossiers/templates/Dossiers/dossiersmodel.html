@@ -1,0 +1,126 @@
+{% extends "Main_Templates/base.html"%}
+{% block skip_links %}
+    <a href="#sidebar_section" class="skip_links">Sidebar</a>
+    <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
+    <a href="#search_bar" class="skip_links">Search Bar</a>
+    <a href="new/" class="skip_links">Post</a>
+{% endblock skip_links %}
+
+{% block page_header %}
+<h1 id="dossiers_header_h1">
+  Dossiers:
+</h1>
+{% endblock page_header %}
+
+{% block body_block %}
+
+<!-- looping over the database for posts -->
+{%for post in posts%}
+<article class="body_block_article">
+  <h1 class="body_block_h1">
+    <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">
+      {{ post.name }}
+    </a>
+  </h1>
+  <ul>
+    <li>
+      <strong class="post_strong_header">
+        Hobbies:
+      </strong>
+      {{ post.hobbies}}
+    </li>
+    <li>
+      <strong class="post_strong_header">
+        Work:
+      </strong>
+      {{ post.work }}
+    </li>
+    <li>
+      <strong class="post_strong_header">
+        Appearance:
+      </strong>
+      {{post.appearance}}
+    </li>
+    <li>
+      <strong class="post_strong_header">
+        Things to remember:
+      </strong>
+      {{post.toRemember}}
+    </li>
+    <li>
+      <strong class="post_strong_header">
+        Discussions:
+      </strong>
+      {{post.discussions|safe|linebreaks|truncatechars:450}}
+      <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}"
+        >[read more]</a
+      >
+    </li>
+  </ul>
+</article>
+
+{% endfor %}
+{% endblock body_block %}
+{% block side_bar %}
+
+<section id="sidebar_section">
+  <h3 id="sidebar_h3">
+    Quick Reference
+  </h3>
+  <ul id="side_bar_ul">
+    {% for post in posts %}
+    <li class="side_bar_li">
+      <a
+        class="body_block_link"
+        href="{% url 'dossiers-post-detail' post.id %}"
+      >
+        <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+        {{ post.name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock side_bar %}
+
+ {% block pagination_buttons%}
+ {% endblock pagination_buttons%}
+
+ {% block search_and_post %}
+<form id="search_bar" class="searchbar_form">
+  <input
+    class="searchbar_input"
+    type="search"
+    placeholder="Search Dossiers..."
+    aria-label="Search"
+    name="search"
+    value=""
+  />
+  <button class="searchbar_button" type="submit">
+    Search
+  </button>
+</form>
+<a href="dossiers/new" id="post_href">POST</a>
+{% endblock search_and_post %}
+
+<!--
+here's how you did it in the original version
+{% block buttons %}
+<div class="col">
+  <button onclick="window.location.href = `{% url 'blog-post-create' %}`" class="footer_href">
+    New Writing
+  </button>
+</div>
+<div class="col">
+  <button onclick="window.location.href = `{% url 'dossier-post-create' %}`" class="footer_href">
+    New Dossier
+  </button>
+</div>
+<div class="col">
+  <button onclick="window.location.href = `{% url 'workIdeas-post-create' %}`" class="footer_href">
+    New strong
+  </button>
+</div>
+{% endblock buttons %}
+ -->

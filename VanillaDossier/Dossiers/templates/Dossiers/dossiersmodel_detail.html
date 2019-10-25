@@ -1,4 +1,4 @@
-`{% extends "Main_Templates/base.html" %}
+{% extends "Main_Templates/base.html" %}
 
 <!-- syntax for href href="{% url 'codingThots-post-update' object.id %}" -->
 
@@ -26,7 +26,7 @@
   </small>
   <article class="body_block_article">
     <h2 class="post_title">{{ object.name }}</h2>
-  
+
     <p class="post_main_body">{{ object.hobbies }}</p>
     <p class="post_main_body">{{ object.work }}</p>
     <p class="post_main_body">{{ object.appearance }}</p>
@@ -34,4 +34,3 @@
     <p class="post_main_body">{{ object.discussions }}</p>
   </article>
 {% endblock body_block %}
-`

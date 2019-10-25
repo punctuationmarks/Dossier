@@ -1,7 +1,7 @@
 {% extends "Main_Templates/base.html"%}
 
 {% block page_header %}
-    <h1 class="work_ideas_header_h1">
+    <h1 id="work_ideas_header_h1">
       Work Ideas:
     </h1>
 {% endblock page_header %}
@@ -11,7 +11,7 @@
 {% block body_block %}
 
 <!-- looping over the database for posts -->
-{%for post in posts%}
+{% for post in posts %}
 <article class = "body_block_article">
   <h2 class="body_block_h2">
     <a class="body_block_link" href="{% url 'workIdeas-post-detail' post.pk %}">
@@ -28,6 +28,28 @@
 {% endfor %}
 
 {% endblock body_block %}
+
+
+    {% block side_bar %}
+
+    {% if posts %}
+    <section id="sidebar_section">
+      <h3 id="sidebar_h3">
+        Quick Reference
+      </h3>
+      <ul id="side_bar_ul">
+        {% for post in posts %}
+              <li class="side_bar_li">
+                <a class="body_block_link" href="{% url 'workIdeas-post-detail' post.id %}">
+                <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+                  {{ post.title }}
+                </a>
+              </li>
+        {% endfor %}
+      </ul>
+      </section>
+    {% endif %}
+    {% endblock side_bar %}
 
 
 
@@ -68,5 +90,6 @@ here's how you did it in the original version
          Search
        </button>
      </form>
+     <a href="workIdeas/new" id="post_href">POST</a>
 
  {% endblock search_and_post %}

@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('about', views.about, name='about'),
     # need to update and make these
     # path('dossiers-upload-csv/', views.dossiers_upload_csv_file, name='dossiers_upload_csv'),
     # path('blog-upload-csv/', views.blog_upload_csv_file, name='blog_upload_csv'),

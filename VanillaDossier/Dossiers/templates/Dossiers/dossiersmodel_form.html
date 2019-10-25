@@ -4,7 +4,7 @@
       {% csrf_token %}
       <fieldset class="post_form_fieldset">
         <legend class="post_form_legend">Jot your thoughts</legend>
-        {{ form.name }}  
+        {{ form.name }}
         {{ form.hobbies }}
         {{ form.work }}
         {{ form.appearance }}
@@ -17,6 +17,6 @@
   {% endblock body_block %}
 
 
-{% comment %} 
-<input type="text" name="title" maxlength="100" required="" id="id_title"> 
+{% comment %}
+<input type="text" name="title" maxlength="100" required="" id="id_title">
 {% endcomment %}
