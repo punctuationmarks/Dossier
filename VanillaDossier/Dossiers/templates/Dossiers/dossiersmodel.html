@@ -88,20 +88,21 @@
  {% endblock pagination_buttons%}
 
  {% block search_and_post %}
-<form id="search_bar" class="searchbar_form">
-  <input
-    class="searchbar_input"
-    type="search"
-    placeholder="Search Dossiers..."
-    aria-label="Search"
-    name="search"
-    value=""
-  />
-  <button class="searchbar_button" type="submit">
-    Search
-  </button>
-</form>
-<a href="dossiers/new" id="post_href">POST</a>
+          <form id="search_bar" class="searchbar_form">
+            <input
+              id="searchbar_input"
+              type="search"
+              placeholder="Search Dossiers..."
+              aria-label="Search"
+              name="search"
+              value=""/>
+            <button class="searchbar_button" type="submit">
+              Search
+            </button>
+          </form>
+          <div id="post_href_div">
+              <a href="dossiers/new" id="post_href">/Dossier++</a>
+          </div>
 {% endblock search_and_post %}
 
 <!--

@@ -1,3 +1,9 @@
+
+the quick link buttons have ISSUES
+the search bar with the POST button isn't aligning correctly
+(tried flex and grid and it's not working, need research)
+
+
 https://github.com/CoreyMSchafer/code_snippets/tree/master/Django_Blog
 
 have the css be universal, meaning keep it on the root html tags
@@ -5,7 +11,7 @@ and then cascade when necessary. currently you're drilling too deep, which
 means you'll be doing too much repetitive code, or it'll look less
 uniform
 
-# ISSUES #
+### ISSUES ####
 # SO WE CAN;T HAVE THE TIMEON THE BASE.HTML PAGE, SO IT STILL only
 # RENDERS ON THE HOME PAGE (HOW IT'S CURRENTLY WRITTEN THROUGH CONTEXT)
 # IN THE Main_Templates/views
@@ -16,6 +22,12 @@ layout is looking better but the UI is still ugly, as fuck
 - next, finish all the sever side stuff with the basics for the app
 so you can beta test it on your pone before you get too deep into the
 css
+
+
+
+### COMING UP NOW! ####
+# NEEDS TO BE THROWN ON AN ACTUAL DEPLOY FOR FIELD TESTING
+# BUT BEFOREHAND, NEED TO HAVE CSV FILE UPLOAD/DOWNLOAD (AT LEAST DOWNLOAD)
 
 
 

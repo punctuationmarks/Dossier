@@ -23,6 +23,7 @@ html[data-theme='dark'] {
 html {
   background: var(--background);
   --background: rgba(253, 246, 227, 1);
+  --background-transparent: rgba(253, 246, 227, 0.1);
   --triad-primary-1: #dc322f;
   --triad-primary-2: #268bd2;
   --triad-primary-3: #859900;
@@ -82,14 +83,14 @@ button {
 
 main {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "header sidebar "
-    "body sidebar"
-    "pagination ."
-    "bottom_page . ";
+    "header . sidebar"
+    "body body sidebar"
+    ". pagination ."
+    ". bottom_page .";
   margin: 1em 0 1em 0;
-  padding-bottom: 30%;
+  padding-bottom: 5%;
 }
 
 h1 {
@@ -122,25 +123,16 @@ textarea {
   margin: 1em;
 }
 
-strong{
+strong {
   font-family: monospace;
-
 }
-/* Skip links */
 
-/*
-.skip_links_wrapper{
 
-} */
-/* :focus */
 #skip_links_wrapper {
-  display: block;
-  grid-template-rows: (1, 12fr);
-  grid-gap: 1em;
-  height: 1em;
+  display: flex;
+  height: 0.5em;
   margin: 0;
   background-color: var(--background);
-  /* background-image: url("../images/busy_transit.jpg"); */
 }
 /* hiding them until tabbed over on them */
 .skip_links {
@@ -216,7 +208,7 @@ this looks amazing while using the tab key to toggle the navigation
   right: 2.75em;
   cursor: pointer;
   font-size: 1.3em;
-  background: var(--background);
+  background: var(--background-transparent);
 }
 
 #js_navbar_toggle {
@@ -253,7 +245,11 @@ this looks amazing while using the tab key to toggle the navigation
   -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
   transform: rotate(65deg) translate(-0.35em, -0.2em);
 }
-.navigation_footer {
+
+/*
+FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
+
+#navigation_footer {
   position: fixed;
   display: block;
   background-color: var(--base-light);
@@ -263,49 +259,55 @@ this looks amazing while using the tab key to toggle the navigation
   bottom: 0;
   width: 100%;
   text-align: center;
+} */
+
+
+footer.#navigation_footer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--base-light);
+  /* margin: 0.5em 0 0 0; */
+  /* padding: 1em; */
+  /* bottom: 0; */
+  /* grid-template-columns: 80% 20%;
+  grid-template-areas:
+    "quick_buttons_ul ."
+    "search-form post"; */
 }
 
-#search_and_post_div {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "search post";
-}
 
-/* Search Bar for all apps */
-form.searchbar_form {
-  grid-area: search;
-}
-
-.searchbar_input {
-  padding: 1em 1em;
-  margin: 0.5em;
+#searchbar_input {
   color: var(--base-dark);
   background-color: var(--base-light);
   opacity: 0.9;
+  /* grid-area: search-input; */
+  /* padding: 1em 1em;
+    margin: 0.5em; */
 }
 .searchbar_button {
   background-color: var(--base-gray);
   color: var(--base-light);
   border: none;
-  margin: 0.5em;
-  padding: 1em 2em;
   text-decoration: none;
+  margin: 0.5em;
+  padding: 0.5em;
 }
 
-/* POST "BUTTON", NEXT TO SEARCHBAR */
+
 #post_href {
-  margin: 1em;
-  padding: 1em;
   background-color: var(--triad-primary-3);
   color: var(--base-light);
-  grid-area: post;
+  margin: 1em;
+  padding: 1em;
 }
+
 
 /* Editing the post for all apps */
 .edit_href_div {
   margin: 0 0 1em;
   padding: 0 0 1em;
 }
+
 .edit_href {
   font-size: 1.5em;
   margin: 1em 0.25em 1em;
@@ -350,7 +352,7 @@ form.searchbar_form {
 }
 
 .body_block_article {
-  margin: 1em;
+  margin: 1em 0 1em 1em;
   padding: 0.5em;
   padding-left: 1em;
   outline: 0.01em;
@@ -388,25 +390,20 @@ label.form_label {
   color: var(--triad-primary-2);
 }
 
-#home_sidebar_h3 {
-}
-
-.home_side_bar_li {
-}
 
 /* About.html */
 #about_page_header_h1 {
   color: var(--triad-primary-3);
 }
 
-#contact_h2{
+#contact_h2 {
   font-weight: bold;
   font-size: 24px;
 }
 
-#email{
+#email {
   text-shadow: 1px;
-  text-decoration-style:double;
+  text-decoration-style: double;
 }
 
 /* Dossier.html  */
@@ -437,19 +434,22 @@ label.form_label {
 
 /* MEDIA SIZING  */
 
+
+/* Needs to be FIXED */
+
 /* Hiding the quick button at the bottom for anything larger than phone */
 @media screen and (min-width: 767px) {
-  .quick_buttons_ul {
+  #quick_buttons_ul {
     display: none;
   }
 
-  .quick_buttons_li {
+  /* .quick_buttons_li {
     display: none;
   }
 
   .quick_buttons_a {
     display: none;
-  }
+  } */
 }
 
 /** Mobile **/
@@ -458,21 +458,29 @@ label.form_label {
   /* Increasing the padding on the bottom due to the addition of the
     the hot buttons for naviagation */
   main {
-    padding-bottom: 35%;
-    margin-bottom: 10%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
   }
 
-  .quick_buttons_ul {
+  #post_href {
+    margin: 1em;
+    padding: 1em;
+  }
+
+
+  #quick_buttons_ul {
     list-style: none;
+    background-color: var(--background-transparent);
+    /* margin-left: 1em; */
   }
 
   /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
 
   .quick_buttons_li {
-    margin: 0.75em 0.35em 0.35em 0.35em;
-    padding: 0.75em 0.35em 0.35em 0.35em;
+    /* margin: 0.75em 0.35em 0.35em 0.35em;
+    padding: 0.75em 0.35em 0.35em 0.35em; */
     display: inline;
-    background-color: rgba(0, 0, 0, 0.35);
+    /* background-color: var(--background-transparent); */
     border: 0.05em dotted solid var(--base-dark);
   }
   /* play around with this here, it has issues on super small screens (not sure if needed) */
@@ -487,11 +495,13 @@ label.form_label {
     display: none;
   }
 
-  #main {
+  .main {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
-      "body";
+      "body"
+      "pagination"
+      "quick_buttons";
   }
 }
 
@@ -501,10 +511,11 @@ label.form_label {
   /* Increasing the padding on the bottom due to the addition of the
     the hot buttons for naviagation */
   main {
-    padding-bottom: 35%;
-    margin-bottom: 25%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
   }
-  .quick_buttons_ul {
+
+  #quick_buttons_ul {
     list-style: none;
   }
 

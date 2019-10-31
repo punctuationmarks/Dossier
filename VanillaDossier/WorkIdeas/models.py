@@ -50,7 +50,7 @@ class WorkIdeasAdmin(admin.ModelAdmin):
         # writing the string as a file
         file = StringIO()
         # writing the CSV file
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter = '|')
         # writing the headers
         writer.writerow(["Title", "Body", "Date_Originally_Posted"])
 
@@ -59,7 +59,7 @@ class WorkIdeasAdmin(admin.ModelAdmin):
         for selected_set in queryset:
             writer.writerow([selected_set.title,
                             selected_set.body,
-                            selected_set.date_original_posted])
+                            selected_set.date_originally_posted])
         # setting the seek at the begginning of the file
         file.seek(0)
         response = HttpResponse(file, content_type='text/csv')

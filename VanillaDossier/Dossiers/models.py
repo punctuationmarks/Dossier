@@ -26,11 +26,11 @@ class DossiersModel(models.Model):
 
 
 class DossiersAdmin(admin.ModelAdmin):
-    actions = ['download_csv_file']
+    actions = ['download_CSV_file']
     list_display = ('name', 'hobbies', 'work', 'appearance',
                     'toRemember', 'discussions', 'date_originally_posted')
 
-    def download_csv_file(self, request, queryset):
+    def download_CSV_file(self, request, queryset):
         # cool thing about Python is importing inside a function
         # inside of an OOP class, interesting stuff
         import csv
@@ -77,4 +77,4 @@ class DossiersAdmin(admin.ModelAdmin):
         return response
 
     # making the download csv file more pleasing
-    download_csv_file.short_description = "Download a .csv file for what's selected"
+    download_CSV_file.short_description = "Download a .csv file for what's selected"

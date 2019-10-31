@@ -80,30 +80,26 @@
 
 
 {% if user.is_authenticated %}
-<footer class="navigation_footer">
-  <div class="navigation_footer_div">
-      <ul class="quick_buttons_ul">
-        <li class="quick_buttons_li">
-          <a href="/dossiers" class="quick_buttons_link">Dossiers</a>
-        </li>
-        <li class="quick_buttons_li">
-          <a href="/thoughts" class="quick_buttons_link">Thots</a>
-        </li>
-        <li class="quick_buttons_li">
-          <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
-        </li>
-      </ul>
-    </div>
 
-  <div id="search_and_post_div">
-    {% block search_and_post %}
-    {% endblock search_and_post %}
-  </div>
-  <div>
-
-  </div>
-
-</footer>
+      <footer id="navigation_footer">
+        <div id="quick_buttons_wrapper">
+            <ul id="quick_buttons_ul">
+              <li class="quick_buttons_li">
+                <a href="/dossiers" class="quick_buttons_link">Dossiers</a>
+              </li>
+              <li class="quick_buttons_li">
+                <a href="/thoughts" class="quick_buttons_link">Thots</a>
+              </li>
+              <li class="quick_buttons_li">
+                <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
+              </li>
+            </ul>
+          </div>
+        <div id="search_and_post_div">
+          {% block search_and_post %}
+          {% endblock search_and_post %}
+        </div>
+      </footer>
     {% endif %}
 
   </body>
