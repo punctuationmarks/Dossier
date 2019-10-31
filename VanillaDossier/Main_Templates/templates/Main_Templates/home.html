@@ -1,63 +1,45 @@
 {% extends "Main_Templates/base.html"%}
 
-
 {% block skip_links %}
 <a href="#sidebar_section" class="skip_links">Skip to Post Options</a>
-{% endblock skip_links %}
+{%endblock skip_links %}
 
 
-{% block page_header %}
+ {% block page_header %}
 <section id="block_page_header_section">
-    <h1 id="home_page_header_h1">
-      Home Page:
-    </h1>
-  </section>
+  <h1 id="home_page_header_h1">Home Page:</h1>
+</section>
 {% endblock page_header %}
-
 
 {% block body_block %}
 
-<article class = "body_block_article">
-  <h2>
-      Stuff about life and being good to each other
-  </h2>
+<article class="body_block_article">
+  <h2>Stuff about life and being good to each other</h2>
   <p class="body_block_p">
-    Remember, humans are individuals. Everyone is unique and different. This is an app
-    for you to remember that, and to express your memories with each individual.
-
-    Also, your thoughts matter. Guard them. Writing down things helps you formulate your
-    overall concepts. But don't rely solely on this app, get out and write with a pen.
-    Handwriting has been shown to help with memory as well as idea exploration.
-  <br />
-    The really good stuff:
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Remember, humans are individuals. Everyone is unique and different. This is
+    an app for you to remember that, and to express your memories with each
+    individual. Also, your thoughts matter. Guard them. Writing down things
+    helps you formulate your overall concepts. But don't rely solely on this
+    app, get out and write with a pen. Handwriting has been shown to help with
+    memory as well as idea exploration. <br />
+    The really good stuff: Lorem ipsum dolor sit amet, consectetur adipisicing
+    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+    anim id est laborum.
   </p>
 </article>
 {% endblock body_block %}
-
 {% block side_bar %}
 
 <section id="sidebar_section">
-      <h3 id="home_sidebar_h3">
-        Quick Post
-      </h3>
-    <ul id="side_bar_ul">
-      <li class="home_side_bar_li">
-        <a href="dossiers/new">
-          Dossier ++
-        </a>
-      </li>
-      <li class="home_side_bar_li">
-        <a href="thoughts/new"> Thoughts ++ </a>
-      </li>
-      <li class="home_side_bar_li">
-        <a href="workIdeas/new">Work Ideas ++ </a>
-      </li>
-    </ul>
+  <h3 id="home_sidebar_h3">Quick Post</h3>
+  <ul id="side_bar_ul">
+    <li class="home_side_bar_li"><a href="dossiers/new"> Dossier ++ </a></li>
+    <li class="home_side_bar_li"><a href="thoughts/new"> Thoughts ++ </a></li>
+    <li class="home_side_bar_li"><a href="workIdeas/new">Work Ideas ++ </a></li>
+  </ul>
 </section>
 {% endblock side_bar %}

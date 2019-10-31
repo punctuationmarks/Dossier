@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" id="html_id">
+<html lang="en" id="html_id" class="light_mode">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,17 +17,21 @@
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle" class="skip_links">Skip to Navigation</a>
       <a href="#main" class="skip_links">Skip to Main Content</a>
-      {% block skip_links %}
-      {% endblock skip_links %}
+
+      {% if user.is_authenticated %}
+          {% block skip_links %}
+          {% endblock skip_links %}
+      {% endif %}
     </section>
     <nav id="nav_bar">
 <a href="/" class="nav_bar_logo">
       <h1 id="nav_bar_text">The Dossier</h1>
     </a>
+
         <img id="nav_bar_image" src="{% static 'images/autumn-leaves-walkway.jpg'%}" />
       <!-- custom hamburger, for responsive navbar -->
         <div id="navbar_toggle">
-        <button class="navbar_toggle" onclick=hamburgerAnimation(this) id="js_navbar_toggle">
+        <button class="navbar_toggle" id="js_navbar_toggle" onclick=hamburgerAnimation(this)>
             <div class="hamburger_bar_1"></div>
             <div class="hamburger_bar_2"></div>
             <div class="hamburger_bar_3"></div>
@@ -45,11 +49,14 @@
           <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
           <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% endif %}
+        <li class="nav_bar_li">
+          <button class="color_scheme_button" id="js_color_scheme_toggle" onclick=darkLightModesSwitch(this)>Change Color Scheme</button>
+        </li>
           <li>
             {{ current_time }}
           </li>
-
         </ul>
+
         <!-- search bar for searching, only shown on the main pages of the different apps -->
 
     </nav>
