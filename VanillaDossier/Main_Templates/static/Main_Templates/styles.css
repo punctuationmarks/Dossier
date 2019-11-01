@@ -20,7 +20,7 @@ html[data-theme='dark'] {
 */
 
 /* using the solarized light palette */
-html.light_mode {
+body.light_mode {
   background: var(--background);
   --background: rgba(253, 246, 227, 1);
   --background-transparent: rgba(253, 246, 227, 0.1);
@@ -43,7 +43,7 @@ html.light_mode {
   --hamburger-background: #002b36;
 }
 
-html.dark_mode {
+body.dark_mode {
   background: var(--background);
   --background: #002b36;
   --background-transparent: rgba(43, 54, 193, 0.1);

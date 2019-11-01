@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" id="html_id" class="light_mode">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +13,7 @@
     <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
-  <body>
+  <body id = "body_id" class="light_mode">
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle" class="skip_links">Skip to Navigation</a>
       <a href="#main" class="skip_links">Skip to Main Content</a>
@@ -49,9 +49,6 @@
           <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
           <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% endif %}
-        <li class="nav_bar_li">
-          <button class="color_scheme_button" id="js_color_scheme_toggle" onclick=darkLightModesSwitch(this)>Change Color Scheme</button>
-        </li>
           <li>
             {{ current_time }}
           </li>
@@ -81,7 +78,9 @@
       {% block pagination_buttons %}
       {% endblock pagination_buttons %}
   </section>
-  <section id="bottom_of_page"></section>
+  <section id="bottom_of_page">
+    <button class="color_scheme_button" id="js_color_scheme_toggle" onclick=darkLightModesSwitch(this)>Change Color Scheme</button>
+  </section>
 </main>
 
 

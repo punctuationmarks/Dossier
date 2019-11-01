@@ -4,6 +4,13 @@ the search bar with the POST button isn't aligning correctly
 (tried flex and grid and it's not working, need research)
 
 
+The color scheme does not stay permanent, lookig into cookies for this
+
+The new cooler looking button is on the different branch, needs small polishing
+
+Javscript is written mostly in ES5, needs to be refactored into ES6 (plus you'll get to learn the bigger differences)
+
+
 https://github.com/CoreyMSchafer/code_snippets/tree/master/Django_Blog
 
 have the css be universal, meaning keep it on the root html tags
