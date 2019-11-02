@@ -22,7 +22,7 @@ html[data-theme='dark'] {
 /* using the solarized light palette */
 body.light_mode {
   background: var(--background);
-  --background: rgba(253, 246, 227, 1);
+  --background: #FDF6E3;
   --background-transparent: rgba(253, 246, 227, 0.1);
   --triad-primary-1: #dc3682;
   --triad-primary-2: #268bd2;
@@ -44,17 +44,16 @@ body.light_mode {
 }
 
 body.dark_mode {
-  background: var(--background);
   --background: #002b36;
   --background-transparent: rgba(43, 54, 193, 0.1);
-  --triad-primary-1: #dc3682;
-  --triad-primary-2: #268bd2;
-  --triad-primary-3: #859900;
-  --triad-primary-4: #b58900;
-  --triad-secondary-1: #d33682;
-  --triad-secondary-2: #6c71c4;
-  --triad-secondary-3: #2aa198;
-  --triad-secondary-4: #cb4b16;
+  --triad-primary-1: #859900;
+  --triad-primary-2: #b58900;
+  --triad-primary-3: #268bd2;
+  --triad-primary-4: #dc3682;
+  --triad-secondary-1: #cb4b16;
+  --triad-secondary-2: #2aa198;
+  --triad-secondary-3: #6c71c4;
+  --triad-secondary-4: #d33682;
   --base-gray: #657b83;
   --transluscent-gray: rgba(101, 123, 131, 0.2);
   --semi-transluscent-gray: rgba(101, 123, 131, 0.4);
@@ -63,7 +62,8 @@ body.dark_mode {
   --base-text: #839496;
   --button-text: #002b36;
   --button-background: #2aa198;
-  --hamburger-background: rgba(253, 246, 227, 1);
+  --hamburger-background: #FDF6E3;
+  background: var(--background);
 }
 
 * {
@@ -97,6 +97,7 @@ nav {
   display: grid;
 }
 
+
 button {
   background-color: var(--button-background);
   color: var(--button-text);
@@ -118,6 +119,7 @@ main {
   grid-template-areas:
     "header . sidebar"
     "body body sidebar"
+    ". post_form ."
     " . pagination ."
     ". bottom_page .";
   margin: 1em 0 1em 0;
@@ -141,14 +143,16 @@ form {
 }
 
 input {
-  background-color: var(--base-gray);
+  background-color: var(--background);
+  color: var(--base-text);
   width: 70%;
   padding: 0.5em;
   margin: 1em 1em 0 1em;
 }
 
 textarea {
-  background-color: var(--base-gray);
+  background-color: var(--background);
+  color: var(--base-text);
   width: 70%;
   padding: 0.5em;
   margin: 1em;
@@ -232,16 +236,16 @@ strong {
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
 */
-#navbar_toggle {
+#navbar_toggle_button {
   position: absolute;
   top: 2.6em;
   right: 2.75em;
   cursor: pointer;
-  font-size: 1.3em;
+  font-size: 1em;
   background: transparent;
 }
 
-#js_navbar_toggle {
+#navbar_menu {
   border: none;
   background-color: Transparent;
 }
@@ -316,7 +320,7 @@ FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
 
 #searchbar_input {
   color: var(--base-dark);
-  background-color: var(--base-light);
+  background-color: var(--background);
   opacity: 0.9;
   /* grid-area: search-input; */
   /* padding: 1em 1em;
@@ -407,18 +411,32 @@ FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
 }
 
 /* all forms for new and edits of all posts by class */
-.post_form_fieldset {
+form.post_form {
+  /* display: grid; */
+  grid-area: post_form;
+  margin: 1em 0 1em 0;
+}
+
+fieldset.post_form_fieldset{
+  display: grid;
+  grid-row: auto;
 }
 
 .post_form_legend {
-  text-align: center;
-  color: var(--base-text);
+  /* text-align: center; */
+  color: var(--triad-primary-1);
 }
 
 label.form_label {
+  padding: 0.5em;
+  margin: 0.5em;
+  /* position:fixed; */
+}
+
+.submit_button{
   padding: 1em;
   margin: 1em;
-  position: relative;
+  width: 80%;
 }
 
 /* Home.html */
@@ -457,12 +475,12 @@ label.form_label {
 }
 
 .post_title {
-  color: var(--base-dark);
+  color: var(--base-text);
   margin: 0.25em;
   padding: 0.25em;
 }
 .post_main_body {
-  color: var(--base-dark);
+  color: var(--base-text);
   margin: 0.25em;
   padding: 0.25em;
 }
@@ -476,14 +494,6 @@ label.form_label {
   #quick_buttons_ul {
     display: none;
   }
-
-  /* .quick_buttons_li {
-    display: none;
-  }
-
-  .quick_buttons_a {
-    display: none;
-  } */
 }
 
 /** Mobile **/
@@ -494,6 +504,14 @@ label.form_label {
   main {
     padding-bottom: 5%;
     margin-bottom: 5%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "body"
+      "post_form"
+      "pagination"
+      "bottom_page"
+      "quick_buttons";
   }
 
   #post_href {
@@ -528,14 +546,7 @@ label.form_label {
     display: none;
   }
 
-  .main {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "body"
-      "pagination"
-      "quick_buttons";
-  }
+
 }
 
 /** Mobile (extra small) **/
@@ -574,9 +585,13 @@ label.form_label {
   }
 
   #main {
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     grid-template-areas:
       "header"
-      "body";
+      "body"
+      "post_form"
+      "pagination"
+      "bottom_page"
+      "quick_buttons";
   }
 }

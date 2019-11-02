@@ -1,22 +1,29 @@
 {% extends "Main_Templates/base.html" %}
 {% block body_block %}
-    <form method="POST" class="post_form">
-      {% csrf_token %}
-      <fieldset class="post_form_fieldset">
-        <legend class="post_form_legend">Jot your thoughts</legend>
-        {{ form.name }}
-        {{ form.hobbies }}
-        {{ form.work }}
-        {{ form.appearance }}
-        {{ form.toRemeber }}
-        {{ form.discussions }}
-      </fieldset>
-        <button class="submit_button" type="submit">Submit</button>
-    </form>
-    <hr>
-  {% endblock body_block %}
-
-
-{% comment %}
-<input type="text" name="title" maxlength="100" required="" id="id_title">
-{% endcomment %}
+<form method="POST" class="post_form">
+  {% csrf_token %}
+  <fieldset class="post_form_fieldset">
+    <legend class="post_form_legend">Who did you meet?</legend>
+    <label for="name" class="form_label">Name: *(required)</label>
+    {{ form.name }}
+    <br>
+    <label for="hobbies" class="form_label">Hobbies:</label>
+    {{ form.hobbies }}
+    <br>
+    <label for="work" class="form_label">Work:</label>
+    {{ form.work }}
+    <br>
+    <label for="appearance" class="form_label">Appearance:</label>
+    {{ form.appearance }}
+    <br>
+    <label for="toRemember" class="form_label">Notable Things:</label>
+    {{ form.toRemember }}
+    <br>
+    <label for="discussions" class="form_label">Discussions:</label>
+    {{ form.discussions }}
+    <br>
+  </fieldset>
+  <button class="submit_button" type="submit">Submit</button>
+</form>
+<hr />
+{% endblock body_block %}

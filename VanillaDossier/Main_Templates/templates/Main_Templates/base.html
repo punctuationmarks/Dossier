@@ -13,9 +13,9 @@
     <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
-  <body id = "body_id" class="light_mode">
+  <body id= "body_id" class="dark_mode light_mode">
     <section id="skip_links_wrapper">
-      <a href="#navbar_toggle" class="skip_links">Skip to Navigation</a>
+      <a href="#navbar_toggle_button" class="skip_links">Skip to Navigation</a>
       <a href="#main" class="skip_links">Skip to Main Content</a>
 
       {% if user.is_authenticated %}
@@ -30,8 +30,8 @@
 
         <img id="nav_bar_image" src="{% static 'images/autumn-leaves-walkway.jpg'%}" />
       <!-- custom hamburger, for responsive navbar -->
-        <div id="navbar_toggle">
-        <button class="navbar_toggle" id="js_navbar_toggle" onclick=hamburgerAnimation(this)>
+        <div id="navbar_toggle_button">
+          <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
             <div class="hamburger_bar_1"></div>
             <div class="hamburger_bar_2"></div>
             <div class="hamburger_bar_3"></div>
@@ -39,7 +39,7 @@
         </div>
 
 
-        <ul class="nav_ul" id = "js_menu">
+        <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
           <li class="nav_bar_li"><a href="/dossiers" class="nav_bar_links">Dossiers</a></li>
           <li class="nav_bar_li"><a href="/thoughts" class="nav_bar_links">Thoughts</a></li>
@@ -79,7 +79,7 @@
       {% endblock pagination_buttons %}
   </section>
   <section id="bottom_of_page">
-    <button class="color_scheme_button" id="js_color_scheme_toggle" onclick=darkLightModesSwitch(this)>Change Color Scheme</button>
+    <button class="color_scheme_button" id="color_scheme_toggle_button">Change Color Scheme</button>
   </section>
 </main>
 

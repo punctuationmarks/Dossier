@@ -63,6 +63,7 @@
 {% endblock body_block %}
 {% block side_bar %}
 
+{% if posts %}
 <section id="sidebar_section">
   <h3 id="sidebar_h3">
     Quick Reference
@@ -81,7 +82,7 @@
     {% endfor %}
   </ul>
 </section>
-
+{% endif %}
 {% endblock side_bar %}
 
  {% block pagination_buttons%}

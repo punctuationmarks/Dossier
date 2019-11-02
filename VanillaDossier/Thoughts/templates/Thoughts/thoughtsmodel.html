@@ -26,7 +26,7 @@
         </a>
       </h2>
 
-      <p class="">
+      <p>
         {{ post.body|safe|linebreaks|truncatechars:600 }}
         {% if post.body|length > 600 %}
         <a class="" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
@@ -39,6 +39,7 @@
 
       {% block side_bar %}
 
+      {% if posts %}
 
       <section id="sidebar_section">
         <h3 id="sidebar_h3">
@@ -55,11 +56,13 @@
           {% endfor %}
         </ul>
         </section>
+        {% endif %}
 
 
       {% endblock side_bar %}
 
-{% block pagination_buttons%} {% endblock pagination_buttons%}
+{% block pagination_buttons%}
+{% endblock pagination_buttons%}
 
 
 <!--

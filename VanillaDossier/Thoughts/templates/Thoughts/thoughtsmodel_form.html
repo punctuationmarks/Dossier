@@ -4,10 +4,10 @@
       {% csrf_token %}
       <fieldset class="post_form_fieldset">
         <legend class="post_form_legend">Jot your thoughts</legend>
-        <label for="title" class="form_label">thot's title</label>
+        <label for="title" class="form_label">Title: (required)</label>
         {{ form.title }}<br />
         <br />
-        <label for="body" class="form_label">thot's body</label>
+        <label for="body" class="form_label">Body: </label>
         {{ form.body }}
       </fieldset>
         <button class="submit_button" type="submit">Submit</button>
