@@ -23,7 +23,7 @@ html[data-theme='dark'] {
 body.light_mode {
   background: var(--background);
   --background: #FDF6E3;
-  --background-transparent: rgba(253, 246, 227, 0.1);
+  --background-transparent: rgba(253, 246, 227, 0.75);
   --triad-primary-1: #dc3682;
   --triad-primary-2: #268bd2;
   --triad-primary-3: #859900;
@@ -41,11 +41,14 @@ body.light_mode {
   --button-text: #002b36;
   --button-background: #2aa198;
   --hamburger-background: #002b36;
+  --color_scheme_button_before: #002b36;
+  --color_scheme_button_after: #fdf6e3;
 }
 
 body.dark_mode {
+  background: var(--background);
   --background: #002b36;
-  --background-transparent: rgba(43, 54, 193, 0.1);
+  --background-transparent: rgba(43, 54, 193, 0.6);
   --triad-primary-1: #859900;
   --triad-primary-2: #b58900;
   --triad-primary-3: #268bd2;
@@ -63,7 +66,8 @@ body.dark_mode {
   --button-text: #002b36;
   --button-background: #2aa198;
   --hamburger-background: #FDF6E3;
-  background: var(--background);
+  --color_scheme_button_before: #002b36;
+  --color_scheme_button_after: #fdf6e3;
 }
 
 * {
@@ -175,7 +179,7 @@ strong {
 }
 
 .skip_links:focus {
-  color: var(--base-light);
+  color: var(--base-text);
   border: 1px solid var(--transluscent-gray);
 }
 
@@ -207,18 +211,36 @@ strong {
 #nav_bar_image {
   width: 10em;
   height: 10em;
-  filter: blur(0.05em);
-  -webkit-filter: blur(0.05em);
-  -moz-filter: blur(0.05em);
-  -o-filter: blur(0.05em);
-  -ms-filter: blur(0.05em);
   margin: 2em 0 0 1em;
+}
+
+.light_image{
+  background-image: url("../images/autumn-dead-plants.jpg");
+  filter: blur(0.01em);
+  -webkit-filter: blur(0.01em);
+  -moz-filter: blur(0.01em);
+  -o-filter: blur(0.01em);
+  -ms-filter: blur(0.01em);
+  margin: 2em;
+   /* 0 0 1em; */
+}
+
+.dark_image{
+  background-image: url("../images/resized_busy_transit.jpg");
+  background-repeat: no-repeat;
+  filter: blur(0.01em);
+  -webkit-filter: blur(0.01em);
+  -moz-filter: blur(0.01em);
+  -o-filter: blur(0.01em);
+  -ms-filter: blur(0.01em);
+  margin: 2em;
+   /* 0 0 1em; */
 }
 
 .nav_bar_li {
   text-align: left;
-  margin: 1.5em;
-  padding: 0.25em;
+  margin: 1em;
+  padding: 1em;
 }
 .nav_bar_logo {
   display: inline-block;
@@ -247,7 +269,14 @@ this looks amazing while using the tab key to toggle the navigation
 
 #navbar_menu {
   border: none;
-  background-color: Transparent;
+  /* background-color: Transparent; */
+  background-color: var(--background-transparent);
+  /* background-blend-mode: exclusion; */
+  /* filter: blur(0.1em);
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em); */
 }
 .active_navbar {
   display: grid;
@@ -282,13 +311,53 @@ this looks amazing while using the tab key to toggle the navigation
 
 
 /* Switching color scheme button */
-.color_scheme_button{
+/* .color_scheme_button{
   padding: 1em;
   margin: 0.5em;
   position: static;
   left: 0;
   top: 0;
+} */
+
+
+
+/* Switching color scheme button */
+.color_scheme_button{
+  background:var(--color_scheme_button_before);
+  color:var(--base-text);
+  border:none;
+  position:relative;
+  font-size:1.75em;
+  padding:0.5em;
+  /* cursor:pointer; */
+  transition:200ms ease all;
+  outline:none;
 }
+.color_scheme_button:hover{
+  background:var(--color_scheme_button_after);
+  color: var(--base-text);
+}
+.color_scheme_button:before,.color_scheme_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: var(--color_scheme_button_before);
+  transition:200ms ease all;
+}
+.color_scheme_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.color_scheme_button:hover:before,.color_scheme_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
 
 /*
 FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE

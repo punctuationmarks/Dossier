@@ -2,6 +2,7 @@ let bodyElement = document.getElementById("body_id");
 let colorToggleButon = document.getElementById("color_scheme_toggle_button");
 let mainNav = document.getElementById("navbar_menu");
 let navBarToggleButton = document.getElementById("navbar_toggle_button");
+let navBarImage = document.getElementById("nav_bar");
 
 function hamburgerAnimation(mainNav) {
   mainNav.classList.toggle("change_hamburger");
@@ -24,11 +25,15 @@ navBarToggleButton.addEventListener("click", function() {
 switch (window.localStorage.getItem("color_theme")) {
   case "light":
     bodyElement.classList.remove("dark_mode");
+    navBarImage.classList.remove("dark_image");
     bodyElement.classList.add("light_mode");
+    navBarImage.classList.add("light_image");
     break;
 
   case "dark":
     bodyElement.classList.remove("light_mode");
+    navBarImage.classList.remove("light_image");
+    navBarImage.classList.add("dark_image");
     bodyElement.classList.add("dark_mode");
     break;
 
@@ -41,6 +46,28 @@ switch (window.localStorage.getItem("color_theme")) {
     bodyElement.classList.add("light_mode");
     break;
 }
+//
+// // What to do when localStorage is X
+// switch (window.localStorage.getItem("color_theme")) {
+//   case "light":
+//     bodyElement.classList.remove("dark_mode");
+//     bodyElement.classList.add("light_mode");
+//     break;
+//
+//   case "dark":
+//     bodyElement.classList.remove("light_mode");
+//     bodyElement.classList.add("dark_mode");
+//     break;
+//
+//   case undefined:
+//     bodyElement.classList.remove("dark_mode");
+//     bodyElement.classList.add("light_mode");
+//     break;
+//   default:
+//     bodyElement.classList.remove("dark_mode");
+//     bodyElement.classList.add("light_mode");
+//     break;
+// }
 
 // Altering the localStorage and the class list (this is to make it immediate, instead of on reload)
 colorToggleButon.addEventListener("click", function() {
@@ -48,12 +75,16 @@ colorToggleButon.addEventListener("click", function() {
     case "light":
       window.localStorage.setItem("color_theme", "dark");
       bodyElement.classList.remove("light_mode");
+      navBarImage.classList.remove("light_image");
+      navBarImage.classList.add("dark_image");
       bodyElement.classList.add("dark_mode");
       break;
     case "dark":
       window.localStorage.setItem("color_theme", "light");
       bodyElement.classList.remove("dark_mode");
+      navBarImage.classList.remove("dark_image");
       bodyElement.classList.add("light_mode");
+      navBarImage.classList.add("light_image");
       break;
     case undefined:
       window.localStorage.setItem("color_theme", "light");
