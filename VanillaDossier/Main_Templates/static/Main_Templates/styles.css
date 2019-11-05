@@ -1,3 +1,5 @@
+/* Mobile first design */
+
 /* BASE.HTML CSS  */
 
 /* this is a common way to remove the padding and margin across
@@ -5,24 +7,12 @@ the entire site, so while working you're thinking of the entire screen,
 having a border-box sizing might make it 'easier' for resizing elements across
 the board as well */
 
-/*
-html {
-  --text-color-normal: #0a244d;
-  --text-color-light: #8cabd9;
-}
+/* This could be REFACTORED to have it more of a mobile first approach :/  */
 
-html[data-theme='dark'] {
-  --text-color-normal: hsl(210, 10%, 62%);
-  --text-color-light: hsl(210, 15%, 35%);
-  --text-color-richer: hsl(210, 50%, 72%);
-  --text-color-highlight: hsl(25, 70%, 45%);
-}
-*/
-
-/* using the solarized light palette */
+/* using the solarized palette */
 body.light_mode {
   background: var(--background);
-  --background: #FDF6E3;
+  --background: #fdf6e3;
   --background-transparent: rgba(253, 246, 227, 0.75);
   --triad-primary-1: #dc3682;
   --triad-primary-2: #268bd2;
@@ -65,7 +55,7 @@ body.dark_mode {
   --base-text: #839496;
   --button-text: #002b36;
   --button-background: #2aa198;
-  --hamburger-background: #FDF6E3;
+  --hamburger-background: #fdf6e3;
   --color_scheme_button_before: #002b36;
   --color_scheme_button_after: #fdf6e3;
 }
@@ -97,17 +87,6 @@ ul {
   list-style-type: none;
 }
 
-nav {
-  display: grid;
-}
-
-
-button {
-  background-color: var(--button-background);
-  color: var(--button-text);
-}
-
-
 /* some button defaults that need to be applied individually not global
 border: none;
 padding: 1em 1.5em;
@@ -116,79 +95,129 @@ text-decoration: none;
 display: inline-block;
 font-size: 1em; */
 
-
-main {
+/* Small Mobile Devices */
+.wrapper {
   display: grid;
-  grid-template-columns: 1fr repeat(auto);
   grid-template-areas:
-    "header . sidebar"
-    "body body sidebar"
-    ". post_form ."
-    " . pagination ."
-    ". bottom_page .";
-  margin: 1em 0 1em 0;
+    "skip_links"
+    "header"
+    "nav"
+    "main_body"
+    "searchbar"
+    "change_scheme_section"
+    "footer";
+  grid-gap: 0.75em;
   padding-bottom: 5%;
 }
 
-h1 {
-  font-size: xx-large;
+/* @media (min-width: 500px) {
+  .wrapper {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+      "header  header"
+      "nav     nav"
+      "sidebar content"
+      "ad      footer";
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-h2 {
-  font-size: x-large;
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+      "header header  header"
+      "nav    content sidebar"
+      "nav    content ad"
+      "footer footer  footer";
+  } */
+
+@media (min-width: 500px) {
+  .wrapper {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "skip_links skip_links"
+      "header header"
+      "nav nav"
+      /* . sidebar" */
+      "main_body  main_body"
+      " . pagination"
+      "searchbar ."
+      "new_post_button change_scheme_section";
+  }
+  /* nav ul {
+    display: flex;
+    justify-content: space-between;
+  } */
 }
 
-form {
-  background: var(--base-light);
-  padding: 0.25em;
-  margin: 0.25em;
-  outline: var(--base-dark);
-  outline-color: var(--base-light);
-}
+/* Desktop */
+@media (min-width: 700px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+      "skip_links skip_links"
+      "header header"
+      "nav nav"
+      /* . sidebar" */
+      "main_body  sidebar"
+      "main_body main_body"
+      " . pagination"
+      "searchbar ."
+      "new_post_button change_scheme_section";
+    grid-row-gap: 0.75em;
+    margin: 1em 0 1em 0;
+    padding-bottom: 5%;
+  }
+  #navbar_toggle_button {
+    /* display: none; */
+  }
+  .nav_ul {
+    margin: 0.75em;
+    /* padding: 0.em; */
+    display: grid;
+    /* using fractions here for grid */
+    grid-template-columns: repeat(4, 2fr);
+    grid-gap: 1em;
+    }
 
-input {
-  background-color: var(--background);
-  color: var(--base-text);
-  width: 70%;
-  padding: 0.5em;
-  margin: 1em 1em 0 1em;
-}
-
-textarea {
-  background-color: var(--background);
-  color: var(--base-text);
-  width: 70%;
-  padding: 0.5em;
-  margin: 1em;
-}
-
-strong {
-  font-family: monospace;
+  nav ul {
+    flex-direction: column;
+  }
+  section#sidebar_section {
+    display: contents;
+  }
 }
 
 #skip_links_wrapper {
-  display: flex;
-  height: 0.5em;
-  margin: 0;
-  background-color: var(--background);
-}
-/* hiding them until tabbed over on them */
-.skip_links {
-  text-align: center;
-  color: var(--background);
+  grid-area: skip_links;
 }
 
-.skip_links:focus {
-  color: var(--base-text);
-  border: 1px solid var(--transluscent-gray);
+#main_head {
+  grid-area: header;
+  border: 1px solid black;
 }
-
-/* the navbar  will be hidden by default, given active class upon click */
 #nav_bar {
-  border: 0.1em solid var(--semi-transluscent-gray);
-  padding: 1em 1em 2.5em 1em;
-  margin: 1em 1em 3.5em 1em;
-  /* background-image: url("../images/busy_transit.jpg"); */
+  grid-area: nav;
+  border: 1px solid black;
+}
+
+#navbar_toggle_button {
+  position: absolute;
+  top: 2.6em;
+  right: 2.75em;
+  cursor: pointer;
+  font-size: 1em;
+  background: transparent;
+}
+
+#navbar_menu {
+  border: none;
+  background-color: var(--background-transparent);
 }
 
 .nav_ul {
@@ -197,9 +226,21 @@ strong {
   display: none;
 }
 
+.nav_bar_li {
+  background: var(--background);
+  text-align: left;
+  margin: 0.25em;
+  padding: 0.25em 0 0.25em 0.25em;
+}
+
 .nav_bar_links {
   text-decoration: overline;
   color: var(--base-text);
+}
+.nav_bar_logo {
+  display: inline-block;
+  margin-top: 1em;
+  margin-left: 1.75em;
 }
 
 #nav_bar_text {
@@ -214,7 +255,7 @@ strong {
   margin: 2em 0 0 1em;
 }
 
-.light_image{
+.light_image {
   background-image: url("../images/autumn-dead-plants.jpg");
   filter: blur(0.01em);
   -webkit-filter: blur(0.01em);
@@ -222,10 +263,10 @@ strong {
   -o-filter: blur(0.01em);
   -ms-filter: blur(0.01em);
   margin: 2em;
-   /* 0 0 1em; */
+  /* 0 0 1em; */
 }
 
-.dark_image{
+.dark_image {
   background-image: url("../images/resized_busy_transit.jpg");
   background-repeat: no-repeat;
   filter: blur(0.01em);
@@ -234,50 +275,9 @@ strong {
   -o-filter: blur(0.01em);
   -ms-filter: blur(0.01em);
   margin: 2em;
-   /* 0 0 1em; */
+  /* 0 0 1em; */
 }
 
-.nav_bar_li {
-  text-align: left;
-  margin: 1em;
-  padding: 1em;
-}
-.nav_bar_logo {
-  display: inline-block;
-  margin-top: 1em;
-  margin-left: 1.75em;
-}
-
-/* Time bar under hamburger */
-.current_time_section {
-  top: 4.5em;
-  right: 2.75em;
-  margin: 1em;
-}
-
-/* Navbar, button for assessibility, transparent background and border for style
-this looks amazing while using the tab key to toggle the navigation
-*/
-#navbar_toggle_button {
-  position: absolute;
-  top: 2.6em;
-  right: 2.75em;
-  cursor: pointer;
-  font-size: 1em;
-  background: transparent;
-}
-
-#navbar_menu {
-  border: none;
-  /* background-color: Transparent; */
-  background-color: var(--background-transparent);
-  /* background-blend-mode: exclusion; */
-  /* filter: blur(0.1em);
-  -webkit-filter: blur(0.1em);
-  -moz-filter: blur(0.1em);
-  -o-filter: blur(0.1em);
-  -ms-filter: blur(0.1em); */
-}
 .active_navbar {
   display: grid;
   /* using fractions here for grid */
@@ -309,358 +309,70 @@ this looks amazing while using the tab key to toggle the navigation
   transform: rotate(65deg) translate(-0.35em, -0.2em);
 }
 
-
-/* Switching color scheme button */
-/* .color_scheme_button{
-  padding: 1em;
-  margin: 0.5em;
-  position: static;
-  left: 0;
-  top: 0;
-} */
-
-
-
-/* Switching color scheme button */
-.color_scheme_button{
-  background:var(--color_scheme_button_before);
-  color:var(--base-text);
-  border:none;
-  position:relative;
-  font-size:1.75em;
-  padding:0.5em;
-  /* cursor:pointer; */
-  transition:200ms ease all;
-  outline:none;
-}
-.color_scheme_button:hover{
-  background:var(--color_scheme_button_after);
-  color: var(--base-text);
-}
-.color_scheme_button:before,.color_scheme_button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: var(--color_scheme_button_before);
-  transition:200ms ease all;
-}
-.color_scheme_button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.color_scheme_button:hover:before,.color_scheme_button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
-
-
-/*
-FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
-
-#navigation_footer {
-  position: fixed;
-  display: block;
-  background-color: var(--base-light);
-  margin: 0.5em 0 0 0;
-  padding: 1em;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-} */
-
-#navigation_footer {
-  display: flex;
-  justify-content: flex-start;
-  background-color: var(--base-light);
-  /* margin: 0.5em 0 0 0; */
-  /* padding: 1em; */
-  /* bottom: 0; */
-  /* grid-template-columns: 80% 20%;
-  grid-template-areas:
-    "quick_buttons_ul ."
-    "search-form post"; */
-}
-
-#searchbar_input {
-  color: var(--base-dark);
-  background-color: var(--background);
-  opacity: 0.9;
-  /* grid-area: search-input; */
-  /* padding: 1em 1em;
-    margin: 0.5em; */
-}
-.searchbar_button {
-  background-color: var(--base-gray);
-  color: var(--base-light);
-  border: none;
-  text-decoration: none;
-  margin: 0.5em;
-  padding: 0.5em;
-}
-
-#post_href {
-  background-color: var(--triad-primary-3);
-  color: var(--base-light);
-  margin: 1em;
-  padding: 1em;
-}
-
-/* Editing the post for all apps */
-.edit_href_div {
-  margin: 0 0 1em;
-  padding: 0 0 1em;
-}
-
-.edit_href {
-  font-size: 1.5em;
-  margin: 1em 0.25em 1em;
-  padding: 0.25em;
-  outline: 0.05em solid var(--base-gray);
-  background: var(--base-gray);
-}
-
-/* Repeating for the header/body/article of the apps */
-#block_page_header_section {
-  grid-area: header;
-  margin: 0.5em;
-  margin-left: 1em;
-  padding: 0.5em;
-  text-align: left;
-}
-
-#body_block_container {
-  grid-area: body;
-  margin: 1em;
+#main {
+  grid-area: main_body;
+  border: 1px solid black;
 }
 
 #sidebar_section {
   grid-area: sidebar;
-  /* outline: 0.5em var(--base-gray) solid; */
-  margin-right: 1em;
-  line-height: 1.5em;
-  text-align: right;
+  border: 1px solid black;
+  display: none;
 }
 
-#pagination_section {
-  grid-area: pagination;
+#search_section {
+  grid-area: searchbar;
 }
 
-#bottom_of_page {
-  grid-area: bottom_page;
+#change_scheme_section {
+  grid-area: change_scheme_section;
+  border: 1px solid black;
 }
 
-.sidebar_link {
-  padding: 0.75em;
-  margin: 0.75em;
-}
-
-.body_block_article {
-  margin: 1em 0 1em 1em;
-  padding: 0.5em;
-  padding-left: 1em;
-  outline: 0.01em;
-  outline-style: dashed;
-  outline-color: var(--transluscent-gray);
-}
-.body_block_h2 {
-  text-align: left;
-  padding: 0.25em 0 0.5em 0.75em;
-}
-
-.body_block_p {
-  text-indent: 0.75em;
-  text-align: justify;
-  white-space: pre;
-}
-
-/* all forms for new and edits of all posts by class */
-form.post_form {
-  /* display: grid; */
-  grid-area: post_form;
-  margin: 1em 0 1em 0;
-}
-
-fieldset.post_form_fieldset{
-  display: grid;
-  grid-row: auto;
-}
-
-.post_form_legend {
-  /* text-align: center; */
-  color: var(--triad-primary-1);
-}
-
-label.form_label {
-  padding: 0.5em;
-  margin: 0.5em;
-  /* position:fixed; */
-}
-
-.submit_button{
-  padding: 1em;
-  margin: 1em;
-  width: 80%;
-}
-
-/* Home.html */
-#home_page_header_h1 {
-  color: var(--triad-primary-2);
-}
-
-/* About.html */
-#about_page_header_h1 {
-  color: var(--triad-primary-3);
-}
-
-#contact_h2 {
-  font-weight: bold;
-  font-size: 24px;
-}
-
-#email {
-  text-shadow: 1px;
-  text-decoration-style: double;
-}
-
-/* Dossier.html  */
-#dossiers_header_h1 {
-  color: var(--triad-primary-3);
-}
-
-/* Workideas.html */
-#work_ideas_header_h1 {
-  color: var(--triad-secondary-2);
-}
-
-/* Thoughts.html */
-#thoughts_header_h1 {
-  color: var(--triad-primary-3);
-}
-
-.post_title {
+/* Switching color scheme button */
+.color_scheme_button {
+  background: var(--color_scheme_button_before);
   color: var(--base-text);
-  margin: 0.25em;
-  padding: 0.25em;
+  border: none;
+  position: relative;
+  font-size: 1.75em;
+  padding: 0.5em;
+  /* cursor:pointer; */
+  transition: 200ms ease all;
+  outline: none;
 }
-.post_main_body {
+.color_scheme_button:hover {
+  background: var(--color_scheme_button_after);
   color: var(--base-text);
-  margin: 0.25em;
-  padding: 0.25em;
+}
+.color_scheme_button:before,
+.color_scheme_button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: var(--color_scheme_button_before);
+  transition: 200ms ease all;
+}
+.color_scheme_button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.color_scheme_button:hover:before,
+.color_scheme_button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
 }
 
-/* MEDIA SIZING  */
-
-/* Needs to be FIXED */
-
-/* Hiding the quick button at the bottom for anything larger than phone */
-@media screen and (min-width: 767px) {
-  #quick_buttons_ul {
-    display: none;
-  }
+#post_section {
+  grid-area: new_post_button;
 }
 
-/** Mobile **/
-@media only screen and (max-width: 767px),
-  only screen and (max-device-width: 767px) {
-  /* Increasing the padding on the bottom due to the addition of the
-    the hot buttons for naviagation */
-  main {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "body"
-      "post_form"
-      "pagination"
-      "bottom_page"
-      "quick_buttons";
-  }
-
-  #post_href {
-    margin: 1em;
-    padding: 1em;
-  }
-
-  #quick_buttons_ul {
-    list-style: none;
-    background-color: var(--background-transparent);
-    /* margin-left: 1em; */
-  }
-
-  /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
-
-  .quick_buttons_li {
-    /* margin: 0.75em 0.35em 0.35em 0.35em;
-    padding: 0.75em 0.35em 0.35em 0.35em; */
-    display: inline;
-    /* background-color: var(--background-transparent); */
-    border: 0.05em dotted solid var(--base-dark);
-  }
-  /* play around with this here, it has issues on super small screens (not sure if needed) */
-
-  .quick_buttons_link {
-    text-decoration: none;
-    color: var(--base-dark);
-    font-size: 1.5em;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-
-
-}
-
-/** Mobile (extra small) **/
-@media only screen and (max-width: 600px),
-  only screen and (max-device-width: 600px) {
-  /* Increasing the padding on the bottom due to the addition of the
-    the hot buttons for naviagation */
-  main {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-  }
-
-  #quick_buttons_ul {
-    list-style: none;
-  }
-
-  /* BUG: SOME REASON THE VAR(--BASE-COLOR OF WHATEVER) ISN'T WORKING HERE */
-
-  .quick_buttons_li {
-    margin: 0.35em 0.35em 0.35em 0.35em;
-    padding: 0.35em 0.35em 0.35em 0.35em;
-    display: inline;
-    background-color: rgba(0, 0, 0, 0.35);
-    border: 0.05em dotted solid var(--base-dark);
-  }
-  /* play around with this here, it has issues on super small screens (not sure if needed) */
-
-  .quick_buttons_link {
-    text-decoration: none;
-    color: var(--base-dark);
-    font-size: 1.5em;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-
-  #main {
-    grid-template-rows: 1fr;
-    grid-template-areas:
-      "header"
-      "body"
-      "post_form"
-      "pagination"
-      "bottom_page"
-      "quick_buttons";
-  }
+#navigation_footer {
+  grid-area: footer;
+  border: 1px solid black;
 }

@@ -78,7 +78,7 @@ here's how you did it in the original version
  -->
 
 
- {% block search_and_post %}
+ {% block searchbar %}
 
      <form class="searchbar_form">
        <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
@@ -90,6 +90,10 @@ here's how you did it in the original version
          Search
        </button>
      </form>
-     <a href="workIdeas/new" id="post_href">POST</a>
+ {% endblock searchbar %}
 
- {% endblock search_and_post %}
+
+
+  {% block post_button %}
+      <a href="{% url 'workIdeas-post-create'%}" id="post_href">/WorkIdeas++</a>
+  {% endblock post_button %}

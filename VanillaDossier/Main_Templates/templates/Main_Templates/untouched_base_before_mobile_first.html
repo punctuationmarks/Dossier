@@ -9,13 +9,11 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'Main_Templates/styles.css' %}"/>
+      href="{% static 'Main_Templates/mobile_first.css' %}"/>
     <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
   <body id= "body_id" class="dark_mode light_mode">
-    <div class="wrapper">
-
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">Skip to Navigation</a>
       <a href="#main" class="skip_links">Skip to Main Content</a>
@@ -25,15 +23,10 @@
           {% endblock skip_links %}
       {% endif %}
     </section>
-
-    <header id="main_header">
-      <a href="/" class="nav_bar_logo">
-        <h1 id="nav_bar_text">The Dossier</h1>
-      </a>
-    </header>
-
     <nav id="nav_bar">
-
+<a href="/" class="nav_bar_logo">
+      <h1 id="nav_bar_text">The Dossier</h1>
+    </a>
 
       <!-- custom hamburger, for responsive navbar -->
         <div id="navbar_toggle_button">
@@ -92,21 +85,22 @@
 
 {% if user.is_authenticated %}
 
-      <section id="search_section">
+      <section class="search_section">
         {% block searchbar %}
         {% endblock searchbar %}
       </section>
 
-      <section id="change_scheme_section">
+      <section class="change_scheme_section">
         <button class="color_scheme_button" id="color_scheme_toggle_button">Change Color Scheme</button>
       </section>
 
-      <section id="post_section">
+      <section class="post_section">
         {% block post_button %}
         {% endblock post_button %}
       </section>
 
       <footer id="navigation_footer">
+        <div id="quick_buttons_wrapper">
             <ul id="quick_buttons_ul">
               <li class="quick_buttons_li">
                 <a href="/dossiers" class="quick_buttons_link">Dossiers</a>
@@ -118,10 +112,10 @@
                 <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
               </li>
             </ul>
+          </div>
       </footer>
     {% endif %}
 
-    </div>
   </body>
   <script src="{% static 'Main_Templates/main.js' %}"></script>
 

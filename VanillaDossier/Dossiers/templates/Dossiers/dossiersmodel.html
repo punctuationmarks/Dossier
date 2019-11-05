@@ -2,7 +2,7 @@
 {% block skip_links %}
     <a href="#sidebar_section" class="skip_links">Sidebar</a>
     <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
-    <a href="#search_bar" class="skip_links">Search Bar</a>
+    <a href="#searchbar" class="skip_links">Search Bar</a>
     <a href="new/" class="skip_links">Post</a>
 {% endblock skip_links %}
 
@@ -88,8 +88,8 @@
  {% block pagination_buttons%}
  {% endblock pagination_buttons%}
 
- {% block search_and_post %}
-          <form id="search_bar" class="searchbar_form">
+ {% block searchbar %}
+          <form id="searchbar" class="searchbar_form">
             <input
               id="searchbar_input"
               type="search"
@@ -101,10 +101,11 @@
               Search
             </button>
           </form>
-          <div id="post_href_div">
-              <a href="dossiers/new" id="post_href">/Dossier++</a>
-          </div>
-{% endblock search_and_post %}
+{% endblock searchbar %}
+
+{% block post_button %}
+    <a href="{% url 'dossiers-post-create'%}" id="post_href">/Dossier++</a>
+{% endblock post_button %}
 
 <!--
 here's how you did it in the original version

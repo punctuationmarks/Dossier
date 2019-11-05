@@ -87,12 +87,16 @@ here's how you did it in the original version
  -->
 
 
- {% block search_and_post %}
+ {% block searchbar %}
        <form class="searchbar_form">
            <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
          <button class="searchbar_button" type="submit">
            Search
          </button>
        </form>
-       <a id="post_href" href="/thoughts/new">Post</a>
- {% endblock search_and_post %}
+ {% endblock searchbar %}
+
+
+ {% block post_button %}
+     <a href="{% url 'thoughts-post-create'%}" id="post_href">/Thoughts++</a>
+ {% endblock post_button %}
