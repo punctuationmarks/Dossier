@@ -1,18 +1,31 @@
 let bodyElement = document.getElementById("body_id");
 let colorToggleButon = document.getElementById("color_scheme_toggle_button");
-let mainNav = document.getElementById("navbar_menu");
+let navbarMenu = document.getElementById("navbar_menu");
 let navBarToggleButton = document.getElementById("navbar_toggle_button");
 let navBarImage = document.getElementById("nav_bar");
 
-function hamburgerAnimation(mainNav) {
-  mainNav.classList.toggle("change_hamburger");
+function hamburgerAnimation(navbarMenu) {
+  navbarMenu.classList.toggle("change_hamburger");
 }
 
 // this needs to be done separately, by the ID while the hamburgerAnimation is done by onClick
 navBarToggleButton.addEventListener("click", function() {
-  // mainNav.classList.toggle('change_hamburger');
-  mainNav.classList.toggle("active_navbar");
+  // navbarMenu.classList.toggle('change_hamburger');
+  navbarMenu.classList.toggle("active_navbar");
 });
+
+//
+// what I think I'm shooting for:
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+//
+//
+// function addActiveNavbar(){
+//   if (window.innerHeight * window.innerWidth >= 67000) {
+//     navbarMenu.classList.toggle("active_navbar");
+//   }
+//   }
+//
+// window.addEventListener('resize', addActiveNavbar);
 
 // Color scheme toggle mode
 
