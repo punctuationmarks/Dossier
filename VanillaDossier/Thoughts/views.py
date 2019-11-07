@@ -14,7 +14,7 @@ from Thoughts.models import ThoughtsModel
 @login_required
 def thoughts(request):
     """
-    Adding a search bar at navbar
+    Adding a search bar
     """
     page_title = "thoughts"
     posts_list = ThoughtsModel.objects.order_by('title')

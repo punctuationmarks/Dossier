@@ -19,16 +19,16 @@
     <!-- looping over the database for posts -->
     {% for post in posts %}
     <article class = "body_block_article">
-      <h2 class="body_block_h2">
+      <h1 class="body_block_h1">
         <a class="body_block_link" href="{% url 'thoughts-post-detail' post.pk %}">
         <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
-          {{ post.title }}
+          {{ post.title|safe|linebreaks|truncatechars:50 }}
         </a>
-      </h2>
+      </h1>
 
-      <p>
-        {{ post.body|safe|linebreaks|truncatechars:600 }}
-        {% if post.body|length > 600 %}
+      <p class= "post_main_body">
+        {{ post.body|safe|linebreaks|truncatechars:450 }}
+        {% if post.body|length > 450 %}
         <a class="" href="{% url 'thoughts-post-detail' post.id %}">[read more]</a>
         {% endif %}
       </p>
@@ -98,5 +98,5 @@ here's how you did it in the original version
 
 
  {% block post_button %}
-     <a href="{% url 'thoughts-post-create'%}" id="post_href">/Thoughts++</a>
+     <a href="{% url 'thoughts-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
  {% endblock post_button %}

@@ -14,7 +14,7 @@ from Dossiers.models import DossiersModel
 @login_required
 def dossiers(request):
     """
-    Adding a search bar at navbar
+    Adding a search bar
     """
     page_title = "dossiers"
     posts_list = DossiersModel.objects.order_by('name')
@@ -27,6 +27,7 @@ def dossiers(request):
             posts_list.filter(work__icontains=search_term) | \
             posts_list.filter(appearance__icontains=search_term) | \
             posts_list.filter(toRemember__icontains=search_term) | \
+            posts_list.filter(discussions__icontains=search_term) | \
             posts_list.filter(date_originally_posted__icontains=search_term)
         posts = orm_search
     else:

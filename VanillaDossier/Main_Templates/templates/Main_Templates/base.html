@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script type="text/javascript">
+// idea here is to make 2 different css files, one for mobile/web and if else statement
+  </script>
 
     <link
       rel="stylesheet"
@@ -13,7 +16,7 @@
     <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
-  <body id= "body_id" class="dark_mode light_mode">
+  <body id= "body_id" class="light_mode">
     <div class="wrapper">
 
     <section id="skip_links_wrapper">
@@ -63,11 +66,20 @@
         <!-- search bar for searching, only shown on the main pages of the different apps -->
 
     </nav>
-<main id="main">
+    <main>
     <section id="block_page_header_section">
         {% block page_header %}
         {% endblock page_header %}
     </section>
+  <div id="color_scheme_toggle_div">
+    <button id="color_scheme_toggle_button">
+      Change color scheme
+    </button>
+  </div>
+
+      <!-- <svg width="50" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20 7, 10 25, 30 25"/> -->
+      <!-- </svg> -->
 
     <section id="body_block_container">
       {% block edit_href %}
@@ -84,27 +96,18 @@
       {% block pagination_buttons %}
       {% endblock pagination_buttons %}
   </section>
-  <section id="bottom_of_page">
-  </section>
-</main>
 
-
-
-{% if user.is_authenticated %}
 
       <section id="search_section">
         {% block searchbar %}
         {% endblock searchbar %}
       </section>
 
-      <section id="change_scheme_section">
-        <button class="color_scheme_button" id="color_scheme_toggle_button">Change Color Scheme</button>
-      </section>
+</main>
 
-      <section id="post_section">
-        {% block post_button %}
-        {% endblock post_button %}
-      </section>
+
+
+{% if user.is_authenticated %}
 
       <footer id="navigation_footer">
             <ul id="quick_buttons_ul">
@@ -116,6 +119,10 @@
               </li>
               <li class="quick_buttons_li">
                 <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
+              </li>
+              <li class="quick_buttons_li">
+                  {% block post_button %}
+                  {% endblock post_button %}
               </li>
             </ul>
       </footer>

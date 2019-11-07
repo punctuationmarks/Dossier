@@ -14,6 +14,13 @@ navBarToggleButton.addEventListener("click", function() {
   navbarMenu.classList.toggle("active_navbar");
 });
 
+
+
+let screen_size = window.innerWidth * window.innerHeight;
+console.log("Inner height :" + window.innerHeight);
+console.log("Inner Width :" + window.innerWidth);
+
+console.log("Product = " + screen_size);
 //
 // what I think I'm shooting for:
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener

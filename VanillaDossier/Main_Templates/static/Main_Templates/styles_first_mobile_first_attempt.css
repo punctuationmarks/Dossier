@@ -1,5 +1,3 @@
-/* Mobile first design */
-
 /* BASE.HTML CSS  */
 
 /* this is a common way to remove the padding and margin across
@@ -87,6 +85,15 @@ ul {
   list-style-type: none;
 }
 
+nav {
+  display: grid;
+}
+
+button {
+  background-color: var(--button-background);
+  color: var(--button-text);
+}
+
 /* some button defaults that need to be applied individually not global
 border: none;
 padding: 1em 1.5em;
@@ -95,9 +102,10 @@ text-decoration: none;
 display: inline-block;
 font-size: 1em; */
 
-/* Small Mobile Devices */
+/* Desktop */
 .wrapper {
   display: grid;
+  grid-template-columns: 1fr;
   grid-template-areas:
     "skip_links"
     "header"
@@ -110,30 +118,6 @@ font-size: 1em; */
   padding-bottom: 5%;
 }
 
-/* @media (min-width: 500px) {
-  .wrapper {
-    grid-template-columns: 1fr 3fr;
-    grid-template-areas:
-      "header  header"
-      "nav     nav"
-      "sidebar content"
-      "ad      footer";
-  }
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 700px) {
-  .wrapper {
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-areas:
-      "header header  header"
-      "nav    content sidebar"
-      "nav    content ad"
-      "footer footer  footer";
-  } */
 
 @media (min-width: 500px) {
   .wrapper {
@@ -148,14 +132,18 @@ font-size: 1em; */
       "searchbar ."
       "new_post_button change_scheme_section";
   }
-  /* nav ul {
+  nav ul {
     display: flex;
     justify-content: space-between;
-  } */
+  }
+  #sidebar_section {
+    display: contents;
+  }
+
 }
 
 /* Desktop */
-@media (min-width: 700px) {
+@media (min-width: 1500px) {
   .wrapper {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
@@ -173,51 +161,80 @@ font-size: 1em; */
     margin: 1em 0 1em 0;
     padding-bottom: 5%;
   }
-  #navbar_toggle_button {
-    /* display: none; */
-  }
-  .nav_ul {
-    margin: 0.75em;
-    /* padding: 0.em; */
-    display: grid;
-    /* using fractions here for grid */
-    grid-template-columns: repeat(4, 2fr);
-    grid-gap: 1em;
-    }
-
   nav ul {
-    flex-direction: column;
+    display: flex;
+        flex-direction: column;
+        }
+  #navbar_toggle_button {
+    display: none;
   }
-  section#sidebar_section {
+
+  #sidebar_section {
     display: contents;
   }
 }
 
+
+
+h1 {
+  font-size: xx-large;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+form {
+  background: var(--base-light);
+  padding: 0.25em;
+  margin: 0.25em;
+  outline: var(--base-dark);
+  outline-color: var(--base-light);
+}
+
+input {
+  background-color: var(--background);
+  color: var(--base-text);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em 1em 0 1em;
+}
+
+textarea {
+  background-color: var(--background);
+  color: var(--base-text);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em;
+}
+
+strong {
+  font-family: monospace;
+}
+
 #skip_links_wrapper {
-  grid-area: skip_links;
+  display: flex;
+  height: 0.5em;
+  margin: 0;
+  background-color: var(--background);
+}
+/* hiding them until tabbed over on them */
+.skip_links {
+  text-align: center;
+  color: var(--background);
 }
 
-#main_head {
-  grid-area: header;
-  border: 1px solid black;
+.skip_links:focus {
+  color: var(--base-text);
+  border: 1px solid var(--transluscent-gray);
 }
+
+/* the navbar  will be hidden by default, given active class upon click */
 #nav_bar {
-  grid-area: nav;
-  border: 1px solid black;
-}
-
-#navbar_toggle_button {
-  position: absolute;
-  top: 2.6em;
-  right: 2.75em;
-  cursor: pointer;
-  font-size: 1em;
-  background: transparent;
-}
-
-#navbar_menu {
-  border: none;
-  background-color: var(--background-transparent);
+  border: 0.1em solid var(--semi-transluscent-gray);
+  padding: 1em 1em 2.5em 1em;
+  margin: 1em 1em 3.5em 1em;
+  /* background-image: url("../images/busy_transit.jpg"); */
 }
 
 .nav_ul {
@@ -278,6 +295,37 @@ font-size: 1em; */
   /* 0 0 1em; */
 }
 
+/* Time bar under hamburger */
+.current_time_section {
+  top: 4.5em;
+  right: 2.75em;
+  margin: 1em;
+}
+
+/* Navbar, button for assessibility, transparent background and border for style
+this looks amazing while using the tab key to toggle the navigation
+*/
+#navbar_toggle_button {
+  position: absolute;
+  top: 2.6em;
+  right: 2.75em;
+  cursor: pointer;
+  font-size: 1em;
+  background: transparent;
+}
+
+#navbar_menu {
+  border: none;
+  /* background-color: Transparent; */
+  background-color: var(--background-transparent);
+  /* background-blend-mode: exclusion; */
+  /* filter: blur(0.1em);
+  -webkit-filter: blur(0.1em);
+  -moz-filter: blur(0.1em);
+  -o-filter: blur(0.1em);
+  -ms-filter: blur(0.1em); */
+}
+
 .active_navbar {
   display: grid;
   /* using fractions here for grid */
@@ -309,25 +357,14 @@ font-size: 1em; */
   transform: rotate(65deg) translate(-0.35em, -0.2em);
 }
 
-#main {
-  grid-area: main_body;
-  border: 1px solid black;
-}
-
-#sidebar_section {
-  grid-area: sidebar;
-  border: 1px solid black;
-  display: none;
-}
-
-#search_section {
-  grid-area: searchbar;
-}
-
-#change_scheme_section {
-  grid-area: change_scheme_section;
-  border: 1px solid black;
-}
+/* Switching color scheme button */
+/* .color_scheme_button{
+  padding: 1em;
+  margin: 0.5em;
+  position: static;
+  left: 0;
+  top: 0;
+} */
 
 /* Switching color scheme button */
 .color_scheme_button {
@@ -367,6 +404,242 @@ font-size: 1em; */
   width: 100%;
   transition: 800ms ease all;
 }
+
+/* Editing the post for all apps */
+.edit_href_div {
+  margin: 0 0 1em;
+  padding: 0 0 1em;
+}
+
+.edit_href {
+  font-size: 1.5em;
+  margin: 1em 0.25em 1em;
+  padding: 0.25em;
+  outline: 0.05em solid var(--base-gray);
+  background: var(--base-gray);
+}
+
+/* Repeating for the header/body/article of the apps */
+#block_page_header_section {
+  grid-area: header;
+  margin: 0.5em;
+  margin-left: 1em;
+  padding: 0.5em;
+  text-align: left;
+}
+
+#body_block_container {
+  grid-area: body;
+  margin: 1em;
+}
+
+#sidebar_section {
+  grid-area: sidebar;
+  /* outline: 0.5em var(--base-gray) solid; */
+  margin-right: 1em;
+  line-height: 1.5em;
+  text-align: right;
+}
+
+#pagination_section {
+  grid-area: pagination;
+}
+
+#bottom_of_page {
+  grid-area: bottom_page;
+}
+
+.sidebar_link {
+  padding: 0.75em;
+  margin: 0.75em;
+}
+
+.body_block_article {
+  margin: 1em 0 1em 1em;
+  padding: 0.5em;
+  padding-left: 1em;
+  outline: 0.01em;
+  outline-style: dashed;
+  outline-color: var(--transluscent-gray);
+}
+.body_block_h2 {
+  text-align: left;
+  padding: 0.25em 0 0.5em 0.75em;
+}
+
+.body_block_p {
+  text-indent: 0.75em;
+  text-align: justify;
+  white-space: pre;
+}
+
+/* all forms for new and edits of all posts by class */
+form.post_form {
+  /* display: grid; */
+  grid-area: post_form;
+  margin: 1em 0 1em 0;
+}
+
+fieldset.post_form_fieldset {
+  display: grid;
+  grid-row: auto;
+}
+
+.post_form_legend {
+  /* text-align: center; */
+  color: var(--triad-primary-1);
+}
+
+label.form_label {
+  padding: 0.5em;
+  margin: 0.5em;
+  /* position:fixed; */
+}
+
+.submit_button {
+  padding: 1em;
+  margin: 1em;
+  width: 80%;
+}
+
+/* Home.html */
+#home_page_header_h1 {
+  color: var(--triad-primary-2);
+}
+
+/* About.html */
+#about_page_header_h1 {
+  color: var(--triad-primary-3);
+}
+
+#contact_h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#email {
+  text-shadow: 1px;
+  text-decoration-style: double;
+}
+
+/* Dossier.html  */
+#dossiers_header_h1 {
+  color: var(--triad-primary-3);
+}
+
+/* Workideas.html */
+#work_ideas_header_h1 {
+  color: var(--triad-secondary-2);
+}
+
+/* Thoughts.html */
+#thoughts_header_h1 {
+  color: var(--triad-primary-3);
+}
+
+.post_title {
+  color: var(--base-text);
+  margin: 0.25em;
+  padding: 0.25em;
+}
+.post_main_body {
+  color: var(--base-text);
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+/*
+FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
+*/
+
+.search_section {
+  grid-area: searchbar;
+}
+
+.change_scheme_section {
+  grid-area: color_scheme;
+}
+
+.post_section {
+  grid-area: new_post_button;
+}
+
+footer#navigation_footer {
+  grid-area: footer;
+}
+
+#searchbar_input {
+  color: var(--base-dark);
+  background-color: var(--background);
+  opacity: 0.9;
+}
+.searchbar_button {
+  background-color: var(--base-gray);
+  color: var(--base-light);
+  border: none;
+  text-decoration: none;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+#post_href {
+  background-color: var(--triad-primary-3);
+  color: var(--base-light);
+  margin: 1em;
+  padding: 1em;
+}
+
+
+#skip_links_wrapper {
+  grid-area: skip_links;
+}
+
+#main_head {
+  grid-area: header;
+  border: 1px solid black;
+}
+#nav_bar {
+  grid-area: nav;
+  border: 1px solid black;
+}
+
+#navbar_toggle_button {
+  position: absolute;
+  top: 2.6em;
+  right: 2.75em;
+  cursor: pointer;
+  font-size: 1em;
+  background: transparent;
+}
+
+#navbar_menu {
+  border: none;
+  background-color: var(--background-transparent);
+}
+
+
+
+#main {
+  grid-area: main_body;
+  border: 1px solid black;
+}
+
+#sidebar_section {
+  grid-area: sidebar;
+  border: 1px solid black;
+  display: none;
+}
+
+#search_section {
+  grid-area: searchbar;
+}
+
+#change_scheme_section {
+  grid-area: change_scheme_section;
+  border: 1px solid black;
+}
+
+
 
 #post_section {
   grid-area: new_post_button;
