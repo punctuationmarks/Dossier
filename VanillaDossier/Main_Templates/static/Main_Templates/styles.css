@@ -65,7 +65,7 @@ body.dark_mode {
 
 * {
   box-sizing: border-box;
-  padding: 0;
+  /* padding: 0; */
   margin: 0;
 }
 
@@ -119,7 +119,7 @@ nav {
   !!! WORK AROUND !!! BECAUSE IF USING DISPLAY: NONE; THE SMALLER SCREENS WOULDN'T
   HAVE THE NAVIAGTION BE ACTUALLY FIXED, ONLY STICKY AT THE BOTTOM.
   MIGHT BE BETTER IF THIS WERE REFACTORED TO BE MOBILE FIRST, IN REGARDS TO THE
-  MEDIA QUERIES
+  MEDIA QUERIES. So this just hides it off screen (but gives a hint towards the mobile which I like)
   */
   #navigation_footer {
     position: fixed;
@@ -473,9 +473,6 @@ This is a possible option for a css focused button (div around it,
   grid-area: pagination;
 }
 
-#bottom_of_page {
-  grid-area: bottom_page;
-}
 
 .sidebar_link {
   padding: 0.75em;
@@ -600,27 +597,46 @@ FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
   padding: 0.5em;
 }
 
+
+#navigation_footer{
+  grid-area: navigation_footer;
+  /* margin: 0 1em 1em 1em;
+  padding: 0 1em 1em 1em; */
+  margin: 1em;
+  padding: 1.25em 1em 1em 0;
+}
+
+
 #quick_buttons_ul {
   /* list-style: none; */
   background-color: var(--triad-primary-3);
-  margin: 1em;
-  padding: 1em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* margin: 1em;
+  padding: 1em; */
+  margin: 0 1em 1em 1em;
+  padding: 0.25em 1em 1em 1em;
+  /* margin-bottom: 2em;
+  padding-bottom: 2em; */
 }
 
+
 .quick_buttons_li {
-  margin-top: 0.75em;
-  margin-left: 1em;
-  margin-bottom: 1em;
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
-  display: inline;
-  /* font-size: 1.5em; */
+  margin: 0.5em 0.5em 0 0;
+  padding: 0.5em 0.5em 0 0.5em;
 }
+
 /* play around with this here, it has issues on super small screens (not sure if needed) */
 /* NEEDS TO HAVE A DROP DOWN OF LIST ITEMS IF SCREEN IS TOO SMALL width < 640PX */
 
 .quick_buttons_link {
   color: var(--base-light);
-  border: 0.25em solid var(--base-dark);
-  font-size: 1.75em;
+  /* border: 0.25em dotted var(--base-dark); */
+  font-size: 1.3em;
 }

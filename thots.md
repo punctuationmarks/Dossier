@@ -1,7 +1,14 @@
 
-the quick link buttons have ISSUES
-the search bar with the POST button isn't aligning correctly
-(tried flex and grid and it's not working, need research)
+## BETA TEST MOBILE::
+
+
+- individual post page (actual page) need to have the submit button bigger
+- the button change color scheme is starting to bother me
+( plus it changes color on bottom of the screen ,not bottom of the web page)
+- Need upload csv file pages
+- nav bar blurs out on mobile
+- nav bar needs to flex, the hrefs are pushed off screen
+- hamburger blends into the background and is too rigid (take off position, put it in flex too)
 
 
 The color scheme does not stay permanent, lookig into cookies for this
