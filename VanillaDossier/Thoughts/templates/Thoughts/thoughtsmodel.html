@@ -18,7 +18,6 @@
     <article class = "body_block_article">
       <h1 class="body_block_h1">
         <a class="body_block_link" href="{% url 'thoughts-post-detail' post.pk %}">
-        <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
           {{ post.title|safe|linebreaks|truncatechars:50 }}
         </a>
       </h1>
