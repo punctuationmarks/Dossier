@@ -5,14 +5,15 @@
 {%endblock skip_links %}
 
 
- {% block page_header %}
+{% block page_header %}
 <section id="block_page_header_section">
   <h1 id="home_page_header_h1">Home Page:</h1>
 </section>
 {% endblock page_header %}
 
-{% block body_block %}
 
+
+{% block body_block %}
 <article class="body_block_article">
   <h2>Stuff about life and being good to each other</h2>
   <p class="body_block_p">
@@ -39,7 +40,7 @@
   <ul id="side_bar_ul">
     <li class="home_side_bar_li"><a href="{% url 'dossiers-post-create'%}"> Dossier ++ </a></li>
     <li class="home_side_bar_li"><a href="{% url 'thoughts-post-create'%}"> Thoughts ++ </a></li>
-    <li class="home_side_bar_li"><a href="{% url 'workIdeas-post-create'%}">Work Ideas ++ </a></li>
+    <li class="home_side_bar_li"><a href="{% url 'ideas-post-create'%}">Work Ideas ++ </a></li>
   </ul>
 </section>
 {% endblock side_bar %}

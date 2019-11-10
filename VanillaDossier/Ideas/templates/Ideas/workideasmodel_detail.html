@@ -4,10 +4,10 @@
 
 {% block edit_href %}
 <div class="edit_href_div">
-  <a class="edit_href" id="edit_post_href" href="{% url 'workIdeas-post-update' object.id %}">
+  <a class="edit_href" id="edit_post_href" href="{% url 'ideas-post-update' object.id %}">
     Edit
   </a>
-  <a class="edit_href" id="delete_post_href" href="{% url 'workIdeas-post-delete' object.id %}">
+  <a class="edit_href" id="delete_post_href" href="{% url 'ideas-post-delete' object.id %}">
     Delete
   </a>
 </div>

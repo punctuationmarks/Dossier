@@ -44,7 +44,7 @@ class ThoughtsAdmin(admin.ModelAdmin):
 
         time_stamp = time.strftime("%Y%m%d%H%M")
         file = StringIO()
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter="|")
         # detailing headers
         writer.writerow(["Title", "Body", "Date_Originally_Posted"])
 

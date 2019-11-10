@@ -8,16 +8,16 @@ from django.views.generic import (ListView,
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-from WorkIdeas.models import WorkIdeasModel
+from Ideas.models import IdeasModel
 
 
 @login_required
-def workIdeas(request):
+def ideas(request):
     """
     Adding a search bar at navbar
     """
-    page_title = "workIdeas"
-    posts_list = WorkIdeasModel.objects.order_by('title')
+    page_title = "ideas"
+    posts_list = IdeasModel.objects.order_by('title')
     search_term = ''
 
     if 'search' in request.GET:
@@ -42,15 +42,15 @@ def workIdeas(request):
         'posts': posts,
         'search_term': search_term
     }
-    return render(request, 'WorkIdeas/workideasmodel.html', context)
+    return render(request, 'ideas/ideasmodel.html', context)
 
 
 class PostDetailView(DetailView):
-    model = WorkIdeasModel
+    model = IdeasModel
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    model = WorkIdeasModel
+    model = IdeasModel
     fields = ['title', 'body']
 
     def form_valid(self, form):
@@ -60,7 +60,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = WorkIdeasModel
+    model = IdeasModel
     fields = ['title', 'body']
 
     def form_valid(self, form):
@@ -75,9 +75,9 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = WorkIdeasModel
+    model = IdeasModel
     # if everything goes well, this is a redirect url
-    success_url = '/workIdeas'
+    success_url = '/ideas'
 
     def test_func(self):
         post = self.get_object()

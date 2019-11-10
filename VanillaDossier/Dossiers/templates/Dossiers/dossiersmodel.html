@@ -1,9 +1,8 @@
 {% extends "Main_Templates/base.html"%}
+
 {% block skip_links %}
-    <a href="#sidebar_section" class="skip_links">Sidebar</a>
-    <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
-    <a href="#searchbar" class="skip_links">Search Bar</a>
-    <a href="new/" class="skip_links">Post</a>
+        <a href="#sidebar_section" class="skip_links" id = "skip_link_to_sidebar">Sidebar</a>
+        <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
 {% endblock skip_links %}
 
 {% block page_header %}
@@ -135,7 +134,7 @@ here's how you did it in the original version
   </button>
 </div>
 <div class="col">
-  <button onclick="window.location.href = `{% url 'workIdeas-post-create' %}`" class="footer_href">
+  <button onclick="window.location.href = `{% url 'ideas-post-create' %}`" class="footer_href">
     New strong
   </button>
 </div>

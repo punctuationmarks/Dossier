@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'Main_Templates',
     'Dossiers',
     'Thoughts',
-    'WorkIdeas'
+    'Ideas'
 ]
 
 MIDDLEWARE = [

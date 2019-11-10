@@ -1,7 +1,14 @@
 {% extends "Main_Templates/base.html"%}
 
+
+
+{% block skip_links %}
+        <a href="#sidebar_section" class="skip_links" id = "skip_link_to_sidebar">Sidebar</a>
+        <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
+{% endblock skip_links %}
+
 {% block page_header %}
-    <h1 id="work_ideas_header_h1">
+    <h1 id="ideas_header_h1">
       Work Ideas:
     </h1>
 {% endblock page_header %}
@@ -14,8 +21,8 @@
 {% for post in posts %}
 <article class = "body_block_article">
   <h1 class="body_block_h1">
-    <a class="body_block_link" href="{% url 'workIdeas-post-detail' post.pk %}">
-    <!-- href="{% url 'workIdeas-post-detail' post.id %}" -->
+    <a class="body_block_link" href="{% url 'ideas-post-detail' post.pk %}">
+    <!-- href="{% url 'ideas-post-detail' post.id %}" -->
       {{ post.title|safe|linebreaks|truncatechars:50}}
     </a>
   </h1>
@@ -23,7 +30,7 @@
   <p class="post_main_body">
     {{post.body|safe|linebreaks|truncatechars:450}}
     {% if post.body|length > 450 %}
-    <a class="stylized_href" href="{% url 'workIdeas-post-detail' post.id %}">[read more]</a>
+    <a class="stylized_href" href="{% url 'ideas-post-detail' post.id %}">[read more]</a>
     {% endif %}
   </p>
 </article>
@@ -42,7 +49,7 @@
       <ul id="side_bar_ul">
         {% for post in posts %}
               <li class="side_bar_li">
-                <a class="body_block_link" href="{% url 'workIdeas-post-detail' post.id %}">
+                <a class="body_block_link" href="{% url 'ideas-post-detail' post.id %}">
                 <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
                   {{ post.title }}
                 </a>
@@ -72,7 +79,7 @@ here's how you did it in the original version
   </button>
 </div>
 <div class="col">
-  <button onclick="window.location.href = `{% url 'workIdeas-post-create' %}`" class="footer_href">
+  <button onclick="window.location.href = `{% url 'ideas-post-create' %}`" class="footer_href">
     New Code
   </button>
 </div>
@@ -85,7 +92,7 @@ here's how you did it in the original version
      <form class="searchbar_form">
        <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
        <!-- <span class= "searchbar_arrow"> -->
-         <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
+         <input class="searchbar_input" type="search" placeholder="Search work Ideas.." aria-label="Search work ideas" name='search' value="">
 
        <!-- </span> -->
        <button class="searchbar_button" type="submit">
@@ -97,5 +104,5 @@ here's how you did it in the original version
 
 
   {% block post_button %}
-      <a href="{% url 'workIdeas-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
+      <a href="{% url 'ideas-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
   {% endblock post_button %}

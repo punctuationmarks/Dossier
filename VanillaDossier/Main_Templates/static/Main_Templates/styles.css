@@ -11,6 +11,14 @@ HTML (NO CSS AT ALL, JUST TEXT DISPLAYS FOR HALF A SECOND)
 */
 
 
+/* Clearing all base styling */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
 body.light_mode {
   background: var(--background);
   --background: #fdf6e3;
@@ -63,17 +71,6 @@ body.dark_mode {
   --color_scheme_button_text: #268bd2;
 }
 
-* {
-  box-sizing: border-box;
-  /* padding: 0; */
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-  color: var(--base-text);
-}
-
 p,
 a,
 h1,
@@ -90,113 +87,6 @@ ul {
   list-style-type: none;
 }
 
-nav {
-  display: grid;
-}
-
-/* Desktop */
-/* MEDIA SIZING  */
-
-/* Needs to be FIXED */
-
-@media only screen and (min-device-width: 801px) {
-  main {
-    display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
-    grid-template-areas:
-      "Dossier_header . ."
-      "navigation navigation navigation"
-      "individual_page_header . color_scheme_button"
-      "body_of_page sidebar sidebar"
-      /* " . pagination ." */
-      "searchbar . .";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  }
-
-  /*
-  !!! WORK AROUND !!! BECAUSE IF USING DISPLAY: NONE; THE SMALLER SCREENS WOULDN'T
-  HAVE THE NAVIAGTION BE ACTUALLY FIXED, ONLY STICKY AT THE BOTTOM.
-  MIGHT BE BETTER IF THIS WERE REFACTORED TO BE MOBILE FIRST, IN REGARDS TO THE
-  MEDIA QUERIES. So this just hides it off screen (but gives a hint towards the mobile which I like)
-  */
-  #navigation_footer {
-    position: fixed;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-  }
-}
-
-/** Mobile **/
-@media only screen and (max-width: 768px) {
-  main {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "Dossier_header Dossier_header"
-      "navigation navigation"
-      "individual_page_header color_scheme_button"
-      "searchbar searchbar"
-      "body_of_page body_of_page"
-      "navigation_footer navigation_footer";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  }
-
-  #navbar_toggle_button {
-    /* position: absolute; */
-    /* top: 1.5em; */
-    right: 1.5em;
-    cursor: pointer;
-    font-size: 1em;
-    background: transparent;
-  }
-
-  #navigation_footer {
-    position: fixed;
-    bottom: 3em;
-    height: 2.75em;
-    width: 100%;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-}
-
-/** Mobile (extra small) **/
-@media only screen and (max-width: 480px) {
-  main {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "Dossier_header Dossier_header"
-      "navigation navigation"
-      "individual_page_header color_scheme_button"
-      "searchbar searchbar"
-      "body_of_page body_of_page"
-      "navigation_footer navigation_footer";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  }
-
-  #navigation_footer {
-    position: fixed;
-    bottom: 3em;
-    height: 2.75em;
-    width: 100%;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-}
 
 h1 {
   font-size: xx-large;
@@ -204,6 +94,11 @@ h1 {
 
 h2 {
   font-size: x-large;
+}
+
+a {
+  text-decoration: none;
+  color: var(--base-text);
 }
 
 form {
@@ -234,39 +129,188 @@ strong {
   font-family: monospace;
 }
 
+
+/* Mobile First Styling */
+.entire_page_wrapper {
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "skip_links ."
+    "Dossier_header navbar_toggle_button"
+    "navigation navigation"
+    "individual_page_header color_scheme_button"
+    "body_of_page body_of_page"
+    "searchbar searchbar"
+    ". ."
+    "navigation_footer navigation_footer";
+  /* grid-row-gap: 0.75em; */
+  margin: 1em;
+}
+
+
+/*HUGE PADDING FOR SUPER SMALL PHONES */
+main{
+  padding-bottom: 50%;
+  /* margin-bottom: 20%; */
+}
+#navigation_footer {
+  position: fixed;
+  bottom: 3em;
+  height: 2.75em;
+  width: 100%;
+}
+
+#sidebar_section {
+  display: none;
+}
+
+
+/** Mobile **/
+/* Portrait and Landscape */
+/* @media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px) {
+  .entire_page_wrapper {
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "Dossier_header Dossier_header"
+      "navigation navigation"
+      "individual_page_header color_scheme_button"
+      "searchbar searchbar"
+      "body_of_page body_of_page"
+      "navigation_footer navigation_footer";
+    grid-row-gap: 0.75em;
+    margin: 1em;
+    padding-bottom: 10%;
+  }
+
+  /* #navbar_toggle_button {
+    right: 1.5em;
+    cursor: pointer;
+    font-size: 1em;
+    background: transparent;
+  } */
+/*
+  #navigation_footer {
+    position: fixed;
+    bottom: 3em;
+    height: 2.75em;
+    width: 100%;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+} */
+
+
+/*
+@media only screen and (min-device-width: 801px) {
+  .entire_page_wrapper {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-areas:
+      "Dossier_header . ."
+      "navigation navigation navigation"
+      "individual_page_header . color_scheme_button"
+      "body_of_page sidebar sidebar"
+
+      "searchbar . .";
+    grid-row-gap: 0.75em;
+    margin: 1em;
+    padding-bottom: 5%;
+  }
+
+  #navigation_footer {
+    display: none;
+  }
+} */
+
+
+
 #skip_links_wrapper {
+  grid-area: skip_links;
   display: flex;
-  height: 0.5em;
-  margin: 0;
   background-color: var(--background);
 }
+
 /* hiding them until tabbed over on them */
 .skip_links {
-  text-align: center;
+  font-size: 0em;
   color: var(--background);
 }
 
+/* .skip_links:focus {
+  font-size: 1em;
+  color: var(--color_scheme_button_after);
+  background: var(--color_scheme_button_before);
+} */
+
+
 .skip_links:focus {
-  color: var(--base-text);
-  border: 1px solid var(--transluscent-gray);
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+  padding: 0 1.5em 0 1.5em;
+  /* color: var(--color_scheme_button_before); */
+  background: var(--color_scheme_button_after);
+  background-image:
+    radial-gradient(
+      circle,
+      var(--color_scheme_button_before),
+      var(--color_scheme_button_after)
+    );
 }
 
-#main_header {
+
+#primary_header {
   grid-area: Dossier_header;
 }
 
-#nav_bar {
+#nav_bar_text {
+  /* display: inline; */
+  font-family: monospace;
+  font-size: 3em;
+  margin-top: 1em;
+  padding-top: 0.5em;
+  /* margin-left: 1.75em; */
+}
+
+/* background images on the navigation bar */
+.light_image {
+  background-image: url("../images/autumn-dead-plants.jpg");
+  background-repeat: repeat-x;
+  margin: 2em;
+}
+
+.dark_image {
+  background-image: url("../images/resized_busy_transit.jpg");
+  background-repeat: repeat-x;
+  margin: 2em;
+}
+
+/* Entire navbar */
+nav#nav_bar {
   grid-area: navigation;
+  display: grid;
   border: 0.1em solid var(--semi-transluscent-gray);
   padding: 1em 1em 2.5em 1em;
   margin: 1em 1em 3.5em 1em;
-  /* background-image: url("../images/busy_transit.jpg"); */
 }
 
-.nav_ul {
-  margin: 0.75em;
-  /* padding: 0.5em; */
+
+/* Not Displaying the top navbar until activated, all
+css properties will be in the active narbar */
+ul.nav_ul {
   display: none;
+}
+
+.active_navbar {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-wrap: wrap;
   border: none;
   background-color: var(--background-transparent);
 }
@@ -275,52 +319,13 @@ strong {
   background: var(--background);
   text-align: left;
   margin: 0.25em;
-  padding: 0.25em 0 0.25em 0.25em;
+  padding: 0.25em;
 }
 
+/* Actual text of the navbar items */
 .nav_bar_links {
   text-decoration: overline;
   color: var(--base-text);
-}
-.nav_bar_logo {
-  display: inline-block;
-  margin-top: 1em;
-  margin-left: 1.75em;
-}
-
-#nav_bar_text {
-  display: inline;
-  font-family: monospace;
-  font-size: 3em;
-}
-
-#nav_bar_image {
-  width: 10em;
-  height: 10em;
-  margin: 2em 0 0 1em;
-}
-
-.light_image {
-  background-image: url("../images/autumn-dead-plants.jpg");
-  filter: blur(0.01em);
-  -webkit-filter: blur(0.01em);
-  -moz-filter: blur(0.01em);
-  -o-filter: blur(0.01em);
-  -ms-filter: blur(0.01em);
-  margin: 2em;
-  /* 0 0 1em; */
-}
-
-.dark_image {
-  background-image: url("../images/resized_busy_transit.jpg");
-  background-repeat: no-repeat;
-  filter: blur(0.01em);
-  -webkit-filter: blur(0.01em);
-  -moz-filter: blur(0.01em);
-  -o-filter: blur(0.01em);
-  -ms-filter: blur(0.01em);
-  margin: 2em;
-  /* 0 0 1em; */
 }
 
 /* Time bar under hamburger */
@@ -333,20 +338,19 @@ strong {
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
 */
-#navbar_toggle_button {
-  position: absolute;
-  top: 2.6em;
-  right: 2.75em;
+#navbar_toggle_div{
+  grid-area: navbar_toggle_button;
+}
+
+button#navbar_toggle_button {
+  /* position: absolute; */
+  /* top: 2.6em;
+  right: 2.75em; */
   cursor: pointer;
   font-size: 1em;
   background: transparent;
 }
 
-.active_navbar {
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  grid-gap: 1em;
-}
 
 .hamburger_bar_1,
 .hamburger_bar_2,
@@ -386,10 +390,9 @@ This is a possible option for a css focused button (div around it,
 
 /* Switching color scheme button */
 
-
-#color_scheme_toggle_div{
-  grid-area: color_scheme_button;
+#color_scheme_toggle_div {
   margin: 1em;
+  grid-area: color_scheme_button;
   /* padding: 4em; */
 }
 
@@ -473,7 +476,6 @@ This is a possible option for a css focused button (div around it,
   grid-area: pagination;
 }
 
-
 .sidebar_link {
   padding: 0.75em;
   margin: 0.75em;
@@ -504,12 +506,8 @@ This is a possible option for a css focused button (div around it,
   text-align: left;
 }
 
-.post_strong_header {
-}
-
 /* all forms for new and edits of all posts by class */
 form.post_form {
-  /* display: grid; */
   grid-area: post_form;
   margin: 1em 0 1em 0;
 }
@@ -520,19 +518,18 @@ fieldset.post_form_fieldset {
 }
 
 .post_form_legend {
-  /* text-align: center; */
   color: var(--triad-primary-1);
 }
 
 label.form_label {
   padding: 0.5em;
   margin: 0.5em;
-  /* position:fixed; */
 }
 
 .submit_button {
   padding: 1em;
   margin: 1em;
+  font-size: 1.5em;
   width: 80%;
 }
 
@@ -561,8 +558,8 @@ label.form_label {
   color: var(--triad-primary-3);
 }
 
-/* Workidea: ;s.html */
-#work_ideas_header_h1 {
+/* Ideashtml */
+#ideas_header_h1 {
   color: var(--triad-secondary-1);
 }
 
@@ -571,16 +568,8 @@ label.form_label {
   color: var(--triad-primary-3);
 }
 
-/*
-FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
-*/
-
 #search_section {
   grid-area: searchbar;
-}
-
-.post_section {
-  grid-area: new_post_button;
 }
 
 #searchbar_input {
@@ -597,46 +586,46 @@ FIX THE NAVIAGTION AND ADD IT BACK HERE IF IT CAN LOGICALLY GO HERE
   padding: 0.5em;
 }
 
-
-#navigation_footer{
+#navigation_footer {
   grid-area: navigation_footer;
-  /* margin: 0 1em 1em 1em;
-  padding: 0 1em 1em 1em; */
   margin: 1em;
-  padding: 1.25em 1em 1em 0;
+  padding: 1.25em;
+  padding-bottom: 5em;
 }
-
 
 #quick_buttons_ul {
   /* list-style: none; */
-  background-color: var(--triad-primary-3);
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+  background-color: var(--background-transparent);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* margin: 1em;
-  padding: 1em; */
-  margin: 0 1em 1em 1em;
-  padding: 0.25em 1em 1em 1em;
-  /* margin-bottom: 2em;
-  padding-bottom: 2em; */
+  margin: 1em;
+  padding: 1em;
+}
+
+.quick_buttons_li {
+  text-decoration: overline;
+  background: var(--background);
+  text-align: left;
+  margin: 0.5em 0.5em 0 0;
+  padding: 0.5em 0.5em 0 0.5em;
 }
 
 
-.quick_buttons_li {
-  margin: 0.5em 0.5em 0 0;
-  padding: 0.5em 0.5em 0 0.5em;
+.footer_light_image {
+  background-image: url("../images/autumn-dead-plants.jpg");
+  background-repeat: repeat-x;
+}
+
+.footer_dark_image {
+  background-image: url("../images/resized_busy_transit.jpg");
+  background-repeat: repeat-x;
 }
 
 /* play around with this here, it has issues on super small screens (not sure if needed) */
 /* NEEDS TO HAVE A DROP DOWN OF LIST ITEMS IF SCREEN IS TOO SMALL width < 640PX */
 
 .quick_buttons_link {
-  color: var(--base-light);
-  /* border: 0.25em dotted var(--base-dark); */
   font-size: 1.3em;
 }

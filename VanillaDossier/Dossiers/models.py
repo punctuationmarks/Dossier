@@ -47,7 +47,7 @@ class DossiersAdmin(admin.ModelAdmin):
         file = StringIO()
 
         # initializing the writer
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter="|")
 
         # writing the headers
         writer.writerow['name', 'hobbies', 'work', 'appearance',

@@ -5,10 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script type="text/javascript">
-// idea here is to make 2 different css files, one for mobile/web and if else statement
-  </script>
-
     <link
       rel="stylesheet"
       type="text/css"
@@ -17,11 +13,11 @@
     <title>Dossiers</title>
   </head>
   <body id= "body_id" class="light_mode">
-    <div class="wrapper">
+    <div class="entire_page_wrapper">
 
     <section id="skip_links_wrapper">
-      <a href="#navbar_toggle_button" class="skip_links">Skip to Navigation</a>
-      <a href="#main" class="skip_links">Skip to Main Content</a>
+      <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
+      <a href="#main" class="skip_links">  Skip to Main Content   </a>
 
       {% if user.is_authenticated %}
           {% block skip_links %}
@@ -29,53 +25,50 @@
       {% endif %}
     </section>
 
-    <header id="main_header">
-      <a href="/" class="nav_bar_logo">
+    <header id="primary_header">
+      <a href="/">
         <h1 id="nav_bar_text">The Dossier</h1>
       </a>
-    </header>
-
-    <nav id="nav_bar">
-
-
       <!-- custom hamburger, for responsive navbar -->
-        <div id="navbar_toggle_button">
-          <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
-            <div class="hamburger_bar_1"></div>
-            <div class="hamburger_bar_2"></div>
-            <div class="hamburger_bar_3"></div>
-          </button>
-        </div>
+    </header>
+    <div id="navbar_toggle_div">
+      <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
+        <div class="hamburger_bar_1"></div>
+        <div class="hamburger_bar_2"></div>
+        <div class="hamburger_bar_3"></div>
+      </button>
+    </div>
+
+    <nav class="light_image" id="nav_bar">
 
 
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
           <li class="nav_bar_li"><a href="/dossiers" class="nav_bar_links">Dossiers</a></li>
           <li class="nav_bar_li"><a href="/thoughts" class="nav_bar_links">Thoughts</a></li>
-          <li class="nav_bar_li"><a href="/workIdeas" class="nav_bar_links">Work Ideas</a></li>
+          <li class="nav_bar_li"><a href="/ideas" class="nav_bar_links">Work Ideas</a></li>
           <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% else %}
           <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
           <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
 {% endif %}
-          <li>
+          <li class="nav_bar_li">
             {{ current_time }}
           </li>
         </ul>
-
-        <!-- search bar for searching, only shown on the main pages of the different apps -->
-
     </nav>
+
     <main>
     <section id="block_page_header_section">
         {% block page_header %}
         {% endblock page_header %}
     </section>
-  <div id="color_scheme_toggle_div">
-    <button id="color_scheme_toggle_button">
-      Change color scheme
-    </button>
-  </div>
+
+      <div id="color_scheme_toggle_div">
+        <button id="color_scheme_toggle_button">
+          Change color scheme
+        </button>
+      </div>
 
       <!-- <svg width="50" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <polygon points="20 7, 10 25, 30 25"/> -->
@@ -118,7 +111,7 @@
                 <a href="/thoughts" class="quick_buttons_link">Thots</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/workIdeas" class="quick_buttons_link">WorkThots</a>
+                <a href="/ideas" class="quick_buttons_link">WorkThots</a>
               </li>
               <li class="quick_buttons_li">
                   {% block post_button %}

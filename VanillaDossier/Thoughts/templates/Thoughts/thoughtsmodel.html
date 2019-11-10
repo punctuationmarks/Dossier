@@ -1,11 +1,8 @@
 {% extends "Main_Templates/base.html"%}
 
 {% block skip_links %}
-        <a href="/dossiers" class="skip_links">Skip to Dossiers</a>
-        <a href="/workIdeas"class="skip_links">Skip to Work Ideas</a>
-        <a href="#main" class="skip_links">Skip to Main</a>
-        <a href="#sidebar_section" class="skip_links">Sidebar</a>
-        <a href="#bottom_of_page" class="skip_links">Bottom of Page</a>
+        <a href="#sidebar_section" class="skip_links" id = "skip_link_to_sidebar">Sidebar</a>
+        <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
 {% endblock skip_links %}
 
 {% block page_header %}
@@ -89,7 +86,7 @@ here's how you did it in the original version
 
  {% block searchbar %}
        <form class="searchbar_form">
-           <input class="searchbar_input" type="search" placeholder="Search work ideas..." aria-label="Search work ideas" name='search' value="">
+           <input class="searchbar_input" type="search" placeholder="Search work Ideas.." aria-label="Search work ideas" name='search' value="">
          <button class="searchbar_button" type="submit">
            Search
          </button>

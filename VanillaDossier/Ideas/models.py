@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.contrib import admin
 
 
-class WorkIdeasModel(models.Model):
+class IdeasModel(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     # date that can be updated
@@ -29,11 +29,11 @@ class WorkIdeasModel(models.Model):
     # this is done so that once a post is created, the user
     # is redirected directly to that detailed view
     def get_absolute_url(self):
-        return reverse('workIdeas-post-detail', kwargs={'pk':self.pk})
+        return reverse('ideas-post-detail', kwargs={'pk':self.pk})
 
 # how the data is shown on the backend,
 # also affects how the csv is dispayed
-class WorkIdeasAdmin(admin.ModelAdmin):
+class ideasAdmin(admin.ModelAdmin):
     actions = ['download_csv_file']
     list_display = ('title', 'body', 'date_originally_posted')
 
@@ -64,8 +64,8 @@ class WorkIdeasAdmin(admin.ModelAdmin):
         file.seek(0)
         response = HttpResponse(file, content_type='text/csv')
 
-        # the file name will be 'workIdeas' with the current time for organization reasons
-        response['Content-Disposition'] = f'''attachment; filename=WorkIdeas_{time_stamp}.csv'''
+        # the file name will be 'ideas' with the current time for organization reasons
+        response['Content-Disposition'] = f'''attachment; filename=ideas_{time_stamp}.csv'''
         return response
 
     # displaying on admin page
