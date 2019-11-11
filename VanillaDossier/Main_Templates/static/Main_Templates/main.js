@@ -3,7 +3,7 @@ let colorToggleButon = document.getElementById("color_scheme_toggle_button");
 let navbarMenu = document.getElementById("navbar_menu");
 let navBarToggleButton = document.getElementById("navbar_toggle_button");
 let navBarImage = document.getElementById("nav_bar");
-let footerImage = document.getElementById("navigation_footer");
+let footerImage = document.getElementById("quick_buttons_ul");
 
 function hamburgerAnimation(navbarMenu) {
   navbarMenu.classList.toggle("change_hamburger");

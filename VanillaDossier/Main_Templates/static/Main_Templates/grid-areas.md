@@ -9,7 +9,7 @@ Grid Areas:
   grid-area: navigation;
 }
 
-#color_scheme_toggle_div{
+#color_scheme_toggle_button{
   grid-area: color_scheme_button;
 }
 

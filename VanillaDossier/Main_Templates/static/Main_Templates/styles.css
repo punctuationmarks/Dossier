@@ -42,7 +42,7 @@ body.light_mode {
   --hamburger-background: #002b36;
   --color_scheme_button_before: #002b36;
   --color_scheme_button_after: #fdf6e3;
-  --color_scheme_button_text: #002b36;
+  --color_scheme_button_text: #6c71c4;
 }
 
 body.dark_mode {
@@ -132,102 +132,35 @@ strong {
 
 /* Mobile First Styling */
 .entire_page_wrapper {
-  grid-template-columns: 2fr 1fr;
+  display: grid;
+  grid-template-columns:1fr;
   grid-template-areas:
-    "skip_links ."
-    "Dossier_header navbar_toggle_button"
-    "navigation navigation"
-    "individual_page_header color_scheme_button"
-    "body_of_page body_of_page"
-    "searchbar searchbar"
-    ". ."
-    "navigation_footer navigation_footer";
+    "skip_links"
+    "Dossier_header"
+    "navbar_toggle_button"
+    "navigation"
+    "color_scheme_button"
+    "individual_page_header"
+    "body_of_page"
+    "searchbar"
+    "navigation_footer";
   /* grid-row-gap: 0.75em; */
   margin: 1em;
 }
 
 
-/*HUGE PADDING FOR SUPER SMALL PHONES */
+/*HUGE PADDING FOR SUPER SMALL PHONES
+This is to make sure the quick links and the search bar
+are still visible */
 main{
   padding-bottom: 50%;
-  /* margin-bottom: 20%; */
-}
-#navigation_footer {
-  position: fixed;
-  bottom: 3em;
-  height: 2.75em;
-  width: 100%;
+  margin-bottom: 20%;
 }
 
+/* Hiding sidebar by default */
 #sidebar_section {
   display: none;
 }
-
-
-/** Mobile **/
-/* Portrait and Landscape */
-/* @media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 812px) {
-  .entire_page_wrapper {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-      "Dossier_header Dossier_header"
-      "navigation navigation"
-      "individual_page_header color_scheme_button"
-      "searchbar searchbar"
-      "body_of_page body_of_page"
-      "navigation_footer navigation_footer";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 10%;
-  }
-
-  /* #navbar_toggle_button {
-    right: 1.5em;
-    cursor: pointer;
-    font-size: 1em;
-    background: transparent;
-  } */
-/*
-  #navigation_footer {
-    position: fixed;
-    bottom: 3em;
-    height: 2.75em;
-    width: 100%;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-} */
-
-
-/*
-@media only screen and (min-device-width: 801px) {
-  .entire_page_wrapper {
-    display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
-    grid-template-areas:
-      "Dossier_header . ."
-      "navigation navigation navigation"
-      "individual_page_header . color_scheme_button"
-      "body_of_page sidebar sidebar"
-
-      "searchbar . .";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  }
-
-  #navigation_footer {
-    display: none;
-  }
-} */
-
-
 
 #skip_links_wrapper {
   grid-area: skip_links;
@@ -241,11 +174,6 @@ main{
   color: var(--background);
 }
 
-/* .skip_links:focus {
-  font-size: 1em;
-  color: var(--color_scheme_button_after);
-  background: var(--color_scheme_button_before);
-} */
 
 
 .skip_links:focus {
@@ -253,7 +181,6 @@ main{
   text-align: center;
   margin: 0;
   padding: 0 1.5em 0 1.5em;
-  /* color: var(--color_scheme_button_before); */
   background: var(--color_scheme_button_after);
   background-image:
     radial-gradient(
@@ -317,16 +244,32 @@ ul.nav_ul {
 
 .nav_bar_li {
   background: var(--background);
+  text-decoration: overline;
   text-align: left;
   margin: 0.25em;
   padding: 0.25em;
+}
+
+.time_li {
+  /* background: var(--background); */
+  /* padding-top: 0.75em; */
+  margin-top: 0.65em;
+  padding-left: 0.75em;
+
 }
 
 /* Actual text of the navbar items */
 .nav_bar_links {
   text-decoration: overline;
   color: var(--base-text);
+  font-size: 1.3em;
 }
+
+
+.navigation_link {
+  font-size: 1.3em;
+}
+
 
 /* Time bar under hamburger */
 .current_time_section {
@@ -377,64 +320,37 @@ button#navbar_toggle_button {
 }
 
 /* Switching color scheme button */
-/*
-This is a possible option for a css focused button (div around it,
-  better option seems to be SVG)
-.triangle_around_color{
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid red;
-} */
-
-/* Switching color scheme button */
-
-#color_scheme_toggle_div {
-  margin: 1em;
+#color_scheme_toggle_section{
   grid-area: color_scheme_button;
-  /* padding: 4em; */
+}
+
+#color_scheme_toggle_image{
+  height: 3em;
+  width: 3em;
 }
 
 #color_scheme_toggle_button {
   background: var(--color_scheme_button_before);
   color: var(--base-text);
-  border: none;
+  outline-color: var(--base-light);
   font-size: 0.75em;
   padding: 1em;
   cursor: pointer;
   transition: 800ms ease all;
-  outline: none;
 }
 #color_scheme_toggle_button:hover {
   background: var(--color_scheme_button_after);
   color: var(--color_scheme_button_text);
 }
 
+
 /* color line change on screen, hinting towards other color scheme */
 #color_scheme_toggle_button:before,
 #color_scheme_toggle_button:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 0.75em;
-  width: 0;
   background: var(--color_scheme_button_before);
-  transition: 300ms ease all;
-}
-#color_scheme_toggle_button:after {
-  right: inherit;
-  top: inherit;
-  left: 0;
-  bottom: 0;
+  transition: 500ms ease all;
 }
 
-#color_scheme_toggle_button:hover:before,
-#color_scheme_toggle_button:hover:after {
-  width: 100%;
-  transition: 800ms ease all;
-}
 
 /* Editing the post for all apps */
 .edit_href_div {
@@ -527,10 +443,10 @@ label.form_label {
 }
 
 .submit_button {
-  padding: 1em;
+  padding: 0.5em;
   margin: 1em;
   font-size: 1.5em;
-  width: 80%;
+  width: 70%;
 }
 
 /* Home.html */
@@ -586,30 +502,34 @@ label.form_label {
   padding: 0.5em;
 }
 
+
 #navigation_footer {
   grid-area: navigation_footer;
-  margin: 1em;
-  padding: 1.25em;
-  padding-bottom: 5em;
+  position: fixed;
+  bottom: 3em;
+  height: 3em;
+  width: 95%;
+  margin-bottom: 5.80em;
+  /* padding-bottom: 3em; */
 }
 
 #quick_buttons_ul {
-  /* list-style: none; */
   background-color: var(--background-transparent);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   margin: 1em;
-  padding: 1em;
+  padding: 1.25em;
+  padding-bottom: 7.5em;
 }
 
 .quick_buttons_li {
   text-decoration: overline;
   background: var(--background);
   text-align: left;
-  margin: 0.5em 0.5em 0 0;
-  padding: 0.5em 0.5em 0 0.5em;
+  margin: 0.25em;
+  font-size: 1.1em;
 }
 
 
@@ -623,9 +543,79 @@ label.form_label {
   background-repeat: repeat-x;
 }
 
-/* play around with this here, it has issues on super small screens (not sure if needed) */
-/* NEEDS TO HAVE A DROP DOWN OF LIST ITEMS IF SCREEN IS TOO SMALL width < 640PX */
 
-.quick_buttons_link {
-  font-size: 1.3em;
-}
+
+/** Mobile **/
+/* Portrait and Landscape */
+/* @media only screen
+  and (min-device-width: 450px)
+  and (max-device-width: 812px) {
+  .entire_page_wrapper {
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "Dossier_header Dossier_header"
+      "navigation navigation"
+      "individual_page_header color_scheme_button"
+      "searchbar searchbar"
+      "body_of_page body_of_page"
+      "navigation_footer navigation_footer";
+    grid-row-gap: 0.75em;
+    margin: 1em;
+    padding-bottom: 10%;
+  }
+
+  #quick_buttons_ul {
+    background-color: var(--background-transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1em;
+    padding: 1.25em;
+    padding-bottom: 5em;
+  }
+
+
+  /* #navbar_toggle_button {
+    right: 1.5em;
+    cursor: pointer;
+    font-size: 1em;
+    background: transparent;
+  } */
+/*
+  #navigation_footer {
+    position: fixed;
+    bottom: 3em;
+    height: 2.75em;
+    width: 100%;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+} */
+
+
+/*
+@media only screen and (min-device-width: 801px) {
+  .entire_page_wrapper {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-areas:
+      "Dossier_header . ."
+      "navigation navigation navigation"
+      "individual_page_header . color_scheme_button"
+      "body_of_page sidebar sidebar"
+
+      "searchbar . .";
+    grid-row-gap: 0.75em;
+    margin: 1em;
+    padding-bottom: 5%;
+  }
+
+  #navigation_footer {
+    display: none;
+  }
+} */

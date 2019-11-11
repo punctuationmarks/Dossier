@@ -9,7 +9,7 @@
 
 {% block page_header %}
     <h1 id="ideas_header_h1">
-      Work Ideas:
+      Ideas:
     </h1>
 {% endblock page_header %}
 
@@ -104,5 +104,7 @@ here's how you did it in the original version
 
 
   {% block post_button %}
+  <li class="quick_buttons_li">
       <a href="{% url 'ideas-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
+  </li>
   {% endblock post_button %}

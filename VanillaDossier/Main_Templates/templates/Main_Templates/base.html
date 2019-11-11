@@ -44,35 +44,33 @@
 
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
-          <li class="nav_bar_li"><a href="/dossiers" class="nav_bar_links">Dossiers</a></li>
-          <li class="nav_bar_li"><a href="/thoughts" class="nav_bar_links">Thoughts</a></li>
-          <li class="nav_bar_li"><a href="/ideas" class="nav_bar_links">Work Ideas</a></li>
-          <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
+          <li class="nav_bar_li"><a href="/dossiers" class="navigation_link">Dossiers</a></li>
+          <li class="nav_bar_li"><a href="/thoughts" class="navigation_link">Thoughts</a></li>
+          <li class="nav_bar_li"><a href="/ideas" class="navigation_link">Ideas</a></li>
+          <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
 {% else %}
-          <li class="nav_bar_li"><a href="/admin" class="nav_bar_links">Login</a></li>
-          <li class="nav_bar_li"><a href="/about" class="nav_bar_links">About</a></li>
+          <li class="nav_bar_li"><a href="/admin" class="navigation_link">Login</a></li>
+          <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
 {% endif %}
-          <li class="nav_bar_li">
+          <li class="time_li">
             {{ current_time }}
           </li>
         </ul>
     </nav>
 
     <main>
-    <section id="block_page_header_section">
-        {% block page_header %}
-        {% endblock page_header %}
+        <section id="block_page_header_section">
+            {% block page_header %}
+            {% endblock page_header %}
+        </section>
+
+
+    <section id="color_scheme_toggle_section">
+      <button id="color_scheme_toggle_button">
+        <img id="color_scheme_toggle_image" src="{% static 'images/delta.png'%}" />
+      </button>
     </section>
 
-      <div id="color_scheme_toggle_div">
-        <button id="color_scheme_toggle_button">
-          Change color scheme
-        </button>
-      </div>
-
-      <!-- <svg width="50" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="20 7, 10 25, 30 25"/> -->
-      <!-- </svg> -->
 
     <section id="body_block_container">
       {% block edit_href %}
@@ -105,18 +103,16 @@
       <footer id="navigation_footer">
             <ul id="quick_buttons_ul">
               <li class="quick_buttons_li">
-                <a href="/dossiers" class="quick_buttons_link">Dossiers</a>
+                <a href="/dossiers" class="navigation_link">Dossiers</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/thoughts" class="quick_buttons_link">Thots</a>
+                <a href="/thoughts" class="navigation_link">Thoughts</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/ideas" class="quick_buttons_link">WorkThots</a>
+                <a href="/ideas" class="navigation_link">Ideas</a>
               </li>
-              <li class="quick_buttons_li">
                   {% block post_button %}
                   {% endblock post_button %}
-              </li>
             </ul>
       </footer>
     {% endif %}
