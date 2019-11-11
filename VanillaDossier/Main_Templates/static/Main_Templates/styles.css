@@ -2,12 +2,6 @@
 /*
 BUG::
 
-FUNNY BUG WITH THE CHANGE COLOR SCHEME BUTTON
-THE COLOR SWITCH HAPPENS ON THE ENTIRE SCREEN
-
-BUG ON PAGE RELOAD (FAST RELOADS), THE ENTIRE VANILLA
-HTML (NO CSS AT ALL, JUST TEXT DISPLAYS FOR HALF A SECOND)
-
 */
 
 
@@ -16,6 +10,7 @@ HTML (NO CSS AT ALL, JUST TEXT DISPLAYS FOR HALF A SECOND)
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  grid-template-areas: unset;
 }
 
 
@@ -133,19 +128,20 @@ strong {
 /* Mobile First Styling */
 .entire_page_wrapper {
   display: grid;
-  grid-template-columns:1fr;
+  grid-column: auto;
+  grid-template-columns: 1fr;
   grid-template-areas:
     "skip_links"
     "Dossier_header"
-    "navbar_toggle_button"
     "navigation"
-    "color_scheme_button"
+    "navbar_toggle_button"
     "individual_page_header"
     "body_of_page"
     "searchbar"
+    "color_scheme_button"
     "navigation_footer";
   /* grid-row-gap: 0.75em; */
-  margin: 1em;
+  /* margin: 1em; */
 }
 
 
@@ -218,7 +214,7 @@ main{
 }
 
 /* Entire navbar */
-nav#nav_bar {
+#nav_bar {
   grid-area: navigation;
   display: grid;
   border: 0.1em solid var(--semi-transluscent-gray);
@@ -229,7 +225,7 @@ nav#nav_bar {
 
 /* Not Displaying the top navbar until activated, all
 css properties will be in the active narbar */
-ul.nav_ul {
+.nav_ul {
   display: none;
 }
 
@@ -251,8 +247,6 @@ ul.nav_ul {
 }
 
 .time_li {
-  /* background: var(--background); */
-  /* padding-top: 0.75em; */
   margin-top: 0.65em;
   padding-left: 0.75em;
 
@@ -270,8 +264,6 @@ ul.nav_ul {
   font-size: 1.3em;
 }
 
-
-/* Time bar under hamburger */
 .current_time_section {
   top: 4.5em;
   right: 2.75em;
@@ -320,8 +312,19 @@ button#navbar_toggle_button {
 }
 
 /* Switching color scheme button */
-#color_scheme_toggle_section{
+
+
+#color_scheme_toggle_button {
+  /* display: none; */
   grid-area: color_scheme_button;
+  background: var(--color_scheme_button_before);
+  color: var(--base-text);
+  outline-color: var(--base-light);
+  font-size: 0.75em;
+  position:sticky;
+  padding: 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
 }
 
 #color_scheme_toggle_image{
@@ -329,15 +332,6 @@ button#navbar_toggle_button {
   width: 3em;
 }
 
-#color_scheme_toggle_button {
-  background: var(--color_scheme_button_before);
-  color: var(--base-text);
-  outline-color: var(--base-light);
-  font-size: 0.75em;
-  padding: 1em;
-  cursor: pointer;
-  transition: 800ms ease all;
-}
 #color_scheme_toggle_button:hover {
   background: var(--color_scheme_button_after);
   color: var(--color_scheme_button_text);
@@ -367,22 +361,20 @@ button#navbar_toggle_button {
 }
 
 /* Repeating for the header/body/article of the apps */
-#block_page_header_section {
+#individual_page_header {
   grid-area: individual_page_header;
-  margin: 0.5em;
-  margin-left: 1em;
+  margin: 0.5em 0 0 1em;
   padding: 0.5em;
   text-align: left;
 }
 
 #body_block_container {
   grid-area: body_of_page;
-  margin: 1em;
 }
 
 #sidebar_section {
   grid-area: sidebar;
-  /* outline: 0.5em var(--base-gray) solid; */
+  outline: 0.5em var(--base-gray) solid;
   margin-right: 1em;
   line-height: 1.5em;
   text-align: right;
@@ -424,7 +416,6 @@ button#navbar_toggle_button {
 
 /* all forms for new and edits of all posts by class */
 form.post_form {
-  grid-area: post_form;
   margin: 1em 0 1em 0;
 }
 

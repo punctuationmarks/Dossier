@@ -18,7 +18,6 @@
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
       <a href="#main" class="skip_links">  Skip to Main Content   </a>
-
       {% if user.is_authenticated %}
           {% block skip_links %}
           {% endblock skip_links %}
@@ -29,7 +28,8 @@
       <a href="/">
         <h1 id="nav_bar_text">The Dossier</h1>
       </a>
-      <!-- custom hamburger, for responsive navbar -->
+
+      <!-- custom hamburger, for navbar activation -->
     </header>
     <div id="navbar_toggle_div">
       <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
@@ -40,8 +40,6 @@
     </div>
 
     <nav class="light_image" id="nav_bar">
-
-
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
           <li class="nav_bar_li"><a href="/dossiers" class="navigation_link">Dossiers</a></li>
@@ -59,22 +57,24 @@
     </nav>
 
     <main>
-        <section id="block_page_header_section">
+
+
+          <button id="color_scheme_toggle_button">
+            <!-- Something -->
+            <img id="color_scheme_toggle_image" src="{% static 'images/small_delta.png'%}" />
+          </button>
+
+        <section id="individual_page_header">
             {% block page_header %}
             {% endblock page_header %}
         </section>
 
 
-    <section id="color_scheme_toggle_section">
-      <button id="color_scheme_toggle_button">
-        <img id="color_scheme_toggle_image" src="{% static 'images/delta.png'%}" />
-      </button>
-    </section>
-
 
     <section id="body_block_container">
       {% block edit_href %}
       {% endblock edit_href %}
+
       {% block body_block %}
       {% endblock body_block %}
     </section>
@@ -83,10 +83,10 @@
       {% endblock side_bar %}
 
   <!-- this still needs to be built -->
-  <section id="pagination_section">
+  <!-- <section id="pagination_section">
       {% block pagination_buttons %}
       {% endblock pagination_buttons %}
-  </section>
+  </section> -->
 
 
       <section id="search_section">
@@ -98,8 +98,7 @@
 
 
 
-{% if user.is_authenticated %}
-
+  {% if user.is_authenticated %}
       <footer id="navigation_footer">
             <ul id="quick_buttons_ul">
               <li class="quick_buttons_li">

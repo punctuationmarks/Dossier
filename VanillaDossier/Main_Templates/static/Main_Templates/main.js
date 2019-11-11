@@ -72,9 +72,9 @@ colorToggleButon.addEventListener("click", function() {
       navBarImage.classList.add("light_image");
       footerImage.classList.add("footer_light_image");
       break;
-    case undefined:
-      window.localStorage.setItem("color_theme", "light");
-      bodyElement.classList.add("light_mode");
+    // case undefined:
+    //   window.localStorage.setItem("color_theme", "light");
+    //   bodyElement.classList.add("light_mode");
     default:
       window.localStorage.setItem("color_theme", "light");
       bodyElement.classList.add("light_mode");

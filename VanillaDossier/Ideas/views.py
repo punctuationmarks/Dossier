@@ -16,7 +16,7 @@ def ideas(request):
     """
     Adding a search bar at navbar
     """
-    page_title = "ideas"
+    page_title = "Ideas"
     posts_list = IdeasModel.objects.order_by('title')
     search_term = ''
 
@@ -42,7 +42,7 @@ def ideas(request):
         'posts': posts,
         'search_term': search_term
     }
-    return render(request, 'ideas/ideasmodel.html', context)
+    return render(request, 'Ideas/ideasmodel.html', context)
 
 
 class PostDetailView(DetailView):

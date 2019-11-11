@@ -1,5 +1,10 @@
 Grid Areas:
 
+#skip_links_wrapper {
+  grid-area: skip_links;
+  display: flex;
+}
+
 
 #primary_header {
   grid-area: Dossier_header;
@@ -7,6 +12,10 @@ Grid Areas:
 
 #nav_bar {
   grid-area: navigation;
+}
+
+#navbar_toggle_div{
+  grid-area: navbar_toggle_button;
 }
 
 #color_scheme_toggle_button{
@@ -32,10 +41,6 @@ Grid Areas:
 
 #search_section {
   grid-area: searchbar;
-}
-
-.post_section {
-  grid-area: new_post_button;
 }
 
 
