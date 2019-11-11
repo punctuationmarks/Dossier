@@ -42,7 +42,6 @@
     {% block side_bar %}
     <!-- only displaying sidebar if the user has added posts -->
     {% if posts %}
-    <section id="sidebar_section">
       <h3 id="sidebar_h3">
         Quick Reference
       </h3>
@@ -56,7 +55,6 @@
               </li>
         {% endfor %}
       </ul>
-      </section>
     {% endif %}
     {% endblock side_bar %}
 

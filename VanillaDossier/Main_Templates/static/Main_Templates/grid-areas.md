@@ -18,11 +18,6 @@ Grid Areas:
   grid-area: navbar_toggle_button;
 }
 
-#color_scheme_toggle_button{
-  grid-area: color_scheme_button;
-}
-
-
 #block_page_header_section {
   grid-area: individual_page_header;
 }

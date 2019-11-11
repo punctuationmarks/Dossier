@@ -13,7 +13,7 @@
     <title>Dossiers</title>
   </head>
   <body id= "body_id" class="light_mode">
-    <div class="entire_page_wrapper">
+    <div id="entire_page_wrapper">
 
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
@@ -28,9 +28,9 @@
       <a href="/">
         <h1 id="nav_bar_text">The Dossier</h1>
       </a>
+    </header>
 
       <!-- custom hamburger, for navbar activation -->
-    </header>
     <div id="navbar_toggle_div">
       <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
         <div class="hamburger_bar_1"></div>
@@ -46,6 +46,14 @@
           <li class="nav_bar_li"><a href="/thoughts" class="navigation_link">Thoughts</a></li>
           <li class="nav_bar_li"><a href="/ideas" class="navigation_link">Ideas</a></li>
           <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
+          <li class="nav_bar_li">
+            <button id="color_scheme_toggle_button">
+              <!-- Something -->
+              <img id="color_scheme_toggle_image" src="{% static 'images/small_delta.png'%}" />
+            </button>
+          </li>
+
+
 {% else %}
           <li class="nav_bar_li"><a href="/admin" class="navigation_link">Login</a></li>
           <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
@@ -56,14 +64,7 @@
         </ul>
     </nav>
 
-    <main>
-
-
-          <button id="color_scheme_toggle_button">
-            <!-- Something -->
-            <img id="color_scheme_toggle_image" src="{% static 'images/small_delta.png'%}" />
-          </button>
-
+    <main id ="main_wrapper">
         <section id="individual_page_header">
             {% block page_header %}
             {% endblock page_header %}
@@ -79,9 +80,11 @@
       {% endblock body_block %}
     </section>
 
+
+    <section id="sidebar_section">
       {% block side_bar %}
       {% endblock side_bar %}
-
+    </section>
   <!-- this still needs to be built -->
   <!-- <section id="pagination_section">
       {% block pagination_buttons %}

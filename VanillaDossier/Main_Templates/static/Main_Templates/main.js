@@ -43,11 +43,19 @@ switch (window.localStorage.getItem("color_theme")) {
 
   case undefined:
     bodyElement.classList.remove("dark_mode");
+    navBarImage.classList.remove("dark_image");
+    footerImage.classList.remove("footer_dark_image");
     bodyElement.classList.add("light_mode");
+    navBarImage.classList.add("light_image");
+    footerImage.classList.add("footer_light_image");
     break;
   default:
     bodyElement.classList.remove("dark_mode");
+    navBarImage.classList.remove("dark_image");
+    footerImage.classList.remove("footer_dark_image");
     bodyElement.classList.add("light_mode");
+    navBarImage.classList.add("light_image");
+    footerImage.classList.add("footer_light_image");
     break;
 }
 

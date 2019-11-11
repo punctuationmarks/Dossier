@@ -4,13 +4,149 @@ BUG::
 
 */
 
+/*
+GRID IS FUCKED ON LARGER SCREENS, LOOK MORE INTO HOW TO
+REDO GRID LAYOUTS WITH MEDIA QUIERIES
+https://gridbyexample.com/examples/example13/
+*/
+
+
+/* Small Mobile First Styling */
+@media only screen and (max-width: 449px) {
+
+  #entire_page_wrapper {
+    display: grid;
+    grid-row-gap: 1em;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "skip_links"
+      "Dossier_header"
+      "navbar_toggle_button"
+      "navigation"
+      /* having multiple parts inside of the "main_body" which is also a grid */
+      "main_body"
+      "navigation_footer";
+    margin: 0.25em;
+  }
+
+  /*HUGE PADDING FOR SUPER SMALL PHONES
+  This is to make sure the quick links and the search bar
+  are still visible */
+  main{
+    padding-bottom: 45%;
+    margin-bottom: 20%;
+  }
+
+
+  #main_body_wrapper{
+    grid-area: main_body;
+    display: grid;
+    grid-template-areas:
+    "individual_page_header"
+    "body_of_page"
+    "pagination"
+    "searchbar";
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+}
+
+/** Mobile **/
+@media only screen
+  and (min-width: 450px) and (max-width: 812px) {
+
+    #entire_page_wrapper > #navigation_footer {
+      margin-bottom: 1em !important;
+    }
+
+   #quick_buttons_ul {
+    /* Making the quick buttons in a 2x2 grid */
+    grid: repeat(2, 1fr) / auto-flow 50%;
+    padding-bottom: 1em !important;
+  }
+
+  main{
+    padding-bottom: 10%;
+    margin-bottom: 12%;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+}
+
+
+
+@media only screen and (min-width: 801px) {
+  #entire_page_wrapper {
+    display: grid;
+    grid-template-areas:
+    "skip_links"
+    "Dossier_header"
+    "navbar_toggle_button"
+    "navigation"
+    /* having multiple parts inside of the "main_body" which is also a grid */
+    "main_body"
+    "navigation_footer";
+    grid-row-gap: 0.75em;
+    margin: 1em;
+    padding-bottom: 5%;
+  }
+
+  #main_body_wrapper{
+    /* display: grid; */
+    grid-area: main_body;
+    grid-template-areas:
+    "individual_page_header individual_page_header"
+    "searchbar searchbar"
+    "body_of_page sidebar"
+    "body_of_page body_of_page"
+    "pagination pagination" !important;
+  }
+
+  main{
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+  }
+
+  #main_body_wrapper > #sidebar_section {
+    grid-area: sidebar;
+    outline: 0.5em var(--base-gray) solid;
+    margin-right: 1em;
+    line-height: 1.5em;
+    text-align: right;
+  }
+
+  #navigation_footer {
+    display: none;
+  }
+
+  #quick_buttons_ul {
+        display: none;
+  }
+
+}
+
+
+
+/*
+Note: Use of the keyword !important is used here
+when needing to override the original styling;
+*/
+
+#main_body_wrapper > #sidebar_section {
+  grid-area: sidebar;
+}
+
+
 
 /* Clearing all base styling */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  grid-template-areas: unset;
 }
 
 
@@ -125,40 +261,10 @@ strong {
 }
 
 
-/* Mobile First Styling */
-.entire_page_wrapper {
-  display: grid;
-  grid-column: auto;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "skip_links"
-    "Dossier_header"
-    "navigation"
-    "navbar_toggle_button"
-    "individual_page_header"
-    "body_of_page"
-    "searchbar"
-    "color_scheme_button"
-    "navigation_footer";
-  /* grid-row-gap: 0.75em; */
-  /* margin: 1em; */
-}
 
 
-/*HUGE PADDING FOR SUPER SMALL PHONES
-This is to make sure the quick links and the search bar
-are still visible */
-main{
-  padding-bottom: 50%;
-  margin-bottom: 20%;
-}
 
-/* Hiding sidebar by default */
-#sidebar_section {
-  display: none;
-}
-
-#skip_links_wrapper {
+#entire_page_wrapper > #skip_links_wrapper {
   grid-area: skip_links;
   display: flex;
   background-color: var(--background);
@@ -187,38 +293,33 @@ main{
 }
 
 
-#primary_header {
+#entire_page_wrapper > #primary_header {
   grid-area: Dossier_header;
+  position: sticky;
 }
 
 #nav_bar_text {
-  /* display: inline; */
   font-family: monospace;
   font-size: 3em;
   margin-top: 1em;
-  padding-top: 0.5em;
-  /* margin-left: 1.75em; */
 }
 
 /* background images on the navigation bar */
 .light_image {
   background-image: url("../images/autumn-dead-plants.jpg");
   background-repeat: repeat-x;
-  margin: 2em;
 }
 
 .dark_image {
   background-image: url("../images/resized_busy_transit.jpg");
   background-repeat: repeat-x;
-  margin: 2em;
 }
 
 /* Entire navbar */
-#nav_bar {
+#entire_page_wrapper > #nav_bar {
   grid-area: navigation;
   display: grid;
-  border: 0.1em solid var(--semi-transluscent-gray);
-  padding: 1em 1em 2.5em 1em;
+  padding: 1em 1em 3.5em 1em;
   margin: 1em 1em 3.5em 1em;
 }
 
@@ -273,14 +374,11 @@ css properties will be in the active narbar */
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
 */
-#navbar_toggle_div{
+#entire_page_wrapper > #navbar_toggle_div{
   grid-area: navbar_toggle_button;
 }
 
 button#navbar_toggle_button {
-  /* position: absolute; */
-  /* top: 2.6em;
-  right: 2.75em; */
   cursor: pointer;
   font-size: 1em;
   background: transparent;
@@ -313,16 +411,11 @@ button#navbar_toggle_button {
 
 /* Switching color scheme button */
 
-
 #color_scheme_toggle_button {
-  /* display: none; */
-  grid-area: color_scheme_button;
   background: var(--color_scheme_button_before);
   color: var(--base-text);
   outline-color: var(--base-light);
   font-size: 0.75em;
-  position:sticky;
-  padding: 1em;
   cursor: pointer;
   transition: 800ms ease all;
 }
@@ -360,27 +453,22 @@ button#navbar_toggle_button {
   background: var(--base-gray);
 }
 
+
 /* Repeating for the header/body/article of the apps */
-#individual_page_header {
+#main_body_wrapper > #individual_page_header {
   grid-area: individual_page_header;
   margin: 0.5em 0 0 1em;
   padding: 0.5em;
   text-align: left;
 }
 
-#body_block_container {
+#main_body_wrapper > #body_block_container {
   grid-area: body_of_page;
 }
 
-#sidebar_section {
-  grid-area: sidebar;
-  outline: 0.5em var(--base-gray) solid;
-  margin-right: 1em;
-  line-height: 1.5em;
-  text-align: right;
-}
 
-#pagination_section {
+
+#main_body_wrapper > #pagination_section {
   grid-area: pagination;
 }
 
@@ -475,7 +563,7 @@ label.form_label {
   color: var(--triad-primary-3);
 }
 
-#search_section {
+#main_body_wrapper > #search_section {
   grid-area: searchbar;
 }
 
@@ -494,14 +582,13 @@ label.form_label {
 }
 
 
-#navigation_footer {
+#entire_page_wrapper > #navigation_footer {
   grid-area: navigation_footer;
   position: fixed;
   bottom: 3em;
   height: 3em;
   width: 95%;
-  margin-bottom: 5.80em;
-  /* padding-bottom: 3em; */
+  margin-bottom: 5em;
 }
 
 #quick_buttons_ul {
@@ -527,86 +614,11 @@ label.form_label {
 .footer_light_image {
   background-image: url("../images/autumn-dead-plants.jpg");
   background-repeat: repeat-x;
+  background-position: center;
 }
 
 .footer_dark_image {
   background-image: url("../images/resized_busy_transit.jpg");
   background-repeat: repeat-x;
+  background-position: center;
 }
-
-
-
-/** Mobile **/
-/* Portrait and Landscape */
-/* @media only screen
-  and (min-device-width: 450px)
-  and (max-device-width: 812px) {
-  .entire_page_wrapper {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-      "Dossier_header Dossier_header"
-      "navigation navigation"
-      "individual_page_header color_scheme_button"
-      "searchbar searchbar"
-      "body_of_page body_of_page"
-      "navigation_footer navigation_footer";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 10%;
-  }
-
-  #quick_buttons_ul {
-    background-color: var(--background-transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 1em;
-    padding: 1.25em;
-    padding-bottom: 5em;
-  }
-
-
-  /* #navbar_toggle_button {
-    right: 1.5em;
-    cursor: pointer;
-    font-size: 1em;
-    background: transparent;
-  } */
-/*
-  #navigation_footer {
-    position: fixed;
-    bottom: 3em;
-    height: 2.75em;
-    width: 100%;
-  }
-
-  #sidebar_section {
-    display: none;
-  }
-} */
-
-
-/*
-@media only screen and (min-device-width: 801px) {
-  .entire_page_wrapper {
-    display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
-    grid-template-areas:
-      "Dossier_header . ."
-      "navigation navigation navigation"
-      "individual_page_header . color_scheme_button"
-      "body_of_page sidebar sidebar"
-
-      "searchbar . .";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  }
-
-  #navigation_footer {
-    display: none;
-  }
-} */
