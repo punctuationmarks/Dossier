@@ -17,7 +17,7 @@
 
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
-      <a href="#main" class="skip_links">  Skip to Main Content   </a>
+      <a href="#main" class="skip_links">  Main Content   </a>
       {% if user.is_authenticated %}
           {% block skip_links %}
           {% endblock skip_links %}
@@ -32,7 +32,7 @@
 
       <!-- custom hamburger, for navbar activation -->
     <div id="navbar_toggle_div">
-      <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimation(this)>
+      <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimationNavbar(this)>
         <div class="hamburger_bar_1"></div>
         <div class="hamburger_bar_2"></div>
         <div class="hamburger_bar_3"></div>
@@ -47,9 +47,8 @@
           <li class="nav_bar_li"><a href="/ideas" class="navigation_link">Ideas</a></li>
           <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
           <li class="nav_bar_li">
-            <button id="color_scheme_toggle_button">
-              <!-- Something -->
-              <img id="color_scheme_toggle_image" src="{% static 'images/small_delta.png'%}" />
+            <button id="color_scheme_toggle_button_navbar">
+              <img id="color_scheme_toggle_image_navbar" src="{% static 'images/small_delta.png'%}" />
             </button>
           </li>
 
@@ -64,7 +63,7 @@
         </ul>
     </nav>
 
-    <main id ="main_wrapper">
+    <main>
         <section id="individual_page_header">
             {% block page_header %}
             {% endblock page_header %}
@@ -97,7 +96,7 @@
 
   {% if user.is_authenticated %}
       <footer id="navigation_footer">
-            <ul id="quick_buttons_ul" title="Same as the naviagtion image; changes from autumn, native Mid-West plants to a busy train station">
+            <ul id="quick_buttons_ul" class="footer_navigation" title="Same as the naviagtion image; changes from autumn, native Mid-West plants to a busy train station">
               <li class="quick_buttons_li">
                 <a href="/dossiers" class="navigation_link">Dossiers</a>
               </li>
@@ -107,9 +106,21 @@
               <li class="quick_buttons_li">
                 <a href="/ideas" class="navigation_link">Ideas</a>
               </li>
+              <li class="quick_buttons_li">
+                <a href="/about" class="navigation_link">About</a>
+              </li>
+              <li class="quick_buttons_li">
+                <button id="color_scheme_toggle_button_footer">
+                  <!-- Something -->
+                  <img id="color_scheme_toggle_image_footer" src="{% static 'images/small_delta.png'%}" />
+                </button>
+              </li>
                   {% block post_button %}
                   {% endblock post_button %}
             </ul>
+            <button type="button" name="button" id="footer_toggle_button">
+              <img id="settings_img" src="{% static '/images/download.gif'%}" alt="Routing Button">
+            </button>
       </footer>
     {% endif %}
 

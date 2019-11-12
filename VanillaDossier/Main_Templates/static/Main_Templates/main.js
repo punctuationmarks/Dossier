@@ -1,11 +1,13 @@
 let bodyElement = document.getElementById("body_id");
-let colorToggleButon = document.getElementById("color_scheme_toggle_button");
+let colorToggleButtonNavbar = document.getElementById("color_scheme_toggle_button_navbar");
+let colorToggleButtonFooter = document.getElementById("color_scheme_toggle_button_footer");
 let navbarMenu = document.getElementById("navbar_menu");
 let navBarToggleButton = document.getElementById("navbar_toggle_button");
+let footerToggleButton = document.getElementById("footer_toggle_button");
 let navBarImage = document.getElementById("nav_bar");
-let footerImage = document.getElementById("quick_buttons_ul");
+let quickButtons = document.getElementById("quick_buttons_ul");
 
-function hamburgerAnimation(navbarMenu) {
+function hamburgerAnimationNavbar(navbarMenu) {
   navbarMenu.classList.toggle("change_hamburger");
 }
 
@@ -16,64 +18,102 @@ navBarToggleButton.addEventListener("click", function() {
 });
 
 
+function hamburgerAnimationFooter(navbarMenu) {
+  quickButtons.classList.toggle("change_hamburger_footer");
+}
+
+footerToggleButton.addEventListener("click", function(){
+  quickButtons.classList.toggle("footer_navigation");
+  quickButtons.classList.toggle("active_footer");
+})
+
 // What to do when localStorage is X
 switch (window.localStorage.getItem("color_theme")) {
   case "light":
     bodyElement.classList.remove("dark_mode");
     navBarImage.classList.remove("dark_image");
-    footerImage.classList.remove("footer_dark_image");
+    quickButtons.classList.remove("footer_dark_image");
     bodyElement.classList.add("light_mode");
     navBarImage.classList.add("light_image");
-    footerImage.classList.add("footer_light_image");
+    quickButtons.classList.add("footer_light_image");
     break;
 
   case "dark":
     bodyElement.classList.remove("light_mode");
     navBarImage.classList.remove("light_image");
-    footerImage.classList.remove("footer_light_image");
+    quickButtons.classList.remove("footer_light_image");
     bodyElement.classList.add("dark_mode");
     navBarImage.classList.add("dark_image");
-    footerImage.classList.add("footer_dark_image");
+    quickButtons.classList.add("footer_dark_image");
     break;
 
   case undefined:
     bodyElement.classList.remove("dark_mode");
     navBarImage.classList.remove("dark_image");
-    footerImage.classList.remove("footer_dark_image");
+    quickButtons.classList.remove("footer_dark_image");
     bodyElement.classList.add("light_mode");
     navBarImage.classList.add("light_image");
-    footerImage.classList.add("footer_light_image");
+    quickButtons.classList.add("footer_light_image");
     break;
   default:
     bodyElement.classList.remove("dark_mode");
     navBarImage.classList.remove("dark_image");
-    footerImage.classList.remove("footer_dark_image");
+    quickButtons.classList.remove("footer_dark_image");
     bodyElement.classList.add("light_mode");
     navBarImage.classList.add("light_image");
-    footerImage.classList.add("footer_light_image");
+    quickButtons.classList.add("footer_light_image");
     break;
 }
 
 // Altering the localStorage and the class list (this is to make it immediate, instead of on reload)
-colorToggleButon.addEventListener("click", function() {
+colorToggleButtonNavbar.addEventListener("click", function() {
   switch (window.localStorage.getItem("color_theme")) {
     case "light":
       window.localStorage.setItem("color_theme", "dark");
       bodyElement.classList.remove("light_mode");
       navBarImage.classList.remove("light_image");
-      footerImage.classList.remove("footer_light_image");
+      quickButtons.classList.remove("footer_light_image");
       bodyElement.classList.add("dark_mode");
       navBarImage.classList.add("dark_image");
-      footerImage.classList.add("footer_dark_image");
+      quickButtons.classList.add("footer_dark_image");
       break;
     case "dark":
       window.localStorage.setItem("color_theme", "light");
       bodyElement.classList.remove("dark_mode");
       navBarImage.classList.remove("dark_image");
-      footerImage.classList.remove("footer_dark_image");
+      quickButtons.classList.remove("footer_dark_image");
       bodyElement.classList.add("light_mode");
       navBarImage.classList.add("light_image");
-      footerImage.classList.add("footer_light_image");
+      quickButtons.classList.add("footer_light_image");
+      break;
+    // case undefined:
+    //   window.localStorage.setItem("color_theme", "light");
+    //   bodyElement.classList.add("light_mode");
+    default:
+      window.localStorage.setItem("color_theme", "light");
+      bodyElement.classList.add("light_mode");
+  }
+});
+
+colorToggleButtonFooter.addEventListener("click", function() {
+  switch (window.localStorage.getItem("color_theme")) {
+    case "light":
+      window.localStorage.setItem("color_theme", "dark");
+      bodyElement.classList.remove("light_mode");
+      navBarImage.classList.remove("light_image");
+      quickButtons.classList.remove("footer_light_image");
+      bodyElement.classList.add("dark_mode");
+      navBarImage.classList.add("dark_image");
+      quickButtons.classList.add("footer_dark_image");
+      break;
+    case "dark":
+      window.localStorage.setItem("color_theme", "light");
+      bodyElement.classList.remove("dark_mode");
+      navBarImage.classList.remove("dark_image");
+      quickButtons.classList.remove("footer_dark_image");
+      bodyElement.classList.add("light_mode");
+      navBarImage.classList.add("light_image");
+      quickButtons.classList.add("footer_light_image");
       break;
     // case undefined:
     //   window.localStorage.setItem("color_theme", "light");
