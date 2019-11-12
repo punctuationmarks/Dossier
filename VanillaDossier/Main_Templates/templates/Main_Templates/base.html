@@ -39,7 +39,7 @@
       </button>
     </div>
 
-    <nav class="light_image" id="nav_bar">
+    <nav class="light_image" id="nav_bar" title="Changes from autumn, native Mid-West plants to a busy train station">
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
           <li class="nav_bar_li"><a href="/dossiers" class="navigation_link">Dossiers</a></li>
@@ -85,12 +85,6 @@
       {% block side_bar %}
       {% endblock side_bar %}
     </section>
-  <!-- this still needs to be built -->
-  <!-- <section id="pagination_section">
-      {% block pagination_buttons %}
-      {% endblock pagination_buttons %}
-  </section> -->
-
 
       <section id="search_section">
         {% block searchbar %}
@@ -103,7 +97,7 @@
 
   {% if user.is_authenticated %}
       <footer id="navigation_footer">
-            <ul id="quick_buttons_ul">
+            <ul id="quick_buttons_ul" title="Same as the naviagtion image; changes from autumn, native Mid-West plants to a busy train station">
               <li class="quick_buttons_li">
                 <a href="/dossiers" class="navigation_link">Dossiers</a>
               </li>

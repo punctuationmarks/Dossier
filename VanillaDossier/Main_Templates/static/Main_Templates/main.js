@@ -15,11 +15,6 @@ navBarToggleButton.addEventListener("click", function() {
   navbarMenu.classList.toggle("active_navbar");
 });
 
-let screen_size = window.innerWidth * window.innerHeight;
-console.log("Inner height :" + window.innerHeight);
-console.log("Inner Width :" + window.innerWidth);
-
-console.log("Product = " + screen_size);
 
 // What to do when localStorage is X
 switch (window.localStorage.getItem("color_theme")) {
@@ -88,6 +83,16 @@ colorToggleButon.addEventListener("click", function() {
       bodyElement.classList.add("light_mode");
   }
 });
+
+
+// for testing screen sizes
+// let screen_size = window.innerWidth * window.innerHeight;
+// console.log("Inner height :" + window.innerHeight);
+// console.log("Inner Width :" + window.innerWidth);
+//
+// console.log("Product = " + screen_size);
+
+
 
 // TO BUILD!
 // free rides to the top
