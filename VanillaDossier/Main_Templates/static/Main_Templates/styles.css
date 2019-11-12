@@ -10,64 +10,57 @@ REDO GRID LAYOUTS WITH MEDIA QUIERIES
 https://gridbyexample.com/examples/example13/
 */
 
-
 /* Small Mobile First Styling */
-@media only screen and (max-width: 449px) {
+#entire_page_wrapper {
+  display: grid;
+  grid-row-gap: 1em;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "skip_links"
+    "Dossier_header"
+    "navbar_toggle_button"
+    "navigation"
+    /* having multiple parts inside of the "main_body" which is also a grid */
+    "main_body"
+    "navigation_footer";
+  margin: 0.25em;
+}
 
-  #entire_page_wrapper {
-    display: grid;
-    grid-row-gap: 1em;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "skip_links"
-      "Dossier_header"
-      "navbar_toggle_button"
-      "navigation"
-      /* having multiple parts inside of the "main_body" which is also a grid */
-      "main_body"
-      "navigation_footer";
-    margin: 0.25em;
-  }
-
-  /*HUGE PADDING FOR SUPER SMALL PHONES
+/*HUGE PADDING FOR SUPER SMALL PHONES
   This is to make sure the quick links and the search bar
   are still visible */
-  main{
-    padding-bottom: 45%;
-    margin-bottom: 20%;
-  }
+main {
+  padding-bottom: 45%;
+  margin-bottom: 20%;
+}
 
-
-  #main_body_wrapper{
-    grid-area: main_body;
-    display: grid;
-    grid-template-areas:
+#main_body_wrapper {
+  grid-area: main_body;
+  display: grid;
+  grid-template-areas:
     "individual_page_header"
     "body_of_page"
     "pagination"
     "searchbar";
-  }
+}
 
-  #sidebar_section {
-    display: none;
-  }
+#sidebar_section {
+  display: none;
 }
 
 /** Mobile **/
-@media only screen
-  and (min-width: 450px) and (max-width: 812px) {
+@media only screen and (min-width: 450px) {
+  #entire_page_wrapper > #navigation_footer {
+    margin-bottom: 1em !important;
+  }
 
-    #entire_page_wrapper > #navigation_footer {
-      margin-bottom: 1em !important;
-    }
-
-   #quick_buttons_ul {
+  #quick_buttons_ul {
     /* Making the quick buttons in a 2x2 grid */
     grid: repeat(2, 1fr) / auto-flow 50%;
     padding-bottom: 1em !important;
   }
 
-  main{
+  main {
     padding-bottom: 10%;
     margin-bottom: 12%;
   }
@@ -77,36 +70,26 @@ https://gridbyexample.com/examples/example13/
   }
 }
 
-
-
 @media only screen and (min-width: 801px) {
   #entire_page_wrapper {
-    display: grid;
+    /* grid-template-columns: 4fr 1fr; */
     grid-template-areas:
-    "skip_links"
-    "Dossier_header"
-    "navbar_toggle_button"
-    "navigation"
-    /* having multiple parts inside of the "main_body" which is also a grid */
-    "main_body"
-    "navigation_footer";
+      "skip_links ."
+      "Dossier_header Dossier_header"
+      "navbar_toggle_button ."
+      "navigation navigation"
+      /* having multiple parts inside of the "main_body" which is also a grid */
+      "individual_page_header ."
+      "searchbar searchbar"
+      "body_of_page sidebar"
+      "body_of_page body_of_page"
+      "pagination pagination";
     grid-row-gap: 0.75em;
     margin: 1em;
     padding-bottom: 5%;
   }
 
-  #main_body_wrapper{
-    /* display: grid; */
-    grid-area: main_body;
-    grid-template-areas:
-    "individual_page_header individual_page_header"
-    "searchbar searchbar"
-    "body_of_page sidebar"
-    "body_of_page body_of_page"
-    "pagination pagination" !important;
-  }
-
-  main{
+  main {
     padding-bottom: 5%;
     margin-bottom: 5%;
   }
@@ -124,12 +107,9 @@ https://gridbyexample.com/examples/example13/
   }
 
   #quick_buttons_ul {
-        display: none;
+    display: none;
   }
-
 }
-
-
 
 /*
 Note: Use of the keyword !important is used here
@@ -140,15 +120,12 @@ when needing to override the original styling;
   grid-area: sidebar;
 }
 
-
-
 /* Clearing all base styling */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
 
 body.light_mode {
   background: var(--background);
@@ -218,7 +195,6 @@ ul {
   list-style-type: none;
 }
 
-
 h1 {
   font-size: xx-large;
 }
@@ -260,10 +236,6 @@ strong {
   font-family: monospace;
 }
 
-
-
-
-
 #entire_page_wrapper > #skip_links_wrapper {
   grid-area: skip_links;
   display: flex;
@@ -276,22 +248,18 @@ strong {
   color: var(--background);
 }
 
-
-
 .skip_links:focus {
   font-size: 1em;
   text-align: center;
   margin: 0;
   padding: 0 1.5em 0 1.5em;
   background: var(--color_scheme_button_after);
-  background-image:
-    radial-gradient(
-      circle,
-      var(--color_scheme_button_before),
-      var(--color_scheme_button_after)
-    );
+  background-image: radial-gradient(
+    circle,
+    var(--color_scheme_button_before),
+    var(--color_scheme_button_after)
+  );
 }
-
 
 #entire_page_wrapper > #primary_header {
   grid-area: Dossier_header;
@@ -323,7 +291,6 @@ strong {
   margin: 1em 1em 3.5em 1em;
 }
 
-
 /* Not Displaying the top navbar until activated, all
 css properties will be in the active narbar */
 .nav_ul {
@@ -350,7 +317,6 @@ css properties will be in the active narbar */
 .time_li {
   margin-top: 0.65em;
   padding-left: 0.75em;
-
 }
 
 /* Actual text of the navbar items */
@@ -359,7 +325,6 @@ css properties will be in the active narbar */
   color: var(--base-text);
   font-size: 1.3em;
 }
-
 
 .navigation_link {
   font-size: 1.3em;
@@ -374,7 +339,7 @@ css properties will be in the active narbar */
 /* Navbar, button for assessibility, transparent background and border for style
 this looks amazing while using the tab key to toggle the navigation
 */
-#entire_page_wrapper > #navbar_toggle_div{
+#entire_page_wrapper > #navbar_toggle_div {
   grid-area: navbar_toggle_button;
 }
 
@@ -383,7 +348,6 @@ button#navbar_toggle_button {
   font-size: 1em;
   background: transparent;
 }
-
 
 .hamburger_bar_1,
 .hamburger_bar_2,
@@ -420,7 +384,7 @@ button#navbar_toggle_button {
   transition: 800ms ease all;
 }
 
-#color_scheme_toggle_image{
+#color_scheme_toggle_image {
   height: 3em;
   width: 3em;
 }
@@ -430,14 +394,12 @@ button#navbar_toggle_button {
   color: var(--color_scheme_button_text);
 }
 
-
 /* color line change on screen, hinting towards other color scheme */
 #color_scheme_toggle_button:before,
 #color_scheme_toggle_button:after {
   background: var(--color_scheme_button_before);
   transition: 500ms ease all;
 }
-
 
 /* Editing the post for all apps */
 .edit_href_div {
@@ -453,7 +415,6 @@ button#navbar_toggle_button {
   background: var(--base-gray);
 }
 
-
 /* Repeating for the header/body/article of the apps */
 #main_body_wrapper > #individual_page_header {
   grid-area: individual_page_header;
@@ -465,8 +426,6 @@ button#navbar_toggle_button {
 #main_body_wrapper > #body_block_container {
   grid-area: body_of_page;
 }
-
-
 
 #main_body_wrapper > #pagination_section {
   grid-area: pagination;
@@ -581,7 +540,6 @@ label.form_label {
   padding: 0.5em;
 }
 
-
 #entire_page_wrapper > #navigation_footer {
   grid-area: navigation_footer;
   position: fixed;
@@ -609,7 +567,6 @@ label.form_label {
   margin: 0.25em;
   font-size: 1.1em;
 }
-
 
 .footer_light_image {
   background-image: url("../images/autumn-dead-plants.jpg");

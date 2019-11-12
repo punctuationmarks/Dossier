@@ -86,11 +86,11 @@ colorToggleButon.addEventListener("click", function() {
 
 
 // for testing screen sizes
-// let screen_size = window.innerWidth * window.innerHeight;
-// console.log("Inner height :" + window.innerHeight);
-// console.log("Inner Width :" + window.innerWidth);
-//
-// console.log("Product = " + screen_size);
+let screen_size = window.innerWidth * window.innerHeight;
+console.log("Inner height :" + window.innerHeight);
+console.log("Inner Width :" + window.innerWidth);
+
+console.log("Product = " + screen_size);
 
 
 
