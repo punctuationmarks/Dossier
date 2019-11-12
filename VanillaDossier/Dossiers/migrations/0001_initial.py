@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('hobbies', models.CharField(blank=True, max_length=300)),
                 ('work', models.CharField(blank=True, max_length=300)),
                 ('appearance', models.CharField(blank=True, max_length=100)),
-                ('toRemember', models.CharField(blank=True, max_length=100)),
+                ('notable_memories', models.CharField(blank=True, max_length=100)),
                 ('discussions', models.TextField(blank=True)),
                 ('date_originally_posted', models.DateTimeField(default=django.utils.timezone.now)),
                 ('last_modified', models.DateTimeField(auto_now=True)),

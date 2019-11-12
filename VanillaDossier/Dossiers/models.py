@@ -11,7 +11,7 @@ class DossiersModel(models.Model):
     work = models.CharField(max_length=300, blank=True)
     appearance = models.CharField(max_length=100, blank=True)
     # field for specificities, like roommates' or cat's names
-    toRemember = models.CharField(max_length=100, blank=True)
+    notable_memories = models.CharField(max_length=100, blank=True)
     discussions = models.TextField(blank=True)
     date_originally_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
@@ -26,9 +26,9 @@ class DossiersModel(models.Model):
 
 
 class DossiersAdmin(admin.ModelAdmin):
-    actions = ['download_CSV_file']
+    actions = ['download_csv_file']
     list_display = ('name', 'hobbies', 'work', 'appearance',
-                    'toRemember', 'discussions', 'date_originally_posted')
+                    'notable_memories', 'discussions', 'date_originally_posted')
 
     def download_CSV_file(self, request, queryset):
         # cool thing about Python is importing inside a function
@@ -51,7 +51,7 @@ class DossiersAdmin(admin.ModelAdmin):
 
         # writing the headers
         writer.writerow['name', 'hobbies', 'work', 'appearance',
-                        'toRemember', 'discussions', 'date_originally_posted']
+                        'notable_memories', 'discussions', 'date_originally_posted']
 
         # allowing the user to select what they want written in their
         # Django default of "selected_set"
@@ -61,7 +61,7 @@ class DossiersAdmin(admin.ModelAdmin):
                              selected_set.hobbies,
                              selected_set.work,
                              selected_set.appearance,
-                             selected_set.toRemember,
+                             selected_set.notable_memories,
                              selected_set.discussions,
                              selected_set.date_originally_posted])
 
@@ -77,4 +77,4 @@ class DossiersAdmin(admin.ModelAdmin):
         return response
 
     # making the download csv file more pleasing
-    download_CSV_file.short_description = "Download a .csv file for what's selected"
+    download_csv_file.short_description = "Download a .csv file for what's selected"

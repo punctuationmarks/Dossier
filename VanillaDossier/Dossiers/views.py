@@ -26,7 +26,7 @@ def dossiers(request):
             posts_list.filter(hobbies__icontains=search_term) | \
             posts_list.filter(work__icontains=search_term) | \
             posts_list.filter(appearance__icontains=search_term) | \
-            posts_list.filter(toRemember__icontains=search_term) | \
+            posts_list.filter(notable_memories__icontains=search_term) | \
             posts_list.filter(discussions__icontains=search_term) | \
             posts_list.filter(date_originally_posted__icontains=search_term)
         posts = orm_search
@@ -59,7 +59,7 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = DossiersModel
     fields = ['name', 'hobbies', 'work',
-              'appearance', 'toRemember', 'discussions']
+              'appearance', 'notable_memories', 'discussions']
 
     def form_valid(self, form):
 
@@ -70,7 +70,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = DossiersModel
     fields = ['name', 'hobbies', 'work',
-              'appearance', 'toRemember', 'discussions']
+              'appearance', 'notable_memories', 'discussions']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

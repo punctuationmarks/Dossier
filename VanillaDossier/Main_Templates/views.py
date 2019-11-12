@@ -48,7 +48,7 @@ def upload_csv_dossier(request):
     # the csv file will require
     prompt = {
         'order' : 'Order of the .csv file should be as follows: \
-                    NAME, HOBBIES, WORK, APPEARANCE, TOREMEMBER, DISCUSSIONS\
+                    NAME, HOBBIES, WORK, APPEARANCE, notable_memories, DISCUSSIONS\
                     * The headers are needed\
                     * The posted times will default to current, you can alter this in admin\
                     * User is forced as the Super User, do not declare user'
@@ -88,7 +88,7 @@ def upload_csv_dossier(request):
             hobbies = col[1],
             work = col[2],
             appearance = col[3],
-            toRemember = col[4],
+            notable_memories = col[4],
             discussions = col[5],
             author = explicit_super_user
         )
