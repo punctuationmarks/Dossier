@@ -30,7 +30,7 @@ class DossiersAdmin(admin.ModelAdmin):
     list_display = ('name', 'hobbies', 'work', 'appearance',
                     'notable_memories', 'discussions', 'date_originally_posted')
 
-    def download_CSV_file(self, request, queryset):
+    def download_csv_file(self, request, queryset):
         # cool thing about Python is importing inside a function
         # inside of an OOP class, interesting stuff
         import csv
