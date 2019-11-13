@@ -25,6 +25,7 @@ body.light_mode {
   --color_scheme_button_text: #6c71c4;
 }
 
+
 body.dark_mode {
   background: var(--background);
   --background: #002b36;
