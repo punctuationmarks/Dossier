@@ -10,190 +10,12 @@ REDO GRID LAYOUTS WITH MEDIA QUIERIES
 https://gridbyexample.com/examples/example13/
 */
 
-/* Small Mobile First Styling */
-#entire_page_wrapper {
-  display: grid;
-  grid-gap: 1em;
-  /* grid-template-columns: 1fr; */
-  grid-template-areas:
-    "skip_links"
-    "Dossier_header"
-    "navbar_toggle_button"
-    "navigation"
-    "searchbar"
-    "individual_page_header"
-    "body_of_page"
-    "pagination"
-    "navigation_footer";
-  /* margin: 0.25em; */
-}
-
-/*HUGE PADDING FOR SUPER SMALL PHONES
-  This is to make sure the quick links and the search bar
-  are still visible */
-main {
-  padding-bottom: 45%;
-  margin-bottom: 20%;
-}
-
-#sidebar_section {
-  display: none;
-}
-
-/* Entire navbar */
-#entire_page_wrapper > #nav_bar {
-  grid-area: navigation;
-  display: grid;
-  padding: 1em 1em 3.5em 1em;
-  margin: 1em 1em 3.5em 1em;
-}
-
-/* Not Displaying the top navbar until activated, all
-css properties will be in the active narbar */
-.nav_ul {
-  display: none;
-}
-
-#navbar_toggle_button {
-  display: none;
-}
-
-/** Mobile **/
-@media only screen and (min-width: 450px) {
-  main {
-    padding-bottom: 10%;
-    margin-bottom: 12%;
-  }
-
-  #entire_page_wrapper > #navigation_footer {
-    margin-bottom: 1em !important;
-  }
-
-  #quick_buttons_ul {
-    /* Making the quick buttons in a 2x2 grid */
-    grid: repeat(2, 1fr) / auto-flow 33%;
-    padding-bottom: 4em;
-  }
-}
-
-
-@media screen and (min-width: 800px) and (max-width: 1600px) {
-  /* #entire_page_wrapper {
-    grid-template-areas:
-      "skip_links skip_links"
-      "Dossier_header Dossier_header"
-      "navbar_toggle_button navbar_toggle_button"
-      "navigation navigation"
-      "searchbar searchbar"
-      "individual_page_header sidebar"
-      "body_of_page sidebar"
-      "pagination pagination";
-    grid-row-gap: 0.75em;
-    margin: 1em;
-    padding-bottom: 5%;
-  } */
-
-  main {
-    padding-bottom: 5%;
-    margin-bottom: 5%;
-  }
-
-  /* Not Displaying the top navbar until activated, all
-  css properties will be in the active narbar */
-  .nav_ul {
-    display: none;
-  }
-
-  .active_navbar {
-    display: flex;
-    align-items: left;
-    justify-content: center;
-    flex-wrap: wrap;
-    border: none;
-    background-color: var(--background-transparent);
-  }
-
-  .nav_bar_li {
-    background: var(--background);
-    text-decoration: overline;
-    text-align: left;
-    margin: 0.25em;
-    padding: 0.25em;
-  }
-
-  .time_li {
-    margin-top: 0.65em;
-    padding-left: 0.75em;
-  }
-
-  /* Actual text of the navbar items */
-  .nav_bar_links {
-    text-decoration: overline;
-    color: var(--base-text);
-    font-size: 1.3em;
-  }
-
-  .navigation_link {
-    font-size: 1.3em;
-  }
-
-  .current_time_section {
-    top: 4.5em;
-    right: 2.75em;
-    margin: 1em;
-  }
-
-  /* Navbar, button for assessibility, transparent background and border for style
-  this looks amazing while using the tab key to toggle the navigation
-  */
-
-  button#navbar_toggle_button {
-    cursor: pointer;
-    font-size: 1em;
-    background: transparent;
-  }
-
-  .change_hamburger_navbar .hamburger_bar_1 {
-    -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
-    transform: rotate(-70deg) translate(-0.35em, 0.2em);
-  }
-  .change_hamburger_navbar .hamburger_bar_2 {
-    opacity: 0.71;
-    background-color: var(--triad-primary-2);
-  }
-  .change_hamburger_navbar .hamburger_bar_3 {
-    -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
-    transform: rotate(65deg) translate(-0.35em, -0.2em);
-  }
-
-  #main_body_wrapper > #sidebar_section {
-    grid-area: sidebar;
-    outline: 0.5em var(--base-gray) solid;
-    margin-right: 1em;
-    line-height: 1.5em;
-    text-align: right;
-  }
-
-  #navigation_footer {
-    display: none;
-  }
-
-  #quick_buttons_ul {
-    display: none;
-  }
-}
-
-/*
-Note: Use of the keyword !important is used here
-when needing to override the original styling;
-*/
-
 /* Clearing all base styling */
-* {
+/* * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
+} */
 
 body.light_mode {
   background: var(--background);
@@ -304,6 +126,46 @@ strong {
   font-family: monospace;
 }
 
+/* Small Mobile First Styling */
+#entire_page_wrapper {
+  display: grid;
+  grid-gap: 1em;
+  /* grid-template-columns: 1fr; */
+  grid-template-areas:
+    "skip_links"
+    "primary_header"
+    "navbar_toggle_button"
+    "navigation"
+    "searchbar"
+    "individual_page_header"
+    "body_of_page"
+    "pagination"
+    "navigation_footer";
+  /* margin: 0.25em; */
+}
+
+/*HUGE PADDING FOR SUPER SMALL PHONES
+  This is to make sure the quick links and the search bar
+  are still visible */
+main {
+  padding-bottom: 45%;
+  margin-bottom: 20%;
+}
+
+
+/* Entire navbar */
+#entire_page_wrapper > #nav_bar {
+  grid-area: navigation;
+  display: grid;
+  padding: 1em 1em 3.5em 1em;
+  margin: 1em 1em 3.5em 1em;
+}
+
+/*
+Note: Use of the keyword !important is used here
+when needing to override the original styling;
+*/
+
 #entire_page_wrapper > #skip_links_wrapper {
   grid-area: skip_links;
   display: flex;
@@ -330,7 +192,7 @@ strong {
 }
 
 #entire_page_wrapper > #primary_header {
-  grid-area: Dossier_header;
+  grid-area: primary_header;
   position: sticky;
 }
 
@@ -340,15 +202,101 @@ strong {
   margin-top: 1em;
 }
 
+/* Not Displaying the top navbar until activated, all
+css properties will be in the active narbar */
+.nav_ul {
+  display: none;
+}
+
+#navbar_toggle_div{
+  grid-area: navbar_toggle_button;
+}
+
+#navbar_toggle_button {
+  cursor: pointer;
+  font-size: 1em;
+  /* background: transparent; */
+}
+
+.change_hamburger_navbar .hamburger_bar_1 {
+  -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
+  transform: rotate(-70deg) translate(-0.35em, 0.2em);
+}
+.change_hamburger_navbar .hamburger_bar_2 {
+  opacity: 0.71;
+  background-color: var(--triad-primary-2);
+}
+.change_hamburger_navbar .hamburger_bar_3 {
+  -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
+  transform: rotate(65deg) translate(-0.35em, -0.2em);
+}
+
+.nav_ul {
+  display: none;
+}
+
+.active_navbar {
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: none;
+  background-color: var(--background-transparent);
+}
+
+.nav_bar_li {
+  background: var(--background);
+  text-decoration: overline;
+  text-align: left;
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+.time_li {
+  margin-top: 0.65em;
+  padding-left: 0.75em;
+}
+
+/* Actual text of the navbar items */
+.nav_bar_links {
+  text-decoration: overline;
+  color: var(--base-text);
+  font-size: 1.3em;
+}
+
+.navigation_link {
+  font-size: 1.3em;
+}
+
+.current_time_section {
+  top: 4.5em;
+  right: 2.75em;
+  margin: 1em;
+}
+
 /* background images on the navigation bar */
 .light_image {
   background-image: url("../images/autumn-dead-plants.jpg");
   background-repeat: repeat-x;
+  background-position: right;
 }
 
 .dark_image {
   background-image: url("../images/resized_busy_transit.jpg");
   background-repeat: repeat-x;
+  background-position: right;
+}
+
+#main_body_wrapper > #sidebar_section {
+  grid-area: sidebar;
+  outline: 0.5em var(--base-gray) solid;
+  margin-right: 1em;
+  line-height: 1.5em;
+  text-align: right;
+}
+
+#sidebar_section {
+  display: none;
 }
 
 /* Editing the post for all apps */
@@ -379,10 +327,6 @@ strong {
 
 #pagination_section {
   grid-area: pagination;
-}
-
-#sidebar_section {
-  grid-area: sidebar;
 }
 
 .sidebar_link {
@@ -494,30 +438,6 @@ label.form_label {
   padding: 0.5em;
 }
 
-.hamburger_bar_1,
-.hamburger_bar_2,
-.hamburger_bar_3 {
-  width: 2em;
-  height: 0.28em;
-  background-color: var(--hamburger-background);
-  margin: 0.35em 0.2em;
-  padding-top: 0.28em;
-  transition: 0.45s;
-}
-
-.change_hamburger_footer .hamburger_bar_1 {
-  -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
-  transform: rotate(-70deg) translate(-0.35em, 0.2em);
-}
-.change_hamburger_footer .hamburger_bar_2 {
-  opacity: 0.71;
-  background-color: var(--triad-primary-2);
-}
-.change_hamburger_footer .hamburger_bar_3 {
-  -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
-  transform: rotate(65deg) translate(-0.35em, -0.2em);
-}
-
 /* Switching color scheme button */
 #color_scheme_toggle_button_navbar {
   background: var(--color_scheme_button_before);
@@ -534,7 +454,7 @@ label.form_label {
   outline-color: var(--base-light);
   font-size: 1.5em;
   cursor: pointer;
-  transition: 800ms ease all;
+  transition: 1000ms ease all;
 }
 
 #color_scheme_toggle_image_navbar {
@@ -577,12 +497,14 @@ ul.footer_navigation {
   position: fixed;
   right: 1em;
   bottom: 1em;
+  outline-color: var(--base-light);
+  cursor: pointer;
+  transition: 1500ms ease all;
 }
-
 
 /* perhaps change the background to transparent
 in the image itself? */
-#settings_img{
+#settings_img {
   height: 2em;
   width: 2em;
 }
@@ -607,13 +529,67 @@ ul.active_footer {
 }
 
 .footer_light_image {
-  background-image: url("../images/autumn-dead-plants.jpg");
+  /* background-image: url("../images/autumn-dead-plants.jpg");
   background-repeat: repeat-x;
-  background-position: center;
+  background-position: center; */
 }
 
 .footer_dark_image {
-  background-image: url("../images/resized_busy_transit.jpg");
+  /* background-image: url("../images/resized_busy_transit.jpg");
   background-repeat: repeat-x;
-  background-position: center;
+  background-position: center; */
+}
+
+@media (max-width: 449px) {
+  #navbar_toggle_div {
+    display: none;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+}
+
+/** Mobile **/
+@media (min-width: 450px) {
+  main {
+    padding-bottom: 10%;
+    margin-bottom: 12%;
+  }
+
+  #entire_page_wrapper > #navigation_footer {
+    margin-bottom: 1em !important;
+  }
+
+  #quick_buttons_ul {
+    /* Making the quick buttons in a 2x2 grid */
+    grid: repeat(2, 1fr) / auto-flow 33%;
+    padding-bottom: 4em;
+  }
+
+  #navbar_toggle_div {
+    display: none;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+
+}
+
+@media (min-width: 800px) {
+  main {
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+  }
+
+  /* Not Displaying the top navbar until activated, all
+  css properties will be in the active narbar */
+  #navigation_footer {
+    display: none;
+  }
+
+  #quick_buttons_ul {
+    display: none;
+  }
 }

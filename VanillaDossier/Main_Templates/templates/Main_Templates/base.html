@@ -8,12 +8,13 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'Main_Templates/styles.css' %}"/>
+      href="{% static 'Main_Templates/styles_new.css' %}"/>
     <link rel="icon" href="{% static 'images/autumn-leaves-walkway.jpg'%}" />
     <title>Dossiers</title>
   </head>
   <body id= "body_id" class="light_mode">
     <div id="entire_page_wrapper">
+
 
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
@@ -24,52 +25,51 @@
       {% endif %}
     </section>
 
-    <header id="primary_header">
-      <a href="/">
-        <h1 id="nav_bar_text">The Dossier</h1>
-      </a>
-    </header>
-
-      <!-- custom hamburger, for navbar activation -->
-    <div id="navbar_toggle_div">
-      <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimationNavbar(this)>
-        <div class="hamburger_bar_1"></div>
-        <div class="hamburger_bar_2"></div>
-        <div class="hamburger_bar_3"></div>
-      </button>
-    </div>
-
-    <nav class="light_image" id="nav_bar" title="Changes from autumn, native Mid-West plants to a busy train station">
+        <!-- title allows assessibility, similar to alt tags -->
+    <section class="light_image" id="header_section" title="Changes from autumn, native Mid-West plants to a busy train station">
+    <nav id="nav_bar">
+      <a href="/"><h1 id="primary_header_text">The Dossier</h1></a>
+              <!-- custom hamburger, for top navbar activation -->
+              <button class="navbar_toggle" id="navbar_toggle_button" onclick=hamburgerAnimationNavbar(this)>
+                <div class="hamburger_bar_1"></div>
+                <div class="hamburger_bar_2"></div>
+                <div class="hamburger_bar_3"></div>
+              </button>
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
-          <li class="nav_bar_li"><a href="/dossiers" class="navigation_link">Dossiers</a></li>
-          <li class="nav_bar_li"><a href="/thoughts" class="navigation_link">Thoughts</a></li>
-          <li class="nav_bar_li"><a href="/ideas" class="navigation_link">Ideas</a></li>
-          <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
+          <li class="nav_bar_li"><a href="/dossiers" class="navigation_link_header">Dossiers</a></li>
+          <li class="nav_bar_li"><a href="/thoughts" class="navigation_link_header">Thoughts</a></li>
+          <li class="nav_bar_li"><a href="/ideas" class="navigation_link_header">Ideas</a></li>
+          <li class="nav_bar_li"><a href="/about" class="navigation_link_header">About</a></li>
           <li class="nav_bar_li">
-            <button id="color_scheme_toggle_button_navbar">
+            <button id="color_scheme_toggle_button_navbar" class"color_scheme_toggle_button">
               <img id="color_scheme_toggle_image_navbar" src="{% static 'images/small_delta.png'%}" />
             </button>
           </li>
 
 
 {% else %}
-          <li class="nav_bar_li"><a href="/admin" class="navigation_link">Login</a></li>
-          <li class="nav_bar_li"><a href="/about" class="navigation_link">About</a></li>
+          <li class="nav_bar_li"><a href="/admin" class="navigation_link_header">Login</a></li>
+          <li class="nav_bar_li"><a href="/about" class="navigation_link_header">About</a></li>
 {% endif %}
-          <li class="time_li">
+          <li class="nav_bar_li">
             {{ current_time }}
           </li>
         </ul>
     </nav>
+  </section>
+  <section id="individual_page_header">
+      {% block page_header %}
+      {% endblock page_header %}
+  </section>
 
-    <main>
-        <section id="individual_page_header">
-            {% block page_header %}
-            {% endblock page_header %}
+        <section id="search_section">
+          {% block searchbar %}
+          {% endblock searchbar %}
         </section>
 
 
+    <main id="main_body_wrapper">
 
     <section id="body_block_container">
       {% block edit_href %}
@@ -85,11 +85,6 @@
       {% endblock side_bar %}
     </section>
 
-      <section id="search_section">
-        {% block searchbar %}
-        {% endblock searchbar %}
-      </section>
-
 </main>
 
 
@@ -98,19 +93,19 @@
       <footer id="navigation_footer">
             <ul id="quick_buttons_ul" class="footer_navigation" title="Same as the naviagtion image; changes from autumn, native Mid-West plants to a busy train station">
               <li class="quick_buttons_li">
-                <a href="/dossiers" class="navigation_link">Dossiers</a>
+                <a href="/dossiers" class="navigation_link_footer">Dossiers</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/thoughts" class="navigation_link">Thoughts</a>
+                <a href="/thoughts" class="navigation_link_footer">Thoughts</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/ideas" class="navigation_link">Ideas</a>
+                <a href="/ideas" class="navigation_link_footer">Ideas</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/about" class="navigation_link">About</a>
+                <a href="/about" class="navigation_link_f">About</a>
               </li>
               <li class="quick_buttons_li">
-                <button id="color_scheme_toggle_button_footer">
+                <button id="color_scheme_toggle_button_footer" class = "color_scheme_toggle_button">
                   <!-- Something -->
                   <img id="color_scheme_toggle_image_footer" src="{% static 'images/small_delta.png'%}" />
                 </button>

@@ -4,7 +4,7 @@ let colorToggleButtonFooter = document.getElementById("color_scheme_toggle_butto
 let navbarMenu = document.getElementById("navbar_menu");
 let navBarToggleButton = document.getElementById("navbar_toggle_button");
 let footerToggleButton = document.getElementById("footer_toggle_button");
-let navBarImage = document.getElementById("nav_bar");
+let navBarImage = document.getElementById("header_section");
 let quickButtons = document.getElementById("quick_buttons_ul");
 
 function hamburgerAnimationNavbar(navbarMenu) {
@@ -17,14 +17,13 @@ navBarToggleButton.addEventListener("click", function() {
   navbarMenu.classList.toggle("active_navbar");
 });
 
-
-function hamburgerAnimationFooter(navbarMenu) {
-  quickButtons.classList.toggle("change_hamburger_footer");
-}
-
 footerToggleButton.addEventListener("click", function(){
-  quickButtons.classList.toggle("footer_navigation");
-  quickButtons.classList.toggle("active_footer");
+  const delay = 150; //miliseconds
+
+  setTimeout(function(){
+    quickButtons.classList.toggle("footer_navigation");
+    quickButtons.classList.toggle("active_footer");
+  }, delay)
 })
 
 // What to do when localStorage is X

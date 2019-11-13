@@ -1,0 +1,408 @@
+body.light_mode {
+  background: var(--background);
+  --background: #fdf6e3;
+  --background-transparent: rgba(253, 246, 227, 0.75);
+  --triad-primary-1: #dc3682;
+  --triad-primary-2: #268bd2;
+  --triad-primary-3: #859900;
+  --triad-primary-4: #b58900;
+  --triad-primary-4-transparent: rgba(181, 137, 0, 0.6);
+  --triad-secondary-1: #d33682;
+  --triad-secondary-2: #6c71c4;
+  --triad-secondary-3: #2aa198;
+  --triad-secondary-4: #cb4b16;
+  --base-gray: #657b83;
+  --transluscent-gray: rgba(101, 123, 131, 0.2);
+  --semi-transluscent-gray: rgba(101, 123, 131, 0.4);
+  --base-light: #eee8d5;
+  --base-dark: #002b36;
+  --base-text: #586e75;
+  --button-text: #002b36;
+  --button-background: #2aa198;
+  --hamburger-background: #002b36;
+  --color_scheme_button_before: #002b36;
+  --color_scheme_button_after: #fdf6e3;
+  --color_scheme_button_text: #6c71c4;
+}
+
+body.dark_mode {
+  background: var(--background);
+  --background: #002b36;
+  --background-transparent: rgba(43, 54, 193, 0.6);
+  --triad-primary-1: #859900;
+  --triad-primary-2: #b58900;
+  --triad-primary-3: #268bd2;
+  --triad-primary-4: #dc3682;
+  --triad-primary-4-transparent: rgba(220, 54, 130, 0.6);
+  --triad-secondary-1: #cb4b16;
+  --triad-secondary-2: #2aa198;
+  --triad-secondary-3: #6c71c4;
+  --triad-secondary-4: #d33682;
+  --base-gray: #657b83;
+  --transluscent-gray: rgba(101, 123, 131, 0.2);
+  --semi-transluscent-gray: rgba(101, 123, 131, 0.4);
+  --base-light: #eee8d5;
+  --base-dark: #002b36;
+  --base-text: #839496;
+  --button-text: #002b36;
+  --button-background: #2aa198;
+  --hamburger-background: #fdf6e3;
+  --color_scheme_button_before: #fdf6e3;
+  --color_scheme_button_after: #002b36;
+  --color_scheme_button_text: #268bd2;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+ul,
+li,
+small {
+  font-family: "Lucida Console", Monaco, monospace;
+  color: var(--base-text);
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+h2 {
+  font-size: x-large;
+}
+
+a {
+  text-decoration: none;
+  color: var(--base-text);
+  transition: all 0.2s;
+}
+
+form {
+  background: var(--base-light);
+  padding: 0.25em;
+  margin: 0.25em;
+  outline: var(--base-dark);
+  outline-color: var(--base-light);
+}
+
+input {
+  background-color: var(--background);
+  color: var(--base-text);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em 1em 0 1em;
+}
+
+textarea {
+  background-color: var(--background);
+  color: var(--base-text);
+  width: 70%;
+  padding: 0.5em;
+  margin: 1em;
+}
+
+strong {
+  font-family: monospace;
+}
+
+.skip_links {
+  font-size: 0em;
+  color: var(--background);
+}
+
+.skip_links:focus {
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+  padding: 0 1.5em 0 1.5em;
+  background: var(--color_scheme_button_after);
+  background-image: radial-gradient(
+    circle,
+    var(--color_scheme_button_before),
+    var(--color_scheme_button_after)
+  );
+}
+
+/* TOP BAR AND NAVIGATION */
+
+#header_section {
+  display: grid;
+  align-items: left;
+  grid-template-rows: repeat(auto-fit, minmax(175px, 0.5fr));
+  margin: 0 3em 3em 3em;
+}
+
+#primary_header_text {
+  font-family: monospace;
+  font-size: 3em;
+  margin: 1em;
+  color: var(--triad-primary-4);
+  text-decoration: overline;
+  /* offset-x | offset-y | blur-radius | color */
+  text-shadow: 2px 2px 2px black;
+  /* background-color: var(--background-transparent); */
+}
+
+#nav_bar {
+  /* padding: 1em 1em 3.5em 1em; */
+  /* margin: 1em 1em 3.5em 1em; */
+
+  padding: 2em;
+  margin-bottom: 3em;
+}
+
+.navbar_toggle {
+  cursor: pointer;
+  font-size: 1em;
+  position: sticky;
+  /* background: transparent; */
+}
+
+.hamburger_bar_1,
+.hamburger_bar_2,
+.hamburger_bar_3 {
+  width: 2em;
+  height: 0.1em;
+  background-color: var(--base-text);
+  margin: 0.35em;
+  padding: 0.2em;
+  transition: 0.4s;
+}
+
+.change_hamburger_navbar .hamburger_bar_1 {
+  -webkit-transform: rotate(-70deg) translate(-0.35em, 0.2em);
+  transform: rotate(-70deg) translate(-0.35em, 0.2em);
+}
+.change_hamburger_navbar .hamburger_bar_2 {
+  opacity: 0.71;
+  background-color: var(--triad-primary-2);
+}
+.change_hamburger_navbar .hamburger_bar_3 {
+  -webkit-transform: rotate(65deg) translate(-0.35em, -0.2em);
+  transform: rotate(65deg) translate(-0.35em, -0.2em);
+}
+
+/* NAVBAR WILL BE HIDDEN BY DEFAULT */
+.nav_ul {
+  display: none;
+}
+
+.active_navbar {
+  display: grid;
+  align-items: left;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  border: none;
+}
+
+.nav_bar_li {
+  /* background: var(--background); */
+  text-decoration: overline;
+  text-align: left;
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+.time_li {
+  background: var(--background);
+  text-decoration: overline;
+  text-align: left;
+  margin: 0.25em;
+  padding: 0.25em;
+}
+
+.navigation_link_header {
+  font-size: 1.3em;
+}
+
+#color_scheme_toggle_image_navbar {
+  height: 2em;
+  width: 2em;
+}
+
+.color_scheme_toggle_button {
+  background: var(--color_scheme_button_before);
+  color: var(--base-text);
+  outline-color: var(--base-light);
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: 800ms ease all;
+}
+
+
+.color_scheme_toggle_button:hover {
+  background: var(--color_scheme_button_after);
+  color: var(--color_scheme_button_text);
+}
+
+/* color line change on screen, hinting towards other color scheme */
+.color_scheme_toggle_button:before,
+.color_scheme_toggle_button:after {
+  background: var(--color_scheme_button_before);
+  transition: 500ms ease all;
+}
+
+.light_image {
+  background-image: url("../images/autumn-dead-plants.jpg");
+  background-repeat: repeat-x;
+  background-position: left;
+}
+
+.dark_image {
+  background-image: url("../images/resized_busy_transit.jpg");
+  background-repeat: repeat-x;
+  background-position: right;
+}
+
+#individual_page_header{
+  padding-top: 0.5em;
+}
+
+
+
+#main_body_wrapper{
+  display: grid;
+  /* align-items: center; */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 8fr));
+  margin: 3em;
+}
+
+
+
+
+
+
+
+/* FOOTER AREAS */
+/* This needs to be styled somehow */
+#footer_toggle_button {
+  position: fixed;
+  right: 0.25em;
+  bottom: 1em;
+  outline-color: var(--base-light);
+  cursor: pointer;
+  transition: 1500ms ease all;
+}
+
+/* perhaps change the background to transparent
+in the image itself? */
+#settings_img {
+  height: 3em;
+  width: 3em;
+}
+
+#entire_page_wrapper > #navigation_footer {
+  display: grid;
+  position: fixed;
+  align-items: left;
+  grid-template-rows: repeat(auto-fit, minmax(30px, 0.5fr));
+  /* margin: 0 3em 3em 3em; */
+  bottom: 3em;
+  height: 2em;
+  width: 75%;
+  margin-bottom: 1em;
+}
+
+ul.footer_navigation {
+  display: none;
+}
+
+/* THIS NEEDS TO BLEND BETTER, SHADOW OUTLINE? */
+ul.active_footer {
+  background-color: var(--triad-primary-4-transparent);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1.75fr));
+  /* align-items: center; */
+  justify-content: center;
+  margin: 1em;
+  padding: 1.25em;
+  padding-bottom: 2.3em;
+}
+
+.quick_buttons_li {
+  text-decoration: overline;
+  background: var(--background);
+  text-align: left;
+  margin: 0.25em;
+}
+
+.navigation_link_footer {
+  font-size: 1em;
+}
+
+#color_scheme_toggle_image_footer{
+  height: 1.5em;
+  width: 1.5em;
+}
+
+
+
+@media (max-width: 450px) {
+  .navbar_toggle{
+    display: none;
+  }
+  #header_section{
+    margin: 0;
+  }
+
+
+  #entire_page_wrapper > #navigation_footer {
+    bottom: 3em;
+    height: 2em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+}
+
+
+@media (max-width: 799px){
+  .navbar_toggle{
+    display: none;
+  }
+
+  main{
+    padding-bottom: 10%;
+    margin-bottom: 12%;
+  }
+
+  #navigation_footer{
+    margin-bottom: 1em;
+  }
+
+  #quick_buttons_ul {
+    /* Making the quick buttons in a 2x2 grid */
+    grid: repeat(2, 1fr) / auto-flow 33%;
+    padding-bottom: 4em;
+  }
+
+  #sidebar_section {
+    display: none;
+  }
+
+}
+
+@media (min-width:800px ) {
+  #primary_header_text{
+    font-size: 5em;
+  }
+  #individual_page_header{
+    padding-top: 2em;
+  }
+
+  .quick_buttons_li {
+    text-decoration: overline;
+    /* background: var(--background); */
+    text-align: left;
+    margin: 0.25em;
+    font-size: 1.5em;
+  }
+
+}

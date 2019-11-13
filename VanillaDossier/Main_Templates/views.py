@@ -48,7 +48,7 @@ def upload_csv_dossier(request):
     # the csv file will require
     prompt = {
         'order' : 'Order of the .csv file should be as follows: \
-                    NAME, HOBBIES, WORK, APPEARANCE, notable_memories, DISCUSSIONS\
+                    NAME, HOBBIES, WORK, APPEARANCE, NOTABLE_MEMORIES, DISCUSSIONS\
                     * The headers are needed\
                     * The posted times will default to current, you can alter this in admin\
                     * User is forced as the Super User, do not declare user'
@@ -61,9 +61,8 @@ def upload_csv_dossier(request):
     # this is just because I don't want users not knowing how to properly upload
     # a database file just willy nilly uploading shit
     user_uploaded_file = request.FILES['file']
-
-    if not user_uploaded_file.endswith('.csv'):
-        messages.error(request, "Needs to be a .csv file, change this if you want")
+    # if not user_uploaded_file.endswith('.csv'):
+    #     messages.error(request, "Needs to be a .csv file, change this if you want")
 
     csv_db = user_uploaded_file.read().decode('utf-8')
 
@@ -81,7 +80,7 @@ def upload_csv_dossier(request):
     explicit_super_user = User.objects.first()
 
     # why are we using a csv.reader if we're reading this as a string?
-    for col in csv.reader(db_as_io_string):
+    for col in csv.reader(db_as_io_string, delimiter= "|"):
         # dropping the update, keeping the create
         _, created = DossiersModel.objects.update_or_create(
             name = col[0],
@@ -90,6 +89,7 @@ def upload_csv_dossier(request):
             appearance = col[3],
             notable_memories = col[4],
             discussions = col[5],
+            # date_originally_posted = datetime.today().strftime('%Y-%m-%d'),
             author = explicit_super_user
         )
     context = {}
@@ -197,7 +197,7 @@ def upload_csv_ideas(request):
     # why are we using a csv.reader if we're reading this as a string?
     for col in csv.reader(db_as_io_string, delimiter = "|"):
         # dropping the update, keeping the create
-        _, created = ThoughtsModel.objects.update_or_create(
+        _, created = IdeasModel.objects.update_or_create(
             title = col[0],
             body = col[1],
             date_originally_posted = datetime.today().strftime('%Y-%m-%d'),
