@@ -18,7 +18,7 @@
 
     <section id="skip_links_wrapper">
       <a href="#navbar_toggle_button" class="skip_links">   Skip to Navigation   </a>
-      <a href="#main" class="skip_links">  Main Content   </a>
+      <a href="#body_block_container" class="skip_links">  Main Content   </a>
       {% if user.is_authenticated %}
           {% block skip_links %}
           {% endblock skip_links %}
@@ -63,10 +63,10 @@
       {% endblock page_header %}
   </section>
 
-        <section id="search_section">
-          {% block searchbar %}
-          {% endblock searchbar %}
-        </section>
+  <section id="search_section">
+    {% block searchbar %}
+    {% endblock searchbar %}
+  </section>
 
 
     <main id="main_body_wrapper">
@@ -91,7 +91,7 @@
 
   {% if user.is_authenticated %}
       <footer id="navigation_footer">
-            <ul id="quick_buttons_ul" class="footer_navigation" title="Same as the naviagtion image; changes from autumn, native Mid-West plants to a busy train station">
+            <ul id="quick_buttons_ul" class="footer_ul">
               <li class="quick_buttons_li">
                 <a href="/dossiers" class="navigation_link_footer">Dossiers</a>
               </li>
@@ -102,18 +102,22 @@
                 <a href="/ideas" class="navigation_link_footer">Ideas</a>
               </li>
               <li class="quick_buttons_li">
-                <a href="/about" class="navigation_link_f">About</a>
+                <a href="/about" class="navigation_link_footer">About</a>
               </li>
               <li class="quick_buttons_li">
                 <button id="color_scheme_toggle_button_footer" class = "color_scheme_toggle_button">
                   <!-- Something -->
-                  <img id="color_scheme_toggle_image_footer" src="{% static 'images/small_delta.png'%}" />
+                  Toggle
+                  <!-- <img id="color_scheme_toggle_image_footer" src="{% static 'images/small_delta.png'%}" /> -->
                 </button>
               </li>
                   {% block post_button %}
                   {% endblock post_button %}
             </ul>
-            <button type="button" name="button" id="footer_toggle_button">
+            <!-- <button id="color_scheme_toggle_button_navbar" class"color_scheme_toggle_button">
+              <img id="color_scheme_toggle_image_navbar" src="{% static 'images/small_delta.png'%}" />
+            </button> -->
+            <button id="footer_toggle_button">
               <img id="settings_img" src="{% static '/images/download.gif'%}" alt="Routing Button">
             </button>
       </footer>

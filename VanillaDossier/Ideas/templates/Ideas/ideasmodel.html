@@ -20,17 +20,17 @@
 <!-- looping over the database for posts -->
 {% for post in posts %}
 <article class = "body_block_article">
-  <h1 class="body_block_h1">
+  <h2 class="body_block_h2">
     <a class="body_block_link" href="{% url 'ideas-post-detail' post.pk %}">
     <!-- href="{% url 'ideas-post-detail' post.id %}" -->
       {{ post.title|safe|linebreaks|truncatechars:50}}
     </a>
-  </h1>
+  </h2>
 
   <p class="post_main_body">
     {{post.body|safe|linebreaks|truncatechars:450}}
     {% if post.body|length > 450 %}
-    <a class="stylized_href" href="{% url 'ideas-post-detail' post.id %}">[read more]</a>
+    <a class="body_block_link" href="{% url 'ideas-post-detail' post.id %}">[read more]</a>
     {% endif %}
   </p>
 </article>
@@ -87,16 +87,24 @@ here's how you did it in the original version
 
  {% block searchbar %}
 
-     <form class="searchbar_form">
-       <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
-       <!-- <span class= "searchbar_arrow"> -->
-         <input class="searchbar_input" type="search" placeholder="Search Ideas.." aria-label="Search work ideas" name='search' value="">
+<form id="searchbar" class="searchbar_form">
+  <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
+  <!-- <span class= "searchbar_arrow"> -->
+  <input
+    class="searchbar_input"
+    type="search"
+    placeholder="Search Ideas..."
+    aria-label="Search work ideas"
+    name="search"
+    value=""
+  />
 
-       <!-- </span> -->
-       <button class="searchbar_button" type="submit">
-         Search
-       </button>
-     </form>
+  <!-- </span> -->
+  <button class="searchbar_button" type="submit">
+    Search
+  </button>
+</form>
+
  {% endblock searchbar %}
 
 

@@ -16,11 +16,11 @@
     <!-- looping over the database for posts -->
     {% for post in posts %}
     <article class = "body_block_article">
-      <h1 class="body_block_h1">
+      <h2 class="body_block_h2">
         <a class="body_block_link" href="{% url 'thoughts-post-detail' post.pk %}">
           {{ post.title|safe|linebreaks|truncatechars:50 }}
         </a>
-      </h1>
+      </h2>
 
       <p class= "post_main_body">
         {{ post.body|safe|linebreaks|truncatechars:450 }}
@@ -82,12 +82,20 @@ here's how you did it in the original version
 
 
  {% block searchbar %}
-       <form class="searchbar_form">
-           <input class="searchbar_input" type="search" placeholder="Search Thoughts.." aria-label="Search work ideas" name='search' value="">
-         <button class="searchbar_button" type="submit">
-           Search
-         </button>
-       </form>
+ <form id="searchbar" class="searchbar_form">
+  <input
+    class="searchbar_input"
+    type="search"
+    placeholder="Search Thoughts..."
+    aria-label="Search work ideas"
+    name="search"
+    value=""
+  />
+  <button class="searchbar_button" type="submit">
+    Search
+  </button>
+</form>
+
  {% endblock searchbar %}
 
  {% block post_button %}

@@ -23,13 +23,19 @@
   <small>
     Last Updated: {{ object.last_modified|date:"F d, Y P e" }}
   </small>
-  <article class="body_block_article">
-    <h2 class="post_title">{{ object.name }}</h2>
+<article class="body_block_article">
+  <h2 class="body_block_h2">{{ object.name }}</h2>
+  <p class="post_main_body"><strong>Hobbies: </strong> {{ object.hobbies }}</p>
+  <p class="post_main_body"><strong>Work: </strong>{{ object.work }}</p>
+  <p class="post_main_body">
+    <strong>Appearance: </strong>{{ object.appearance }}
+  </p>
+  <p class="post_main_body">
+    <strong>Notable Memories: </strong>{{ object.notable_memories }}
+  </p>
+  <p class="post_main_body">
+    <strong>Discussions: </strong>{{ object.discussions }}
+  </p>
+</article>
 
-    <p class="post_main_body">{{ object.hobbies }}</p>
-    <p class="post_main_body">{{ object.work }}</p>
-    <p class="post_main_body">{{ object.appearance }}</p>
-    <p class="post_main_body">{{ object.notable_memories }}</p>
-    <p class="post_main_body">{{ object.discussions }}</p>
-  </article>
 {% endblock body_block %}

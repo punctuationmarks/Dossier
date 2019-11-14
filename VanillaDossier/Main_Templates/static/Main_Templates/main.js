@@ -7,24 +7,25 @@ let footerToggleButton = document.getElementById("footer_toggle_button");
 let navBarImage = document.getElementById("header_section");
 let quickButtons = document.getElementById("quick_buttons_ul");
 
+
 function hamburgerAnimationNavbar(navbarMenu) {
   navbarMenu.classList.toggle("change_hamburger");
 }
 
 // this needs to be done separately, by the ID while the hamburgerAnimation is done by onClick
 navBarToggleButton.addEventListener("click", function() {
-  navbarMenu.classList.toggle("nav_ul");
-  navbarMenu.classList.toggle("active_navbar");
+    navbarMenu.classList.toggle("nav_ul");
+    navbarMenu.classList.toggle("active_navbar");
 });
 
-footerToggleButton.addEventListener("click", function(){
+footerToggleButton.addEventListener("click", function() {
   const delay = 150; //miliseconds
 
-  setTimeout(function(){
-    quickButtons.classList.toggle("footer_navigation");
+  setTimeout(function() {
+    quickButtons.classList.toggle("footer_ul");
     quickButtons.classList.toggle("active_footer");
-  }, delay)
-})
+  }, delay);
+});
 
 // What to do when localStorage is X
 switch (window.localStorage.getItem("color_theme")) {
@@ -123,15 +124,12 @@ colorToggleButtonFooter.addEventListener("click", function() {
   }
 });
 
-
 // for testing screen sizes
 let screen_size = window.innerWidth * window.innerHeight;
 console.log("Inner height :" + window.innerHeight);
 console.log("Inner Width :" + window.innerWidth);
 
 console.log("Product = " + screen_size);
-
-
 
 // TO BUILD!
 // free rides to the top

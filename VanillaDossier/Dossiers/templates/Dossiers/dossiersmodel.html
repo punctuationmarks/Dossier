@@ -16,59 +16,37 @@
 <!-- looping over the database for posts -->
 {% for post in posts %}
 <article class="body_block_article">
-  <h1 class="body_block_h1">
+  <h2 class="body_block_h2">
     <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">
       {{ post.name }}
     </a>
-  </h1>
-  <ul id="individual_dossier_ul">
-    <li>
-      <strong class="post_strong_header">
-        Hobbies:
-      </strong>
-    </li>
+  </h2>
 
-    <li>
-      {{ post.hobbies|safe|linebreaks|truncatechars:50}}
-    </li>
-    <li>
-      <strong class="post_strong_header">
-        Work:
-      </strong>
-    </li>
 
-    <li>
-      {{ post.work|safe|linebreaks|truncatechars:50}}
-    </li>
-    <li>
-      <strong class="post_strong_header">
-        Appearance:
-      </strong>
-    </li>
+  <p class="post_main_body">
+    <strong>Discussions: </strong>{{post.discussions|safe|linebreaks|truncatechars:200}}
+    {% if post.discussions|length > 200 %}
+    <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">[read more]</a>
+    {% endif %}
+  </p>
 
-    <li>
-      {{post.appearance|safe|linebreaks|truncatechars:50}}
-    </li>
-    <li>
-      <strong class="post_strong_header">
-        Things to remember:
-      </strong>
-    </li>
+<p class="post_main_body">
+  <strong>Hobbies: </strong> {{ post.hobbies|safe|linebreaks|truncatechars:50}}
+</p>
+<p class="post_main_body">
+  <strong>Work: </strong>{{ post.work|safe|linebreaks|truncatechars:50}}
+</p>
+<p class="post_main_body">
+  <strong>Appearance: </strong
+  >{{post.appearance|safe|linebreaks|truncatechars:50}}
+</p>
+<p class="post_main_body">
+  <strong>Notable Memories: </strong>
+  {{post.notable_memories|safe|linebreaks|truncatechars:50}}
+</p>
 
-    <li>
-      {{post.notable_memories|safe|linebreaks|truncatechars:50}}
-    </li>
-    <li>
-      <strong class="post_strong_header">
-        Discussions:
-      </strong>
-    </li>
-    <li>
-      {{post.discussions|safe|linebreaks|truncatechars:200}}
-      <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">[read more]</a
-      >
-    </li>
-  </ul>
+
+
 </article>
 
 {% endfor %}
@@ -85,9 +63,7 @@
     <li class="side_bar_li">
       <a
         class="body_block_link"
-        href="{% url 'dossiers-post-detail' post.id %}"
-      >
-        <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+        href="{% url 'dossiers-post-detail' post.id %}">
         {{ post.name }}
       </a>
     </li>
@@ -102,7 +78,7 @@
  {% block searchbar %}
           <form id="searchbar" class="searchbar_form">
             <input
-              id="searchbar_input"
+              class="searchbar_input"
               type="search"
               placeholder="Search Dossiers..."
               aria-label="Search"
@@ -117,8 +93,14 @@
 
 {% block post_button %}
 <li class="quick_buttons_li">
-  <a href="{% url 'dossiers-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
+  <a
+    href="{% url 'dossiers-post-create'%}"
+    class="quick_buttons_link"
+    id="post_href">
+    /++
+    </a>
 </li>
+
 {% endblock post_button %}
 
 <!--
@@ -136,7 +118,7 @@ here's how you did it in the original version
 </div>
 <div class="col">
   <button onclick="window.location.href = `{% url 'ideas-post-create' %}`" class="footer_href">
-    New strong
+    New h3
   </button>
 </div>
 {% endblock buttons %}
