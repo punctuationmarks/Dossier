@@ -3,8 +3,8 @@
     <form method="POST" class="post_form">
       {% csrf_token %}
       <fieldset class="post_form_fieldset">
-        <legend class="post_form_legend">Jot your thoughts</legend>
-        
+        <legend class="post_form_legend">Ideas?</legend>
+
         {{ form.title }}<br />
         <br />
         {{ form.body }}
@@ -15,6 +15,6 @@
   {% endblock body_block %}
 
 
-{% comment %} 
-<input type="text" name="title" maxlength="100" required="" id="id_title"> 
+{% comment %}
+<input type="text" name="title" maxlength="100" required="" id="id_title">
 {% endcomment %}

@@ -153,7 +153,7 @@ strong {
   grid-template-columns: 2fr 1fr;
   grid-template-areas:
     "skip_links ."
-    "Dossier_header navbar_toggle_button"
+    "Dossier_header navbar_toggle_activator"
     "navigation navigation"
     "individual_page_header color_scheme_button"
     "body_of_page body_of_page"
@@ -202,7 +202,7 @@ main{
     margin: 1em;
     padding-bottom: 10%;
   }
-  /* #navbar_toggle_button {
+  /* #navbar_toggle_activator {
     right: 1.5em;
     cursor: pointer;
     font-size: 1em;
@@ -353,10 +353,10 @@ ul.nav_ul {
 this looks amazing while using the tab key to toggle the navigation
 */
 #navbar_toggle_div{
-  grid-area: navbar_toggle_button;
+  grid-area: navbar_toggle_activator;
 }
 
-button#navbar_toggle_button {
+button#navbar_toggle_activator {
   /* position: absolute; */
   /* top: 2.6em;
   right: 2.75em; */

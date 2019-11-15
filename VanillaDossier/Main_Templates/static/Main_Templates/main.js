@@ -1,25 +1,16 @@
 let bodyElement = document.getElementById("body_id");
 let colorToggleButtonNavbar = document.getElementById("color_scheme_toggle_button_navbar");
-let colorToggleButtonFooter = document.getElementById("color_scheme_toggle_button_footer");
+let colorToggleButtonFooter = document.getElementById("color_scheme_toggle_footer");
 let navbarMenu = document.getElementById("navbar_menu");
-let navBarToggleButton = document.getElementById("navbar_toggle_button");
-let footerToggleButton = document.getElementById("footer_toggle_button");
+let footerToggleButton = document.getElementById("footer_toggle_activator");
 let navBarImage = document.getElementById("header_section");
 let quickButtons = document.getElementById("quick_buttons_ul");
 
 
-function hamburgerAnimationNavbar(navbarMenu) {
-  navbarMenu.classList.toggle("change_hamburger");
-}
-
-// this needs to be done separately, by the ID while the hamburgerAnimation is done by onClick
-navBarToggleButton.addEventListener("click", function() {
-    navbarMenu.classList.toggle("nav_ul");
-    navbarMenu.classList.toggle("active_navbar");
-});
-
 footerToggleButton.addEventListener("click", function() {
-  const delay = 150; //miliseconds
+  // double delay here for the slowness added to the fade out, CSS does not provide
+  // a smoother fade out transition that I am aware of
+  const delay = 200; //miliseconds
 
   setTimeout(function() {
     quickButtons.classList.toggle("footer_ul");
@@ -67,8 +58,10 @@ switch (window.localStorage.getItem("color_theme")) {
 
 // Altering the localStorage and the class list (this is to make it immediate, instead of on reload)
 colorToggleButtonNavbar.addEventListener("click", function() {
+  const delay = 150; //miliseconds
   switch (window.localStorage.getItem("color_theme")) {
     case "light":
+    setTimeout(function() {
       window.localStorage.setItem("color_theme", "dark");
       bodyElement.classList.remove("light_mode");
       navBarImage.classList.remove("light_image");
@@ -76,8 +69,12 @@ colorToggleButtonNavbar.addEventListener("click", function() {
       bodyElement.classList.add("dark_mode");
       navBarImage.classList.add("dark_image");
       quickButtons.classList.add("footer_dark_image");
+    }, delay);
+
       break;
-    case "dark":
+
+      case "dark":
+      setTimeout(function() {
       window.localStorage.setItem("color_theme", "light");
       bodyElement.classList.remove("dark_mode");
       navBarImage.classList.remove("dark_image");
@@ -85,6 +82,7 @@ colorToggleButtonNavbar.addEventListener("click", function() {
       bodyElement.classList.add("light_mode");
       navBarImage.classList.add("light_image");
       quickButtons.classList.add("footer_light_image");
+    }, delay);
       break;
     // case undefined:
     //   window.localStorage.setItem("color_theme", "light");

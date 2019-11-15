@@ -134,7 +134,7 @@ strong {
   grid-template-areas:
     "skip_links"
     "primary_header"
-    "navbar_toggle_button"
+    "navbar_toggle_activator"
     "navigation"
     "searchbar"
     "individual_page_header"
@@ -209,10 +209,10 @@ css properties will be in the active narbar */
 }
 
 #navbar_toggle_div{
-  grid-area: navbar_toggle_button;
+  grid-area: navbar_toggle_activator;
 }
 
-#navbar_toggle_button {
+#navbar_toggle_activator {
   cursor: pointer;
   font-size: 1em;
   /* background: transparent; */
@@ -448,7 +448,7 @@ label.form_label {
   transition: 800ms ease all;
 }
 
-#color_scheme_toggle_button_footer {
+#color_scheme_toggle_footer {
   background: var(--color_scheme_button_before);
   color: var(--base-text);
   outline-color: var(--base-light);
@@ -493,7 +493,7 @@ ul.footer_ul {
 }
 
 /* This needs to be styled somehow */
-#footer_toggle_button {
+#footer_toggle_activator {
   position: fixed;
   right: 1em;
   bottom: 1em;

@@ -15,7 +15,7 @@ Grid Areas:
 }
 
 #navbar_toggle_div{
-  grid-area: navbar_toggle_button;
+  grid-area: navbar_toggle_activator;
 }
 
 #block_page_header_section {

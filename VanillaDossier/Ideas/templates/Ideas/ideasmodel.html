@@ -39,16 +39,23 @@
 {% endblock body_block %}
 
 
-    {% block side_bar %}
+    {% block sidebar %}
+    <h3 id="sidebar_h3">
+      Quick Reference
+    </h3>
+    <ul id="sidebar_ul">
+      {% block post_button_sidebar %}
+      <li class="sidebar_li">
+          <a href="{% url 'ideas-post-create'%}"
+          class = "sidebar_link"
+          id="post_href">/++</a>
+      </li>
+      {% endblock post_button_sidebar %}
     <!-- only displaying sidebar if the user has added posts -->
     {% if posts %}
-      <h3 id="sidebar_h3">
-        Quick Reference
-      </h3>
-      <ul id="side_bar_ul">
         {% for post in posts %}
-              <li class="side_bar_li">
-                <a class="body_block_link" href="{% url 'ideas-post-detail' post.id %}">
+              <li class="sidebar_li">
+                <a class="sidebar_link" href="{% url 'ideas-post-detail' post.id %}">
                 <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
                   {{ post.title }}
                 </a>
@@ -56,7 +63,7 @@
         {% endfor %}
       </ul>
     {% endif %}
-    {% endblock side_bar %}
+    {% endblock sidebar %}
 
 
 
