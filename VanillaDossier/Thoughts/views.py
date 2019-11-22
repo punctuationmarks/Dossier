@@ -30,7 +30,7 @@ def thoughts(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 5)
 
     try:
         posts = paginator.page(page)
