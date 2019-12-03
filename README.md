@@ -11,8 +11,8 @@
 			throw it on Linode or DigitalOcean for fairly cheap. Want an even better challenge?
 			Toss it on an old laptop you're not using, Ubuntu Server is pretty amazing. :)
 
-# Beta test it here (heroku)[https://user-test-dossiers.herokuapp.com/]
+-  Beta test it here on [heroku](https://user-test-dossiers.herokuapp.com/)
 
-# Login (here)[https://user-test-dossiers.herokuapp.com/admin/]:
+- Login [here](https://user-test-dossiers.herokuapp.com/admin/):
 	- Username: u4804
 	- Passcode: toor
