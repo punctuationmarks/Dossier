@@ -95,10 +95,14 @@
         </section>
 
 
-
+        {% if user.is_authenticated %}
         <section id="sidebar_section">
-            {% block sidebar %} {% block post_button_sidebar %} {% endblock post_button_sidebar %} {% endblock sidebar %}
+            {% block sidebar %}
+            {% block post_button_sidebar %}
+            {% endblock post_button_sidebar %}
+            {% endblock sidebar %}
         </section>
+        {% endif %}
 
 
 
