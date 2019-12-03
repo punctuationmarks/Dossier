@@ -583,10 +583,12 @@ ul.active_footer {
     margin-bottom: 5%;
   }
 
-  /* Not Displaying the top navbar until activated, all
-  css properties will be in the active narbar */
   #navigation_footer {
-    display: none;
+    display: none !important;
+  }
+
+  #footer_toggle_activator{
+    display: none !important;
   }
 
   #quick_buttons_ul {

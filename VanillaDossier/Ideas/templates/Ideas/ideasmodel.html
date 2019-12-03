@@ -3,9 +3,17 @@
 
 
 {% block skip_links %}
-        <a href="#sidebar_section" class="skip_links" id = "skip_link_to_sidebar">Sidebar</a>
+        <a href="#sidebar_section" class="skip_links large_screen" id = "skip_link_to_sidebar">Sidebar</a>
         <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
 {% endblock skip_links %}
+
+
+{% block upload_csv %}
+      <li class="nav_bar_li">
+          <a href="/ideas/upload-csv/" class="navigation_link_header">
+          Upload
+          </a>
+      </li>{% endblock upload_csv %}
 
 {% block page_header %}
     <h1 id="ideas_header_h1">
@@ -66,37 +74,9 @@
     {% endblock sidebar %}
 
 
-
-{% block pagination_buttons %} {% endblock pagination_buttons %}
-
-
-<!--
-here's how you did it in the original version
-{% block buttons %}
-<div class="col">
-  <button onclick="window.location.href = `{% url 'blog-post-create' %}`" class="footer_href">
-    New Writing
-  </button>
-</div>
-<div class="col">
-  <button onclick="window.location.href = `{% url 'dossier-post-create' %}`" class="footer_href">
-    New Dossier
-  </button>
-</div>
-<div class="col">
-  <button onclick="window.location.href = `{% url 'ideas-post-create' %}`" class="footer_href">
-    New Code
-  </button>
-</div>
-{% endblock buttons %}
- -->
-
-
  {% block searchbar %}
 
 <form id="searchbar" class="searchbar_form">
-  <!-- might remove the span of arrow class, might not be easy enough to impliment on vanilla -->
-  <!-- <span class= "searchbar_arrow"> -->
   <input
     class="searchbar_input"
     type="search"
@@ -105,8 +85,6 @@ here's how you did it in the original version
     name="search"
     value=""
   />
-
-  <!-- </span> -->
   <button class="searchbar_button" type="submit">
     Search
   </button>

@@ -35,7 +35,7 @@ def dossiers(request):
 
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(posts, 5)
+    paginator = Paginator(posts, 10)
 
     try:
         posts = paginator.page(page)

@@ -13,12 +13,12 @@
     <title>Dossiers</title>
   </head>
   <body id= "body_id" class="light_mode">
-    <div id="entire_page_wrapper">
 
 
     <section id="skip_links_wrapper">
-      <a href="#navbar_toggle_activator" class="skip_links">   Skip to Navigation   </a>
-      <a href="#body_block_container" class="skip_links">  Main Content   </a>
+      <a href="#navbar_menu" class="skip_links large_screen">Navigation</a>
+      <a href="#footer_toggle_activator" class="skip_links small_screen">Navigation</a>
+      <a href="#body_block_container" class="skip_links">Main Content</a>
       {% if user.is_authenticated %}
           {% block skip_links %}
           {% endblock skip_links %}
@@ -28,13 +28,20 @@
         <!-- title allows assessibility, similar to alt tags -->
     <section class="light_image" id="header_section" title="Changes from autumn, native Mid-West plants to a busy train station">
     <nav id="nav_bar">
-      <a href="/"><h1 id="primary_header_text">The Dossier</h1></a>
+      <a href="/" id="primary_header_link"><h1 id="primary_header_text">The Dossier</h1></a>
         <ul class="nav_ul" id = "navbar_menu">
 {% if user.is_authenticated%}
           <li class="nav_bar_li"><a href="/dossiers" class="navigation_link_header">Dossiers</a></li>
           <li class="nav_bar_li"><a href="/thoughts" class="navigation_link_header">Thoughts</a></li>
           <li class="nav_bar_li"><a href="/ideas" class="navigation_link_header">Ideas</a></li>
           <li class="nav_bar_li"><a href="/about" class="navigation_link_header">About</a></li>
+
+          {% comment %} 
+          only having upload on larger screens since the average person isn't uploading a csv file on a phone
+           {% endcomment %}
+          {% block upload_csv %}
+          {% endblock upload_csv %}
+          
           <li class="nav_bar_li">
             <button id="color_scheme_toggle_button_navbar" class"color_scheme_toggle_button">
               <img class="color_scheme_toggle_image" src="{% static 'images/delta_small.png'%}" />
@@ -59,7 +66,7 @@
 
   <section id="search_section">
     {% block searchbar %}
-    {% endblock searchbar %}
+    {% endblock searchbar %}    
   </section>
 
 
@@ -71,7 +78,38 @@
 
       {% block body_block %}
       {% endblock body_block %}
+            <!-- Pagination logic-->
+      <!-- for all generic class based views: -->
+      {% if posts.has_next or posts.has_previous %}
+
+      <span class="pagination">
+
+            {% if posts.has_previous %}
+            <a class="pagination-links" href="?page=1">Home</a>
+            <a class="pagination-links" href="?page={{ posts.previous_page_number }}">
+              << </a> 
+              {% endif %} 
+              
+              <span class="current_page">
+                  Page {{ posts.number }}
+              </span>
+
+          {% if posts.has_next %}
+          <a class="pagination-links" href="?page={{ posts.next_page_number }}">
+            >>
+          </a>
+
+          {% endif %}
+
+          <a class="pagination-links" href="?page={{ posts.paginator.num_pages }}">
+            End
+          </a>
+      </span>
+
+      {% endif %}
+
     </section>
+
 
 
     <section id="sidebar_section">
@@ -81,13 +119,29 @@
       {% endblock sidebar %}
     </section>
 
+
+
 </main>
 
 
 
+  {% comment %} 
+  -- less important and less often used links at the top --
+  footer layout is due to being solely focused on the user experience of being 
+  on mobile phone, this way it is easier to touch/reach not necessarily the best 
+  visually/informationally with english, but possibly will be better for user experience 
+   {% endcomment %}
   {% if user.is_authenticated %}
       <footer id="navigation_footer">
             <ul id="quick_buttons_ul" class="footer_ul">
+              <li class="quick_buttons_li">
+                  <button id="color_scheme_toggle_footer" class"color_scheme_toggle_button">
+                    <img class="color_scheme_toggle_image" src="{% static 'images/delta_small.png'%}" />
+                  </button>
+              </li>
+              <li class="quick_buttons_li">
+                <a href="/about" class="navigation_link_footer">About</a>
+              </li>
               <li class="quick_buttons_li">
                 <a href="/dossiers" class="navigation_link_footer">Dossiers</a>
               </li>
@@ -97,28 +151,15 @@
               <li class="quick_buttons_li">
                 <a href="/ideas" class="navigation_link_footer">Ideas</a>
               </li>
-              <li class="quick_buttons_li">
-                <a href="/about" class="navigation_link_footer">About</a>
-              </li>
-              <li class="quick_buttons_li">
-                  <button id="color_scheme_toggle_footer" class"color_scheme_toggle_button">
-                    <img class="color_scheme_toggle_image" src="{% static 'images/delta_small.png'%}" />
-                  </button>
-
-              </li>
                   {% block post_button %}
                   {% endblock post_button %}
             </ul>
-            <!-- <button id="color_scheme_toggle_button_navbar" class"color_scheme_toggle_button">
-              <img id="color_scheme_toggle_image_navbar" src="{% static 'images/small_delta.png'%}" />
-            </button> -->
             <button id="footer_toggle_activator">
               <img id="settings_img"  src="{% static '/images/settings.png'%}" alt="Routing Button">
             </button>
       </footer>
     {% endif %}
 
-    </div>
   </body>
   <script src="{% static 'Main_Templates/main.js' %}"></script>
 
