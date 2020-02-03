@@ -1,0 +1,8 @@
+Django
+django-admin-honeypot
+gunicorn
+pytest
+pytest-django
+pytest-cov
+mixer
+

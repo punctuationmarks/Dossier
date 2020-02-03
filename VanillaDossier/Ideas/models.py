@@ -13,60 +13,25 @@ from django.contrib import admin
 class IdeasModel(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
-    # date that can be updated
-    date_posted = models.DateTimeField(default=timezone.now)
-    # this will update the time, every time a post is updated
-    last_modified = models.DateTimeField(auto_now=True)
     # sets the datetime only to when the post is originally created,
     # you can never update the date posted argument
     date_originally_posted = models.DateTimeField(auto_now_add=True)
 
+    # this will update the time, every time a post is updated
+    last_modified = models.DateTimeField(auto_now=True)
+
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.title
+    def get_body_excerpt(self, num_of_characters):
+        return self.body[:num_of_characters]
 
     # this is done so that once a post is created, the user
     # is redirected directly to that detailed view
     def get_absolute_url(self):
-        return reverse('ideas-post-detail', kwargs={'pk':self.pk})
+        # this is just the "working" title for the name, 
+        # not the actual route
+        return reverse('ideas-detail', kwargs={'pk':self.pk})
+        # return reverse('ideas-detail', args=[str(self.id)])
 
-# how the data is shown on the backend,
-# also affects how the csv is dispayed
-class ideasAdmin(admin.ModelAdmin):
-    actions = ['download_csv_file']
-    list_display = ('title', 'body', 'date_originally_posted')
-
-    # whatever actions we use we have to define
-    def download_csv_file(self, request, queryset):
-        import csv
-        from django.http import HttpResponse
-        from io import StringIO
-        import time
-
-        # for adding time to the csv file name
-        time_stamp = time.strftime("%Y%m%d%H%M")
-
-        # writing the string as a file
-        file = StringIO()
-        # writing the CSV file
-        writer = csv.writer(file, delimiter = '|')
-        # writing the headers
-        writer.writerow(["Title", "Body", "Date_Originally_Posted"])
-
-        # adding/writing whatever they add to the queryset
-        # to the csv file
-        for selected_set in queryset:
-            writer.writerow([selected_set.title,
-                            selected_set.body,
-                            selected_set.date_originally_posted])
-        # setting the seek at the begginning of the file
-        file.seek(0)
-        response = HttpResponse(file, content_type='text/csv')
-
-        # the file name will be 'ideas' with the current time for organization reasons
-        response['Content-Disposition'] = f'''attachment; filename=ideas_{time_stamp}.csv'''
-        return response
-
-    # displaying on admin page
-    download_csv_file.short_description = "Download .csv file for what's selected."
+    def __str__(self):
+        return f"{self.title}, {self.pk}"

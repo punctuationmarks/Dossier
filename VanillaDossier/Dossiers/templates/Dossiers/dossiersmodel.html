@@ -27,7 +27,7 @@
 {% for post in posts %}
 <article class="body_block_article">
   <h2 class="body_block_h2">
-    <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">
+    <a class="body_block_link" href="{% url 'dossiers-detail' post.id %}">
       {{ post.name }}
     </a>
   </h2>
@@ -36,7 +36,7 @@
   <p class="post_main_body">
     <strong>Discussions: </strong>{{post.discussions|safe|linebreaks|truncatechars:200}}
     {% if post.discussions|length > 200 %}
-    <a class="body_block_link" href="{% url 'dossiers-post-detail' post.id %}">[read more]</a>
+    <a class="body_block_link" href="{% url 'dossiers-detail' post.id %}">[read more]</a>
     {% endif %}
   </p>
 
@@ -72,7 +72,7 @@
         {% block post_button_sidebar %}
             <li class="sidebar_li">
               <a
-              href="{% url 'dossiers-post-create'%}"
+              href="{% url 'dossiers-create'%}"
               class="sidebar_link"
               id="post_href">
               /++
@@ -87,7 +87,7 @@
     <li class="sidebar_li">
       <a
         class="sidebar_link"
-        href="{% url 'dossiers-post-detail' post.id %}">
+        href="{% url 'dossiers-detail' post.id %}">
         {{ post.name }}
       </a>
     </li>
@@ -115,7 +115,7 @@
 {% block post_button %}
 <li class="quick_buttons_li">
   <a
-    href="{% url 'dossiers-post-create'%}"
+    href="{% url 'dossiers-create'%}"
     class="quick_buttons_link"
     id="post_href">
     /++
@@ -138,7 +138,7 @@ here's how you did it in the original version
   </button>
 </div>
 <div class="col">
-  <button onclick="window.location.href = `{% url 'ideas-post-create' %}`" class="footer_href">
+  <button onclick="window.location.href = `{% url 'ideas-create' %}`" class="footer_href">
     New h3
   </button>
 </div>

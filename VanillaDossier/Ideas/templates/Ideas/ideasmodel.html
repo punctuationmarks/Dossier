@@ -15,6 +15,7 @@
           </a>
       </li>{% endblock upload_csv %}
 
+      
 {% block page_header %}
     <h1 id="ideas_header_h1">
       Ideas:
@@ -29,8 +30,8 @@
 {% for post in posts %}
 <article class = "body_block_article">
   <h2 class="body_block_h2">
-    <a class="body_block_link" href="{% url 'ideas-post-detail' post.pk %}">
-    <!-- href="{% url 'ideas-post-detail' post.id %}" -->
+    <a class="body_block_link" href="{% url 'ideas-detail' post.pk %}">
+    <!-- href="{% url 'ideas-detail' post.id %}" -->
       {{ post.title|safe|linebreaks|truncatechars:50}}
     </a>
   </h2>
@@ -38,7 +39,7 @@
   <p class="post_main_body">
     {{post.body|safe|linebreaks|truncatechars:450}}
     {% if post.body|length > 450 %}
-    <a class="body_block_link" href="{% url 'ideas-post-detail' post.id %}">[read more]</a>
+    <a class="body_block_link" href="{% url 'ideas-detail' post.id %}">[read more]</a>
     {% endif %}
   </p>
 </article>
@@ -54,7 +55,7 @@
     <ul id="sidebar_ul">
       {% block post_button_sidebar %}
       <li class="sidebar_li">
-          <a href="{% url 'ideas-post-create'%}"
+          <a href="{% url 'ideas-create'%}"
           class = "sidebar_link"
           id="post_href">/++</a>
       </li>
@@ -63,7 +64,7 @@
     {% if posts %}
         {% for post in posts %}
               <li class="sidebar_li">
-                <a class="sidebar_link" href="{% url 'ideas-post-detail' post.id %}">
+                <a class="sidebar_link" href="{% url 'ideas-detail' post.id %}">
                 <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
                   {{ post.title }}
                 </a>
@@ -96,6 +97,6 @@
 
   {% block post_button %}
   <li class="quick_buttons_li">
-      <a href="{% url 'ideas-post-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
+      <a href="{% url 'ideas-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
   </li>
   {% endblock post_button %}

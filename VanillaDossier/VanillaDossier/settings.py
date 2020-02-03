@@ -117,6 +117,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # https://django-crispy-forms.readthedocs.io/en/latest/
@@ -125,5 +126,11 @@ STATIC_URL = '/static/'
 
 
 # needs to routed
-LOGIN_REDIRECT_URL = 'admin/'
-LOGIN_URL = 'admin'
+# LOGIN_REDIRECT_URL = ''
+# having the LOGIN_URL set to /admin/
+# redirects to "/admin/login/?next=/requested_page"
+# which is the admin page, and upon authorization, the user will be redirected to "requested_page"
+LOGIN_URL = '/admin/'
+
+
+LOGIN_REDIRECT_URL = '/'
