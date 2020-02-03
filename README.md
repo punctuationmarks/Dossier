@@ -1,4 +1,4 @@
-# **Note, beta stage currently, needs to be refactored and layout needs to be tightened.**
+
 
 # Dossier app
 - Simple note taking app to give yourself reminders on the people you meet and jot notes down through out the day.
@@ -16,3 +16,11 @@
 - Login [here](https://user-test-dossiers.herokuapp.com/admin/):
 	- Username: u4804
 	- Passcode: toor
+
+
+
+
+
+
+_Note, beta stage currently, needs to be refactored, need to add more tests, and layout needs to be tightened_
+
