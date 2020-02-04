@@ -3,23 +3,24 @@
 
 
 {% block skip_links %}
-        <a href="#sidebar_section" class="skip_links large_screen" id = "skip_link_to_sidebar">Sidebar</a>
-        <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
+<a href="#sidebar_section" class="skip_links large_screen" id="skip_link_to_sidebar">Sidebar</a>
+<a href="#searchbar" class="skip_links" id="skip_link_to_search_bar">Search Bar</a>
 {% endblock skip_links %}
 
 
 {% block upload_csv %}
-      <li class="nav_bar_li">
-          <a href="/ideas/upload-csv/" class="navigation_link_header">
-          Upload
-          </a>
-      </li>{% endblock upload_csv %}
+<li class="nav_bar_li">
+  <a href="/ideas/upload-csv/" class="navigation_link_header">
+    Upload
+  </a>
+</li>
+{% endblock upload_csv %}
 
-      
+
 {% block page_header %}
-    <h1 id="ideas_header_h1">
-      Ideas:
-    </h1>
+<h1 id="ideas_header_h1">
+  Ideas:
+</h1>
 {% endblock page_header %}
 
 
@@ -28,15 +29,23 @@
 
 <!-- looping over the database for posts -->
 {% for post in posts %}
-<article class = "body_block_article">
+<article class="body_block_article">
   <h2 class="body_block_h2">
+
+
     <a class="body_block_link" href="{% url 'ideas-detail' post.pk %}">
-    <!-- href="{% url 'ideas-detail' post.id %}" -->
+      <!-- href="{% url 'ideas-detail' post.id %}" -->
       {{ post.title|safe|linebreaks|truncatechars:50}}
     </a>
   </h2>
-
   <p class="post_main_body">
+
+    <small>
+      {{ post.last_modified|date:"F d, Y P e" }}
+    </small>
+  </p>
+  <p class="post_main_body">
+
     {{post.body|safe|linebreaks|truncatechars:450}}
     {% if post.body|length > 450 %}
     <a class="body_block_link" href="{% url 'ideas-detail' post.id %}">[read more]</a>
@@ -48,55 +57,47 @@
 {% endblock body_block %}
 
 
-    {% block sidebar %}
-    <h3 id="sidebar_h3">
-      Quick Reference
-    </h3>
-    <ul id="sidebar_ul">
-      {% block post_button_sidebar %}
-      <li class="sidebar_li">
-          <a href="{% url 'ideas-create'%}"
-          class = "sidebar_link"
-          id="post_href">/++</a>
-      </li>
-      {% endblock post_button_sidebar %}
-    <!-- only displaying sidebar if the user has added posts -->
-    {% if posts %}
-        {% for post in posts %}
-              <li class="sidebar_li">
-                <a class="sidebar_link" href="{% url 'ideas-detail' post.id %}">
-                <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
-                  {{ post.title }}
-                </a>
-              </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-    {% endblock sidebar %}
+{% block sidebar %}
+<h3 id="sidebar_h3">
+  Quick Reference
+</h3>
+<ul id="sidebar_ul">
+  {% block post_button_sidebar %}
+  <li class="sidebar_li">
+    <a href="{% url 'ideas-create'%}" class="sidebar_link" id="post_href">/++</a>
+  </li>
+  {% endblock post_button_sidebar %}
+  <!-- only displaying sidebar if the user has added posts -->
+  {% if posts %}
+  {% for post in posts %}
+  <li class="sidebar_li">
+    <a class="sidebar_link" href="{% url 'ideas-detail' post.id %}">
+      <!-- href="{% url 'thoughts-post-detail' post.id %}" -->
+      {{ post.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock sidebar %}
 
 
- {% block searchbar %}
+{% block searchbar %}
 
 <form id="searchbar" class="searchbar_form">
-  <input
-    class="searchbar_input"
-    type="search"
-    placeholder="Search Ideas..."
-    aria-label="Search work ideas"
-    name="search"
-    value=""
-  />
+  <input class="searchbar_input" type="search" placeholder="Search Ideas..." aria-label="Search work ideas"
+    name="search" value="" />
   <button class="searchbar_button" type="submit">
     Search
   </button>
 </form>
 
- {% endblock searchbar %}
+{% endblock searchbar %}
 
 
 
-  {% block post_button %}
-  <li class="quick_buttons_li">
-      <a href="{% url 'ideas-create'%}" class = "quick_buttons_link" id="post_href">/++</a>
-  </li>
-  {% endblock post_button %}
+{% block post_button %}
+<li class="quick_buttons_li">
+  <a href="{% url 'ideas-create'%}" class="quick_buttons_link" id="post_href">/++</a>
+</li>
+{% endblock post_button %}

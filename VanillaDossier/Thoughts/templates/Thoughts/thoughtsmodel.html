@@ -32,7 +32,12 @@
           {{ post.title|safe|linebreaks|truncatechars:50 }}
         </a>
       </h2>
+      <p class="post_main_body">
 
+        <small>
+          {{ post.last_modified|date:"F d, Y P e" }}
+        </small>
+      </p>
       <p class= "post_main_body">
         {{ post.body|safe|linebreaks|truncatechars:450 }}
         {% if post.body|length > 450 %}

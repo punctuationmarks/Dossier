@@ -10,6 +10,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from Ideas.models import IdeasModel
 
+# sqs = SearchQuerySet().models(Product).order_by("company_name").extra(select={'company_name': 'lower(company_name)'}).order_by('company_name')
+
 
 @login_required()
 def ideas(request):
@@ -17,7 +19,11 @@ def ideas(request):
     Adding a search bar at navbar
     """
     page_title = "Ideas"
-    posts_list = IdeasModel.objects.filter(author=request.user).order_by('title')
+    # posts_list = IdeasModel.objects.filter(author=request.user).order_by(
+    # 'title').extra(select={'title': 'lower(title)'}).order_by('title')
+    posts_list = IdeasModel.objects.filter(
+        author=request.user).order_by('title')
+
     search_term = ''
 
     if 'search' in request.GET:

@@ -13,7 +13,7 @@ SECRET_KEY = 'g29&dyvu3non^dyoc&5*lrzrirgsy$7^e0-va(n*&s!ij8qf4p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -118,6 +118,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# MEDIA_URL = '/media/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
 
 
 # https://django-crispy-forms.readthedocs.io/en/latest/

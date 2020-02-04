@@ -1,17 +1,17 @@
 {% extends "Main_Templates/base.html"%}
 
 {% block skip_links %}
-        <a href="#sidebar_section" class="skip_links large_screen" id = "skip_link_to_sidebar">Sidebar</a>
-        <a href="#searchbar" class="skip_links" id = "skip_link_to_search_bar">Search Bar</a>
+<a href="#sidebar_section" class="skip_links large_screen" id="skip_link_to_sidebar">Sidebar</a>
+<a href="#searchbar" class="skip_links" id="skip_link_to_search_bar">Search Bar</a>
 {% endblock skip_links %}
 
 
 {% block upload_csv %}
-     <li class="nav_bar_li">
-          <a href="/dossiers/upload-csv/" class="navigation_link_header">
-          Upload
-          </a>
-      </li>
+<li class="nav_bar_li">
+  <a href="/dossiers/upload-csv/" class="navigation_link_header">
+    Upload
+  </a>
+</li>
 {% endblock upload_csv %}
 
 
@@ -34,26 +34,33 @@
 
 
   <p class="post_main_body">
+
+    <small>
+      {{ post.last_modified|date:"F d, Y P e" }}
+    </small>
+    <br>
+  </p>
+  
+  <p class="post_main_body">
     <strong>Discussions: </strong>{{post.discussions|safe|linebreaks|truncatechars:200}}
     {% if post.discussions|length > 200 %}
     <a class="body_block_link" href="{% url 'dossiers-detail' post.id %}">[read more]</a>
     {% endif %}
   </p>
 
-<p class="post_main_body">
-  <strong>Hobbies: </strong> {{ post.hobbies|safe|linebreaks|truncatechars:50}}
-</p>
-<p class="post_main_body">
-  <strong>Work: </strong>{{ post.work|safe|linebreaks|truncatechars:50}}
-</p>
-<p class="post_main_body">
-  <strong>Appearance: </strong
-  >{{post.appearance|safe|linebreaks|truncatechars:50}}
-</p>
-<p class="post_main_body">
-  <strong>Notable Memories: </strong>
-  {{post.notable_memories|safe|linebreaks|truncatechars:50}}
-</p>
+  <p class="post_main_body">
+    <strong>Hobbies: </strong> {{ post.hobbies|safe|linebreaks|truncatechars:50}}
+  </p>
+  <p class="post_main_body">
+    <strong>Work: </strong>{{ post.work|safe|linebreaks|truncatechars:50}}
+  </p>
+  <p class="post_main_body">
+    <strong>Appearance: </strong>{{post.appearance|safe|linebreaks|truncatechars:50}}
+  </p>
+  <p class="post_main_body">
+    <strong>Notable Memories: </strong>
+    {{post.notable_memories|safe|linebreaks|truncatechars:50}}
+  </p>
 
 
 
@@ -69,57 +76,44 @@
 </h3>
 
 <ul id="sidebar_ul">
-        {% block post_button_sidebar %}
-            <li class="sidebar_li">
-              <a
-              href="{% url 'dossiers-create'%}"
-              class="sidebar_link"
-              id="post_href">
-              /++
-            </a>
-          </li>
+  {% block post_button_sidebar %}
+  <li class="sidebar_li">
+    <a href="{% url 'dossiers-create'%}" class="sidebar_link" id="post_href">
+      /++
+    </a>
+  </li>
 
-      {% endblock post_button_sidebar %}
+  {% endblock post_button_sidebar %}
 
   {% if posts %}
 
-    {% for post in posts %}
-    <li class="sidebar_li">
-      <a
-        class="sidebar_link"
-        href="{% url 'dossiers-detail' post.id %}">
-        {{ post.name }}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+  {% for post in posts %}
+  <li class="sidebar_li">
+    <a class="sidebar_link" href="{% url 'dossiers-detail' post.id %}">
+      {{ post.name }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
 {% endif %}
 {% endblock sidebar %}
 
- {% block searchbar %}
-          <form id="searchbar" class="searchbar_form">
-            <input
-              class="searchbar_input"
-              type="search"
-              placeholder="Search Dossiers..."
-              aria-label="Search"
-              name="search"
-              value=""/>
-            <button class="searchbar_button" type="submit">
-              Search
-            </button>
-          </form>
+{% block searchbar %}
+<form id="searchbar" class="searchbar_form">
+  <input class="searchbar_input" type="search" placeholder="Search Dossiers..." aria-label="Search" name="search"
+    value="" />
+  <button class="searchbar_button" type="submit">
+    Search
+  </button>
+</form>
 {% endblock searchbar %}
 
 
 {% block post_button %}
 <li class="quick_buttons_li">
-  <a
-    href="{% url 'dossiers-create'%}"
-    class="quick_buttons_link"
-    id="post_href">
+  <a href="{% url 'dossiers-create'%}" class="quick_buttons_link" id="post_href">
     /++
-    </a>
+  </a>
 </li>
 
 {% endblock post_button %}
