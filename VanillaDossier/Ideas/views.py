@@ -28,14 +28,22 @@ def ideas(request):
 
     if 'search' in request.GET:
         search_term = request.GET['search']
+        #print("search_term \n")
+        #print(search_term)
         orm_search = posts_list.filter(
             title__icontains=search_term) | posts_list.filter(body__icontains=search_term)
+        #print(orm_search)
         posts = orm_search
     else:
         posts = posts_list
+        #print("posts \n")
+        #print(posts)
     page = request.GET.get('page', 1)
 
     paginator = Paginator(posts, 10)
+    #print("paginator \n")
+    #print(paginator)
+    # #print(type(paginator))
 
     try:
         posts = paginator.page(page)
@@ -47,8 +55,12 @@ def ideas(request):
     context = {
         'title': page_title,
         'posts': posts,
-        'search_term': search_term
+        'search_term': search_term,
+        'is_paginated': bool(paginator.num_pages > 1),
+        'num_of_pages': paginator.num_pages
     }
+    ##print("context \n")
+    ##print(context)
     return render(request, 'Ideas/ideasmodel.html', context)
 
 
