@@ -31,7 +31,6 @@ class IdeasModel(models.Model):
         # this is just the "working" title for the name, 
         # not the actual route
         return reverse('ideas-detail', kwargs={'pk':self.pk})
-        # return reverse('ideas-detail', args=[str(self.id)])
 
     def __str__(self):
         return f"{self.title}, {self.pk}"

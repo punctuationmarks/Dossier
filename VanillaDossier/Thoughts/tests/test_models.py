@@ -1,19 +1,18 @@
-from django.test import TestCase
-
-# importing User to have new instances of users 
+# for instance of user
 from django.contrib.auth.models import User 
+# for ease of urls, tested it works first
 from django.urls import reverse 
-
-
 # importing Thought's model(s)
 from Thoughts.models import ThoughtsModel
 
 
+# testing imports
+from django.test import TestCase
 import pytest 
 from mixer.backend.django import mixer
 # pytest by default prevents database writing
-# without this, it'll crash at the mixer call
-# since mixer calls .save() after being called
+# without this boilerplate, it'll crash at the mixer call
+# since mixer runs .save() after being called
 pytestmark = pytest.mark.django_db
 
 

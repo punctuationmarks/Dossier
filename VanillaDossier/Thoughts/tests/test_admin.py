@@ -1,23 +1,15 @@
-
 # importing Idea's model(s)
 from .. import admin
 from .. import models
-
-# needed for making an instance of the Admin model
+# making an instance of the Admin model
 from django.contrib.admin.sites import AdminSite
 
-
-
-# imports needed for time
-import time
-
-
-# test imports
+# testing imports
 import pytest 
 from mixer.backend.django import mixer
 # pytest by default prevents database writing
-# without this, it'll crash at the mixer call
-# since mixer calls .save() after being called
+# without this boilerplate, it'll crash at the mixer call
+# since mixer runs .save() after being called
 pytestmark = pytest.mark.django_db
 
 

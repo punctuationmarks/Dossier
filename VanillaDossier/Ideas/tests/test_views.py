@@ -1,24 +1,21 @@
-from django.test import TestCase
-
 # importing User to have new instances of users
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-# to make sure a 404 page comes up
 import uuid
-
 from Ideas.models import IdeasModel
 
-# for generating psuedo data
-import pytest
+# testing imports
+from django.test import TestCase
+import pytest 
 from mixer.backend.django import mixer
 # pytest by default prevents database writing
-# without this, it'll crash at the mixer call
-# since mixer calls .save() after being called
+# without this boilerplate, it'll crash at the mixer call
+# since mixer runs .save() after being called
 pytestmark = pytest.mark.django_db
 
 
-class IdeasViewslTest(TestCase):
+class IdeasViewsTest(TestCase):
 
     # this will be set up and run once at beginning of TestModel call
     # creating some users to allow the creation of some ideas to test
@@ -39,8 +36,8 @@ class IdeasViewslTest(TestCase):
         test_user_2.save()
         test_super_user.save()
 
-        ideas_randomly_generated = 32
-        for i in range(1, ideas_randomly_generated):
+        x = 32
+        for i in range(1, x):
             if i % 2 == 0:
                 model_instance = mixer.blend(
                     'Ideas.IdeasModel', author=test_user_1)
@@ -64,9 +61,8 @@ class IdeasViewslTest(TestCase):
                 body=idea_body,
                 author=idea_author
             )
+        
         # creating ideas for super user
-
-        # creating 31 instances of Ideas model
         number_of_idea_entries = 5
         for i in range(number_of_idea_entries):
             idea_super_title = f"Used for pagination of single page {i}!"
@@ -80,12 +76,12 @@ class IdeasViewslTest(TestCase):
             )
 
     '''
-    My thoughts on this, is to make an actual user logged in site, so each user will 
-    be siloed into their own "database" of ideas, thoughts, dossiers; but will have the possibility 
+    My thoughts on this, is to make an actual user logged in site, so each user will
+    be siloed into their own "database" of ideas, thoughts, dossiers; but will have the possibility
     of having multiple users to access the site. Could build it in such a way to deactivate
-    this as well, so it'll be more of a single, private app (like how I want to use it, which 
-    will be more secure) and then a public facing app for all the masses 
-    
+    this as well, so it'll be more of a single, private app (like how I want to use it, which
+    will be more secure) and then a public facing app for all the masses
+
     - but the issue with this is that the "superuser" using this will have privilages
     '''
     # redirect URL is not correct, and not loading, test failing
@@ -97,30 +93,6 @@ class IdeasViewslTest(TestCase):
         login = self.client.login(username="testuser1", password="testuser1")
         # print(type(login))
         response = self.client.get(reverse('ideas'))
-
-        # docs:
-        # https://docs.djangoproject.com/en/3.0/ref/request-response/
-        # print('Some of the attributes the response can return')
-        # print("""
-        #     These all return an error similar to this:
-        #     AttributeError: 'HttpResponse' object has no attribute 'method'
-        # these are failing due to this request being custom. you can access the
-        # context, but only what you pass to the context. these below are all from
-        # the GenericViews from Django
-        # """)
-        # print("template name as list: .template_name", response.template_name)
-        # print("object from model: .context_data", response.context_data)
-        # print("entire page: .rendered_content ", response.rendered_content)
-        # print("encoded in: .charset ", response.charset)
-        # print("engine: .using ", response.using)
-        # print("\nhow a basic assert statement works:")
-
-        # print("but these all pass: ")
-        # print(self.assertTemplateUsed(response, "Ideas/ideasmodel.html"))
-        # making sure the return is a 200 success code before checking the template
-        # self.assertEqual(response.status_code, 200)
-        # self.assertTemplateUsed(response, "Ideas/ideasmodel.html")
-        # self.assertEqual(response.template_name, ['ideasmodel.html'])
 
     def test_redirect_when_user_not_logged_in(self):
         response = self.client.get(reverse('ideas'))
@@ -188,11 +160,11 @@ class IdeasViewslTest(TestCase):
         for post in response.context['posts']:
             self.assertEqual(response.context['user'], post.author)
 
+
     # testing that super user can see everything (which means this is app is not
     # secure in a sense that I like. I don't like the idea of having someone being able
     # to read all of my dossier entries, so either keep the app siloed and open source,
     # or have it encrypted/anonymized for each user)
-
     def test_only_what_super_user_posts_can_be_seen_by_super_user(self):
         login = self.client.login(username="super1", password="super1")
         # print(login)
@@ -206,7 +178,7 @@ class IdeasViewslTest(TestCase):
         # making sure there are posts available
         self.assertTrue('posts' in response.context)
 
-        # only ten here because it's paginating at 10 posts per page
+        # only 5 here because that's all that the superuser posted 
         self.assertEqual(len(response.context['posts']), 5)
 
         # checking that all of the posts belong to the correct user
@@ -274,47 +246,117 @@ class IdeasViewslTest(TestCase):
         self.assertFalse(response.context['is_paginated'])
         # print(response.context)
 
-
     def test_that_correct_template_is_being_used_for_new_idea_post(self):
         login = self.client.login(username="testuser1", password="testuser1")
         response = self.client.get(reverse('ideas-create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Ideas/ideasmodel_form.html')
 
-    def test_page_redirect_on_valid_idea_post_form(self):
+    # DESIGN THOUGHT:
+    """ currently this redirects to the post the user created,
+     and although I like the concept of being able to see a post
+     and the ability to edited it quickly, not sure if this is the best
+     UX design choice, think about it some more
+    """
+
+    def test_post_goes_though_are_redirects(self):
+        login = self.client.login(username="testuser1", password="testuser1")
+        self.client.post('/ideas/new/', {'author': "testuser1",
+                                         'title': "Super Important Test",
+                                         'body': "This is really important.", })
+        self.assertEqual(IdeasModel.objects.last().title,
+                         "Super Important Test")
+
+    def test_redirect_to_correct_published_post(self):
         login = self.client.login(username="testuser1", password="testuser1")
         response = self.client.post(
-            reverse('ideas-create'),{
-                "title":"Some Idea",
-                "body":"Body Body Body",
-                "author":"testuser1"
+            reverse('ideas-create'), {
+                "title": "Some Idea",
+                "body": "Body Body Body",
+                "author": "testuser1",
                 # author is automatically linked to the logged in user
             })
-        
         self.assertEqual(response.status_code, 302)
-        
-        print(response)
-        # print(response.context['user'])
-        # print(response.context['form'])
-        # print(response.context)
-        # print("template name as list: .template_name", response.template_name)
-        # print("object from model: .context_data", response.context_data)
-        # print("entire page: .rendered_content ", response.rendered_content)
-        # print("encoded in: .charset ", response.charset)
-        # print("engine: .using ", response.using)
-        # print("\nhow a basic assert statement works:")
 
-    '''
-    def test_pagination_is_ten_authors(self):
-        response = self.client.get(reverse('authors'))
+        """
+         NEED TO REFACTOR:
+
+         These three do the same thing, ordered in what takes longer.
+         There has to be a better way, but some reason
+         I can't find access to the object.pk in the response
+        """
+        # fastest:
+        url_from_pk = "/ideas/" + str(IdeasModel.objects.last().pk) + "/"
+        self.assertEqual(response.url, url_from_pk)
+        # slower:
+        # assert response.url.rstrip("/") == "/ideas/" +str(IdeasModel.objects.last().pk)
+        # slowest:
+        # assert response.url == "/ideas/" + str(IdeasModel.objects.last().pk) + "/"
+
+    def test_detailed_view_of_logged_in_user_with_their_post(self):
+        login = self.client.login(username="testuser1", password="testuser1")
+
+        response = self.client.get(
+            reverse('ideas-detail', kwargs={"pk": IdeasModel.objects.first().pk}))
+        assert str(
+            response.context['user']) == "testuser1", "should return the logged in user's name since it's their post"
+
+    def test_something_might_be_pointless(self):
+        model_instance_1 = IdeasModel.objects.get(id=1)
+        model_instance_2 = IdeasModel.objects.get(id=2)
+        # print(idea_1.body)
+        field_label_title_1 = model_instance_1._meta.get_field(
+            'title').verbose_name
+        # print(field_label_title_1)
+        assert str(model_instance_1.author) == "testuser2"
+        assert str(model_instance_2.author) == "testuser1"
+
+    def test_pk_transalted_to_logged_in_user(self):
+        # grabbing user 2
+        model_instances_with_user_2 = IdeasModel.objects.get(id=1).author
+        # grabbing user 1's posts, none of user 2's
+        first_model_instance = IdeasModel.objects.all().exclude(
+            author=model_instances_with_user_2).get(id=2)
+        # print(first_model_instance.author) # this returns testuser1
+
+        # loggin in user 2
+        login = self.client.login(username="testuser2", password="testuser2")
+        # taking the primary key from testuser1's post, and
+        # returning testuser2's and NOT returning testuser1's post
+        response = self.client.get(
+            reverse('ideas-detail', kwargs={"pk": first_model_instance.pk}))
+
+        # so each primary key is siloed to each user, this doesn't redirect
+        # but it does "translate" the primary key from one user to another,
+        # not allowing the user to see the other's data (but this is not a thorough test)
+        assert str(response.context['user']) == "testuser2"
+
+    def test_users_ideas_posts_are_alphabetical(self):
+
+        # loggin in testuser1
+        login = self.client.login(username="testuser1", password="testuser1")
+        # print(login)
+        response = self.client.get(reverse('ideas'))
+        # print(response)
+        # super_user_ideas = IdeasModel.objects.all()
+        # print(super_user_ideas)
+        self.assertEqual(str(response.context['user']), 'testuser1')
         self.assertEqual(response.status_code, 200)
-        # this checks to make sure the page has the is_paginated in the page itself
-        self.assertTrue('is_paginated' in response.context)
-        # this makes sure pagination is turned on
-        self.assertTrue(response.context['is_paginated'] == True)
-        # this makes sure it paginates at 10 objects
-        self.assertTrue(len(response.context['author_list']) == 10)
-'''
+
+        # making sure there are posts available
+        self.assertTrue('posts' in response.context)
+
+        self.assertEqual(len(response.context['posts']), 10)
+        # print(response.context['posts'])
+        # self.assertEqual(response.context['posts'].title, sorted(response.context['posts']))
+
+        # # checking that all of the posts belong to the correct user
+        # for post in response.context['posts']:
+        #     print(post)
+        #     self.assertEqual(response.context['user'], post.author)
+
+        # print(response.rendered_content)
+
     # def test_alphabetical_ideas_posts(self):
     #     test_user_x = User.objects.create_user(
     #         username="testuserx", password="passwordx")
@@ -337,6 +379,23 @@ class IdeasViewslTest(TestCase):
     #     # print(response)
     #     # assert result == "Something", "Should return the first few chracters of the body"
 
+    # self.assertContains(str(IdeasModel.objects.last().pk), response.url)
+
+    # self.assertContains
+    # print(response.context_data)
+    # print(" ")
+    # print(response.url)
+    # print(response.context['user'])
+    # print(response.context['pk'])
+    # print(response.context['form'])
+    # print(response.context)
+    # print("template name as list: .template_name", response.template_name)
+    # print("object from model: .context_data", response.context_data)
+    # print("entire page: .rendered_content ", response.rendered_content)
+    # print("encoded in: .charset ", response.charset)
+    # print("engine: .using ", response.using)
+    # print("\nhow a basic assert statement works:")
+
     # need to test that the posts are alphabetical and not by date
     # should I add feature to change the ordering?
     # def test_all_ideas_are_ordered_by_title(self):
@@ -355,3 +414,17 @@ class IdeasViewslTest(TestCase):
     #     self.assertEqual(len(response.context['posts']), 10)
 
     # for idea in response.context['posts']:
+
+
+
+    '''
+    def test_pagination_is_ten_ideas(self):
+        response = self.client.get(reverse('ideas'))
+        self.assertEqual(response.status_code, 200)
+        # this checks to make sure the page has the is_paginated in the page itself
+        self.assertTrue('is_paginated' in response.context)
+        # this makes sure pagination is turned on
+        self.assertTrue(response.context['is_paginated'] == True)
+        # this makes sure it paginates at 10 objects
+        self.assertTrue(len(response.context['idea_list']) == 10)
+    '''
