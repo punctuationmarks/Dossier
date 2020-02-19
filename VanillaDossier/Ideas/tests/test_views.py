@@ -7,7 +7,7 @@ from Ideas.models import IdeasModel
 
 # testing imports
 from django.test import TestCase
-import pytest 
+import pytest
 from mixer.backend.django import mixer
 # pytest by default prevents database writing
 # without this boilerplate, it'll crash at the mixer call
@@ -29,16 +29,17 @@ class IdeasViewsTest(TestCase):
             username="testuser2", password="testuser2")
 
         test_super_user = User.objects.create_superuser(username="super1",
-                                                        email="email@email.com",
+                                                        email="super1@email.com",
                                                         password="super1")
 
         test_user_1.save()
         test_user_2.save()
         test_super_user.save()
 
-        x = 32
-        for i in range(1, x):
+        num_of_blender_instances = 32
+        for i in range(1, num_of_blender_instances):
             if i % 2 == 0:
+                # using mixer to generate model instances, like a model factory
                 model_instance = mixer.blend(
                     'Ideas.IdeasModel', author=test_user_1)
             else:
@@ -46,8 +47,8 @@ class IdeasViewsTest(TestCase):
                     'Ideas.IdeasModel', author=test_user_2)
 
         # generating ideas to be searched
-        number_of_idea_entries = 5
-        for i in range(1, number_of_idea_entries):
+        num_of_searchable_instances = 5
+        for i in range(1, num_of_searchable_instances):
             idea_title = f"Great idea {i}!"
             idea_body = f"{i} starting at 1, to keep the indexes on the same interval as what is printed"
 
@@ -61,10 +62,10 @@ class IdeasViewsTest(TestCase):
                 body=idea_body,
                 author=idea_author
             )
-        
+
         # creating ideas for super user
-        number_of_idea_entries = 5
-        for i in range(number_of_idea_entries):
+        num_of_super_user_and_pagination_instances = 5
+        for i in range(num_of_super_user_and_pagination_instances):
             idea_super_title = f"Used for pagination of single page {i}!"
             idea_super_body = f"{i}Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptatem quae. Reprehenderit, aspernatur. Qui, incidunt adipisci quisquam accusantium earum numquam."
             idea_super_author = test_super_user
@@ -105,8 +106,31 @@ class IdeasViewsTest(TestCase):
         # print(response.url)
         assert response.url == "/admin/?next=/ideas/"
 
-    # making sure the correct template is used
+    def test_the_path_url_is_same_as_reverse_function(self):
+        ''' 
+        this test might seem redundant since it might feel like we're checking the
+        functionality of Django, but it is something we're customizing from Django
+        so it should be tested in a perfect world, but if building something on 
+        the fly, you *might* get away with skipping tests like these
+        '''
 
+        login = self.client.login(username="testuser1", password="testuser1")
+        url = self.client.get("/ideas/")
+        response = self.client.get(reverse('ideas'))
+        
+        # this is interesting, it fails somewhere at equality that 
+        # I can't tell, because visually the returned strings look the same
+        # is the same type of a class 'django.test.utils.ContextList'
+        # and even py.test says where it fails, the code looks identical
+        assert url != response
+        assert url.context != response.context 
+
+        # but these are true
+        assert url.request['PATH_INFO'] == response.request['PATH_INFO']
+        assert url.context['DEFAULT_MESSAGE_LEVELS'] == response.context['DEFAULT_MESSAGE_LEVELS']
+        
+    
+    # making sure the correct template is used
     def test_showing_correct_template_when_user_logged_in(self):
         # login returns a boolean by default
         login = self.client.login(username="testuser1", password="testuser1")
@@ -160,11 +184,11 @@ class IdeasViewsTest(TestCase):
         for post in response.context['posts']:
             self.assertEqual(response.context['user'], post.author)
 
-
     # testing that super user can see everything (which means this is app is not
     # secure in a sense that I like. I don't like the idea of having someone being able
     # to read all of my dossier entries, so either keep the app siloed and open source,
     # or have it encrypted/anonymized for each user)
+
     def test_only_what_super_user_posts_can_be_seen_by_super_user(self):
         login = self.client.login(username="super1", password="super1")
         # print(login)
@@ -178,7 +202,7 @@ class IdeasViewsTest(TestCase):
         # making sure there are posts available
         self.assertTrue('posts' in response.context)
 
-        # only 5 here because that's all that the superuser posted 
+        # only 5 here because that's all that the superuser posted
         self.assertEqual(len(response.context['posts']), 5)
 
         # checking that all of the posts belong to the correct user
@@ -331,7 +355,7 @@ class IdeasViewsTest(TestCase):
         # not allowing the user to see the other's data (but this is not a thorough test)
         assert str(response.context['user']) == "testuser2"
 
-    def test_users_ideas_posts_are_alphabetical(self):
+    def test_users_posts_are_alphabetical(self):
 
         # loggin in testuser1
         login = self.client.login(username="testuser1", password="testuser1")
@@ -346,7 +370,9 @@ class IdeasViewsTest(TestCase):
         # making sure there are posts available
         self.assertTrue('posts' in response.context)
 
+        # this is 10 due to pagination declared in views.py
         self.assertEqual(len(response.context['posts']), 10)
+        
         # print(response.context['posts'])
         # self.assertEqual(response.context['posts'].title, sorted(response.context['posts']))
 
@@ -414,8 +440,6 @@ class IdeasViewsTest(TestCase):
     #     self.assertEqual(len(response.context['posts']), 10)
 
     # for idea in response.context['posts']:
-
-
 
     '''
     def test_pagination_is_ten_ideas(self):

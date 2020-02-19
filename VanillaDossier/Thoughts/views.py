@@ -16,17 +16,18 @@ def thoughts(request):
     """
     Adding a search bar
     """
-    page_title = "thoughts"
-    posts_list = ThoughtsModel.objects.order_by('title')
+    page_title = "Thoughts"
+    posts_list = ThoughtsModel.objects.filter(
+        author=request.user).order_by('title')
     search_term = ''
 
     if 'search' in request.GET:
         search_term = request.GET['search']
-        orm_search = posts_list.filter(title__icontains=search_term) | posts_list.filter(body__icontains=search_term)
+        orm_search = posts_list.filter(
+            title__icontains=search_term) | posts_list.filter(body__icontains=search_term)
         posts = orm_search
     else:
         posts = posts_list
-
 
     page = request.GET.get('page', 1)
 
