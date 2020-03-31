@@ -13,7 +13,7 @@ urlpatterns = [
     # need to add honeypots
 
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    url(r'^HIDDEN_ADMIN/', admin.site.urls),
+    url(r'^SOME_URL_HIDDEN_ADMIN/', admin.site.urls),
     path('', include('Main_Templates.urls')),
     path('dossiers/', include('Dossiers.urls')),
     path('ideas/', include('Ideas.urls')),

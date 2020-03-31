@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g29&dyv76usd3non^dyoc&5*lrirgsy$7^e0-vall(n*&s!ij8qf4p'
+SECRET_KEY = 'secret`string'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -120,13 +120,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # MEDIA_URL = '/media/'
-
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-
-
-
-# https://django-crispy-forms.readthedocs.io/en/latest/
-# CRIPSY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
@@ -135,7 +129,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # having the LOGIN_URL set to /admin/
 # redirects to "/admin/login/?next=/requested_page"
 # which is the admin page, and upon authorization, the user will be redirected to "requested_page"
-LOGIN_URL = '/admin/'
+
+LOGIN_URL = '/admin/' # THIS IS ACTUALLY A TRAP ADMIN LOGIN PAGE. TRICKY TRICK, I KNOW. if you want it to be the actual admin page, link it to that, check urls.py for that info
 
 
 LOGIN_REDIRECT_URL = '/'
