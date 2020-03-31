@@ -10,7 +10,7 @@
       </fieldset>
       <div class="form-group">
         <button class="confirm_delete_button" type="submit">Yes, delete</button>
-        <a class="confirm_delete_a" href="#">Nope, get me outta here</a>
+        <a class="confirm_delete_a" href="{% url 'thoughts-post-detail' object.id %}">Nope, get me outta here</a>
       </div>
     </form>
   </div>

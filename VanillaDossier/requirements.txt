@@ -1,2 +1,2 @@
-Django
-django-admin-honeypot
+Django==3.0.4
+django-admin-honeypot==1.1.0

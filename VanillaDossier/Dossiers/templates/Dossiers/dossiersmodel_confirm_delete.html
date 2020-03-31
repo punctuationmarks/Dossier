@@ -1,6 +1,5 @@
-{% extends "main/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "Main_Templates/base.html" %}
+{% block body_block %}
     <div class="content-section box-content-section">
         <form method="POST">
             {% csrf_token %}
@@ -10,8 +9,8 @@
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-danger btn-block" type="submit">Yes, delete</button>
-                <a class="btn btn-outline-dark btn-block" href="{% url 'dossier-post-detail' object.id%}">Nope, get me outta here</a>
+                <a class="btn btn-outline-dark btn-block" href="{% url 'dossiers-detail' object.id %}">Nope, get me outta here</a>
             </div>
         </form>
     </div>
-{% endblock content %}
+{% endblock body_block %}   

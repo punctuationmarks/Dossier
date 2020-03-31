@@ -17,7 +17,8 @@ def dossiers(request):
     Adding a search bar
     """
     page_title = "dossiers"
-    posts_list = DossiersModel.objects.order_by('name')
+    posts_list = DossiersModel.objects.filter(
+        author=request.user).order_by('name')
     search_term = ''
 
     if 'search' in request.GET:
