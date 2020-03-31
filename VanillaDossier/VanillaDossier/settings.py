@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g29&dyvu3non^dyoc&5*lrzrirgsy$7^e0-va(n*&s!ij8qf4p'
+SECRET_KEY = 'g29&dyv76usd3non^dyoc&5*lrirgsy$7^e0-vall(n*&s!ij8qf4p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,7 +28,7 @@ INSTALLED_APPS = [
 
 
     # using honey pot for basic security
-    # 'admin_honeypot',
+    'admin_honeypot',
     #
     # # apps
     'Main_Templates',

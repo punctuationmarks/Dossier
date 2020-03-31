@@ -1,7 +1,8 @@
 {% extends "Main_Templates/base.html"%}
+
 {% block body_block %}
 
-<article class="">
+  <article class="">
         <p>{{order}}</p>
 
         <form method="post" enctype="multipart/form-data">{% csrf_token %}

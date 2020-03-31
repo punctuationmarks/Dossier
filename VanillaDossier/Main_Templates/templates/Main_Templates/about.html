@@ -1,20 +1,27 @@
 {% extends "Main_Templates/base.html"%}
+{% load static %}
+
 {% block page_header %}
 <section class="block_page_header_section">
-  <h1 id="about_page_header_h1">
-    About:
-  </h1>
+  <h1 id="about_page_header_h1"></h1>
 </section>
 {% endblock page_header %}
 {% block body_block %}
+<p>
+  <button id="color_scheme_toggle_button_navbar" class= "color_scheme_toggle_button">
+      <img class="color_scheme_toggle_image" src="{% static 'images/delta_small.png'%}" />
+  </button>
+</p>
+
 <p class="body_block_p">
-  I tried to build it in such a way to not have
-  too many dependencies, thus theoretical have fewer breaking changes.
-  Been working on getting better at the fundamentals instead of reaching for a frontend framework.
+  Welcome to my simple CRUD app. I tried making this as vanilla as possible, with mostly Python's <a href="https://www.djangoproject.com/">Django</a>, 
+  CSS3, and JavaScript. I tried to made this this easily customizable, in at least using CSS variables for colors. 
+  If you know a bit about web design, you should be able to just use this. If you want, you can clone the code from 
+  <a href="https://github.com/punctuationmarks" target="_blank">GitHub</a> and throw it on <a href="https://www.heroku.com/pricing">Heroku</a> 
+  for a free web app with little annoyance with deployment. Or throw it on a <a href="https://www.linode.com/">Linode</a> 
+  server for just $5 a month (<a href="https://promo.linode.com/coreyschafer/">here's a $20 credit, thanks Corey Schafer</a>) that you have complete control over.
   <br>
-  This is free and open software.
-  You can download the project <a href="www.github.com/punctuationmarks">here</a>
-  and use it how you'd like. Just say it came from punctuationmarks.
+  This is free and open software and use it how you'd like. Just say it came from punctuationmarks.
   <br>
   <br>
 </p>
@@ -22,7 +29,6 @@
   Want to contact me? Work with me? Have a passion for people and making the world a better place?
   Send an email to <a href="https://www.protonmail.com" target="_blank" id="email">punctuationmarks at protonmail dot com</a>
 </h2>
-
 
 <br>
 <br>

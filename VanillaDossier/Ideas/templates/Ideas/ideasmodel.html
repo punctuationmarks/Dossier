@@ -8,15 +8,6 @@
 {% endblock skip_links %}
 
 
-{% block upload_csv %}
-<li class="nav_bar_li">
-  <a href="/ideas/upload-csv/" class="navigation_link_header">
-    Upload
-  </a>
-</li>
-{% endblock upload_csv %}
-
-
 {% block page_header %}
 <h1 id="ideas_header_h1">
   Ideas:
@@ -64,8 +55,14 @@
 <ul id="sidebar_ul">
   {% block post_button_sidebar %}
   <li class="sidebar_li">
-    <a href="{% url 'ideas-create'%}" class="sidebar_link" id="post_href">/++</a>
+    <a href="{% url 'ideas-create'%}" class="sidebar_link sidebar_post_href" 
+    id="post_href">/++</a>
   </li>
+  <li class="sidebar_li">
+    <a href="/ideas/upload-csv/" class="sidebar_link upload_csv">
+    Upload .csv file
+    </a>
+</li>
   {% endblock post_button_sidebar %}
   <!-- only displaying sidebar if the user has added posts -->
   {% if posts %}
