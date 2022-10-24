@@ -1,2 +1,2 @@
-Django==3.1.13
+Django==3.1.14
 django-admin-honeypot==1.1.0
